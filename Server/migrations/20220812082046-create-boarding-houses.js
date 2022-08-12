@@ -48,7 +48,7 @@ module.exports = {
         onUpdate: "cascade",
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
       },
       location: {
         type: Sequelize.GEOMETRY("POINT"),
