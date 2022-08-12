@@ -1,6 +1,6 @@
 import { BOARDING_HOUSES_FETCH_SUCCESS } from "../action/actionType";
 
-const initialState = { boardingHouses: [] };
+const initialState = { boardingHouses: [], boardingHouse: {} };
 
 function boardingHousesReducer(state = initialState, action) {
   switch (action.type) {
