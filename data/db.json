@@ -1,0 +1,127 @@
+{
+  "BoardingHouses": [
+    {
+      "id": 1,
+      "name": "Kost Kiara 51",
+      "price": 1100000,
+      "CategoryId": 1,
+      "CityId": "Jakarta Timur",
+      "roomQty": 20,
+      "UserId": 1,
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
+      "latitude": "-6.31845",
+      "longtitude": "106.89748"
+    },
+    {
+      "id": 2,
+      "name": "Kost Exclusive Mango",
+      "price": 750000,
+      "CategoryId": 1,
+      "CityId": "Jakarta Barat",
+      "roomQty": 10,
+      "UserId": 1,
+      "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
+      "latitude": "-6.13853",
+      "longtitude": "106.70409"
+    },
+    {
+      "id": 3,
+      "name": "Kost Kendari",
+      "price": 500000,
+      "CategoryId": 1,
+      "CityId": "Jakarta Selatan",
+      "roomQty": 8,
+      "UserId": 1,
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
+      "latitude": "-6.27685",
+      "longtitude": "106.80707"
+    },
+    {
+      "id": 4,
+      "name": "Kost Margonda Kramat",
+      "price": 1100000,
+      "CategoryId": 1,
+      "CityId": "Jakarta Utara",
+      "roomQty": 5,
+      "UserId": 1,
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
+      "latitude": "-6.131164",
+      "longtitude": "106.85564"
+    },
+    {
+      "id": 5,
+      "name": "Kost Arkana Sadewa",
+      "price": 1450000,
+      "CategoryId": 1,
+      "CityId": "Jakarta Barat",
+      "roomQty": 15,
+      "UserId": 1,
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
+      "latitude": "-6.17642",
+      "longtitude": "106.77266"
+    }
+  ],
+  "Categories": [
+    {
+      "id": 1,
+      "name": "Kos Putri"
+    },
+    {
+      "id": 2,
+      "name": "Kos Putra"
+    },
+    {
+      "id": 3,
+      "name": "Kos Campur"
+    }
+  ],
+  "Rules": [
+    {
+      "name": "Akses 24 Jam",
+      "BoardingHousesID": 1
+    },
+    {
+      "name": "Khusus Karyawan",
+      "BoardingHousesID": 1
+    },
+    {
+      "name": "Boleh Bawa Hewan",
+      "BoardingHousesID": 1
+    }
+  ],
+  "Images": [
+    {
+      "CloudUrl": "",
+      "BoardingHousesID": 1
+    },
+    {
+      "CloudUrl": "",
+      "BoardingHousesID": 1
+    },
+    {
+      "CloudUrl": "",
+      "BoardingHousesID": 1
+    }
+  ],
+  "Rooms": [
+    {
+      "BoardingHousesID": 1,
+      "UserId": 1
+    }
+  ],
+  "Bookmarks": [
+    {
+      "UserId": 1,
+      "BoardingHousesID": 2,
+      "Status": "Unpaid"
+    }
+  ],
+  "Users": [
+    {
+      "Email": "admin@mail.com",
+      "Password": "12345678",
+      "PhoneNumber": "086363628781",
+      "Role": "Admin"
+    }
+  ]
+}
