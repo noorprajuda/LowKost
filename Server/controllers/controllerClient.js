@@ -24,13 +24,14 @@ class ControllerClient {
     try {
       const { fullName, email, password, phoneNumber, address } = req.body;
       let input = {
-        username,
+        fullName,
         email,
         password,
-        phoneNumber,
+        phoneNumber: "0" + phoneNumber,
         role: "Tenant",
         address,
       };
+      console.log(input);
 
       const creteTenant = await Users.create(input);
 
@@ -39,8 +40,44 @@ class ControllerClient {
         message: "User has been created",
       });
     } catch (err) {
-      res.status(500).json(err);
+      console.log(err);
+      next(err);
     }
+  }
+
+  static async bourdingHouses(req, res, next) {
+    try {
+      let kos = await BoardingHouses.findAll({
+        include: [
+          { model: Categories, attributes: ["name"] },
+          { model: City, attributes: ["name"] },
+          {
+            model: Users,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            },
+          },
+        ],
+
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+      });
+
+      let facilitiy = await BoardingHouseFacilities.findAll({
+        include: [{ models: Facilities, attributes: ["name"] }, { kos }],
+      });
+
+      console.log(kos);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
+  static async bourdingHousesId(req, res, next) {
+    try {
+    } catch (err) {}
   }
 }
 
