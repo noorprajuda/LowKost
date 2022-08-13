@@ -1,15 +1,40 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { login } from "../store/action";
+import { useState } from "react";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [formLogin, setFormLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    const newForm = {
+      email: formLogin.email,
+      password: formLogin.password,
+    };
+
+    newForm[name] = value;
+    setFormLogin(newForm);
+  };
 
   const handleSave = (e) => {
-    localStorage.setItem("role", "admin");
-    if (localStorage.getItem("role") === "admin") {
-      navigate("/admin");
-    } else {
-      navigate("/");
-    }
+    dispatch(login(formLogin))
+      .then((resp) => {
+        if (localStorage.getItem("role") === "Owner") {
+          navigate("/owner");
+        } else if (localStorage.getItem("role") === "Admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -30,7 +55,7 @@ export default function LoginPage() {
                     type="email"
                     name="email"
                     id="email"
-                    // onChange={onChange}
+                    onChange={onChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
@@ -44,7 +69,7 @@ export default function LoginPage() {
                     type="password"
                     name="password"
                     id="password"
-                    // onChange={onChange}
+                    onChange={onChange}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""

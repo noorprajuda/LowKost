@@ -1,4 +1,49 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { registerOwner } from "../store/action";
+
 export default function RegisterOwner() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [formRegister, setFormRegister] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    address: "",
+  });
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    const newForm = {
+      fullName: formRegister.fullName,
+      email: formRegister.email,
+      password: formRegister.password,
+      phoneNumber: formRegister.phoneNumber,
+      address: formRegister.address,
+    };
+
+    newForm[name] = value;
+    setFormRegister(newForm);
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    dispatch(registerOwner(formRegister))
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Error");
+        }
+      })
+      .then((data) => {
+        navigate("/login");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -11,15 +56,29 @@ export default function RegisterOwner() {
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Nama Lengkap
+                  </label>
+                  <input
+                    type="fullName"
+                    name="fullName"
+                    id="fullName"
+                    onChange={onChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Aldo Dwicahyo"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Email
                   </label>
                   <input
                     type="email"
                     name="email"
                     id="email"
-                    // onChange={onChange}
+                    onChange={onChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
+                    placeholder="aldo.dwicahyo@email.com"
                     required=""
                   />
                 </div>
@@ -32,7 +91,7 @@ export default function RegisterOwner() {
                     type="password"
                     name="password"
                     id="password"
-                    // onChange={onChange}
+                    onChange={onChange}
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
@@ -41,37 +100,39 @@ export default function RegisterOwner() {
 
                 <div>
                   <label
-                    for="website-admin"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    // for="website-admin"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Nomor Telfon
                   </label>
-                  <div class="flex">
-                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                  <div className="flex">
+                    <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 rounded-l-md border border-r-0 border-gray-300 dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                       +62
                     </span>
                     <input
                       type="text"
+                      name="phoneNumber"
                       id="website-admin"
-                      class="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      onChange={onChange}
+                      className="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="811x xxxx"
                     />
                   </div>
                 </div>
-
-                {/* <div>
+                <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Role
+                    Alamat Lengkap
                   </label>
-                  <select
-                    id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option>Penyewa</option>
-                    <option>Pemilik</option>
-                    <option>Admin</option>
-                  </select>
-                </div> */}
+                  <input
+                    type="address"
+                    name="address"
+                    id="address"
+                    onChange={onChange}
+                    placeholder="Jl. Galunggung No.14 RT11 RW14 Cengkareng"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required=""
+                  />
+                </div>
 
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
@@ -85,32 +146,23 @@ export default function RegisterOwner() {
                   </div>
                   <div className="ml-3 text-sm">
                     <label className="font-light text-gray-500 dark:text-gray-300">
-                      I accept the{" "}
+                      Saya setuju dengan{" "}
                       <a
                         className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                         href="#"
                       >
-                        Terms and Conditions
+                        Syarat dan Ketentuan
                       </a>
                     </label>
                   </div>
                 </div>
                 <button
                   type="submit"
-                  // onClick={handleSave}
+                  onClick={handleSave}
                   className="w-full text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Proses Pendaftaran Mitra
                 </button>
-                {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  First time comer? create account
-                  <a
-                    href="#"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >
-                    here
-                  </a>
-                </p> */}
               </form>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBoardingHouses } from "../store/action";
-import BoardingHousesTableRow from "./BoardingHousesTableRow";
+import BoardingHousesTableRowOwner from "./BoardingHousesTableRowOwner";
 
 export default function BoardingHousesTable() {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ export default function BoardingHousesTable() {
               </thead>
               {boardingHouses.map((boardingHouses) => {
                 return (
-                  <BoardingHousesTableRow
+                  <BoardingHousesTableRowOwner
                     key={boardingHouses.id}
                     boardingHouses={boardingHouses}
                   />

@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function BoardingHousesTableRow({ boardingHouses }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const updateHandler = (id) => {
+    navigate(`/${id}/update`);
+  };
 
   return (
     <>
@@ -35,7 +39,14 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
           <td className="py-4 px-6 text-center">{boardingHouses.UserId}</td>
           <td className="py-4 px-6 text-xs">{boardingHouses.description}</td>
           <td className="py-4 px-6 text-center">{boardingHouses.location}</td>
-          <td className="py-4 px-6">
+          <td className="py-4 px-6 text-center">
+            <a
+              href="#"
+              onClick={() => updateHandler(boardingHouses.id)}
+              className="font-medium text-blue-600  hover:underline"
+            >
+              Edit{" "}
+            </a>
             <a href="#" className="font-medium text-red-600  hover:underline">
               Delete
             </a>
