@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       BoardingHouses.belongsTo(models.City);
       BoardingHouses.hasMany(models.Bookmarks);
       BoardingHouses.hasMany(models.Images);
+      BoardingHouses.hasMany(models.BoardingHouseFacilities);
+      BoardingHouses.hasMany(models.BoardingHouseRules);
+      BoardingHouses.hasMany(models.MyBooking);
     }
   }
   BoardingHouses.init(

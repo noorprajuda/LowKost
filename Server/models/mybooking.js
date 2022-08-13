@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class MyBooking extends Model {
     static associate(models) {
-      MyBooking.hasMany(models.BoardingHouses);
+      MyBooking.belongsTo(models.BoardingHouses);
       MyBooking.belongsTo(models.Users);
     }
   }
