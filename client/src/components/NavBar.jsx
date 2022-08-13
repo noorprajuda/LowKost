@@ -1,3 +1,4 @@
+
 import { Button } from "flowbite";
 
 export default function Navbar() {
@@ -11,6 +12,7 @@ export default function Navbar() {
               className="mr-3 h-6 sm:h-9"
               alt="Flowbite Logo"
             />
+
             <span className="self-center text-xl font-semibold whitespace-nowrap ">
               Low Kost
             </span>
@@ -25,6 +27,7 @@ export default function Navbar() {
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
+
               className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               aria-controls="navbar-sticky"
               aria-expanded="false"
@@ -49,6 +52,7 @@ export default function Navbar() {
             className="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
+
             <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white ">
               <li>
                 <a
@@ -95,6 +99,7 @@ export default function Navbar() {
                 />
               </div>
             </form>
+
           </div>
         </div>
       </nav>

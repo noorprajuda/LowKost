@@ -5,26 +5,30 @@
       "name": "Kost Kiara 51",
       "price": 1100000,
       "CategoryId": 1,
+
       "CityId": "Jakarta Timur",
       "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-07-29/8RfLwycx-360x480.jpg",
       "roomQty": 20,
+
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
-      "latitude": "-6.31845",
-      "longtitude": "106.89748"
+      "location": "-6.31845 106.89748",
+      "mainImg": "https://images.pexels.com/photos/2631746/pexels-photo-2631746.jpeg?auto=compress&cs=tinysrgb&w=1600"
     },
     {
       "id": 2,
       "name": "Kost Exclusive Mango",
       "price": 750000,
       "CategoryId": 1,
+
       "CityId": "Jakarta Barat",
       "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2019-11-12/Bt64nqqN-360x480.jpg",
       "roomQty": 10,
+
       "UserId": 1,
       "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
-      "latitude": "-6.13853",
-      "longtitude": "106.70409"
+      "location": "-6.13853 106.70409",
+      "mainImg": "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1600"
     },
     {
       "id": 3,
@@ -34,99 +38,229 @@
       "CityId": "Jakarta Selatan",
       "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2019-11-22/P8WqyfYk-360x480.jpg",
       "roomQty": 8,
+
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
-      "latitude": "-6.27685",
-      "longtitude": "106.80707"
+      "location": "-6.27685 106.80707",
+      "mainImg": "https://images.pexels.com/photos/2062431/pexels-photo-2062431.jpeg?auto=compress&cs=tinysrgb&w=1600"
     },
     {
       "id": 4,
       "name": "Kost Margonda Kramat",
       "price": 1100000,
       "CategoryId": 1,
+
       "CityId": "Jakarta Utara",
       "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-05-11/xW3Lq9jQ-360x480.jpg",
       "roomQty": 5,
       "UserId": 1,
-      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
-      "latitude": "-6.131164",
-      "longtitude": "106.85564"
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
+      "location": "-6.131164 106.85564",
+      "mainImg": "https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1600"
     },
     {
       "id": 5,
       "name": "Kost Arkana Sadewa",
       "price": 1450000,
       "CategoryId": 1,
+
       "CityId": "Jakarta Barat",
       "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2020-01-19/zVKb2Au2-360x480.jpg",
       "roomQty": 15,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
-      "latitude": "-6.17642",
-      "longtitude": "106.77266"
+      "location": "-6.17642 106.77266",
+      "mainImg": "https://images.pexels.com/photos/3209035/pexels-photo-3209035.jpeg?auto=compress&cs=tinysrgb&w=1600"
     }
   ],
   "Categories": [
     {
-      "id": 1,
       "name": "Kos Putri"
     },
     {
-      "id": 2,
       "name": "Kos Putra"
     },
     {
-      "id": 3,
       "name": "Kos Campur"
     }
   ],
   "Rules": [
     {
-      "name": "Akses 24 Jam",
-      "BoardingHousesID": 1
+      "name": "Akses 24 Jam"
     },
     {
-      "name": "Khusus Karyawan",
-      "BoardingHousesID": 1
+      "name": "Khusus Karyawan"
     },
     {
-      "name": "Boleh Bawa Hewan",
-      "BoardingHousesID": 1
+      "name": "Boleh Bawa Hewan"
     }
   ],
   "Images": [
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399628044.jpeg",
+      "BoardingHouseId": 1
     },
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/0402202216439962816.jpeg",
+      "BoardingHouseId": 1
     },
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
-    }
-  ],
-  "Rooms": [
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399628162.jpeg",
+      "BoardingHouseId": 1
+    },
     {
-      "BoardingHousesID": 1,
-      "UserId": 1
-    }
-  ],
-  "Bookmarks": [
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399534981.jpeg",
+      "BoardingHouseId": 2
+    },
     {
-      "UserId": 1,
-      "BoardingHousesID": 2,
-      "Status": "Unpaid"
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399534952.jpeg",
+      "BoardingHouseId": 2
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399535067.jpeg",
+      "BoardingHouseId": 2
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601289.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601352.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601375.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527344.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527327.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527380.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/a7b41dd1644489215805620528a7c71aa-375x500.jpg",
+      "BoardingHouseId": 5
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/037356a1644489215822620529037dba7-375x500.jpg",
+      "BoardingHouseId": 5
+    },
+    {
+      "imgUrl": "https://infokost.id/wp-content/uploads/2022/02/142dbfb164448921598562052f14380a3-450x300.jpg",
+      "BoardingHouseId": 5
     }
   ],
   "Users": [
     {
-      "Email": "admin@mail.com",
-      "Password": "12345678",
-      "PhoneNumber": "086363628781",
-      "Role": "Admin"
+      "fullName": "Admin 1",
+      "email": "admin@mail.com",
+      "password": "12345678",
+      "phoneNumber": "086363628781",
+      "role": "Admin",
+      "address": "Jalan boulevard 1 no 12"
+    }
+  ],
+  "Facilities": [
+    {
+      "name": "AC"
+    },
+    {
+      "name": "Shower"
+    },
+    {
+      "name": "K.Mandi Dalam"
+    },
+    {
+      "name": "Air Panas"
+    },
+    {
+      "name": "TV"
+    },
+    {
+      "name": "Lemari Baju"
+    }
+  ],
+  "BoardingHouseFacilities": [
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 1
+    }
+  ],
+  "BoardingHouseRules": [
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 1
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 1
+    },
+    {
+      "RuleId": 3,
+      "BoardingHouseId": 1
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 2
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 2
+    },
+    {
+      "RuleId": 3,
+      "BoardingHouseId": 2
+    }
+  ],
+  "City": [
+    {
+      "name": "Jakarta"
+    },
+    {
+      "name": "Surabaya"
+    },
+    {
+      "name": "Bekasi"
+    },
+    {
+      "name": "Bandung"
+    },
+    {
+      "name": "Medan"
+    },
+    {
+      "name": "Depok"
+    },
+    {
+      "name": "Tangerang"
+    },
+    {
+      "name": "Palembang"
+    },
+    {
+      "name": "Semarang"
+    },
+    {
+      "name": "Makassar"
     }
   ]
 }
