@@ -4,8 +4,10 @@ const {
   Categories,
   Images,
   Facilities,
-  BoardingHousesFacilities,
+  BoardingHouseFacilities,
   City,
+  Rules,
+  BoardingHouseRules,
 } = require("../models");
 
 module.exports = class OwnerController {
@@ -48,9 +50,15 @@ module.exports = class OwnerController {
       const images = await Images.findAll({
         where: { BoardingHouseId: boardinghouses.id },
       });
-      const facilites = await BoardingHousesFacilities.findAll({
+      const facilites = await BoardingHouseFacilities.findAll({
         where: { BoardingHouseId: boardinghouses.id },
+        include: [{ model: Facilities }],
       });
+      const rules = await BoardingHouseRules.findAll({
+        where: { BoardingHouseId: boardinghouses.id },
+        include: [{ model: Rules }],
+      });
+      res.status(200).json({ boardinghouses, rules, images, facilites });
     } catch (err) {
       next(err);
     }

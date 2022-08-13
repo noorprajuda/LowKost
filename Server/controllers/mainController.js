@@ -1,5 +1,5 @@
 const { signToken, compareHash } = require("../helpers/helpers");
-const { Users } = require("../models");
+const { Users, Facilities, City, Rules } = require("../models");
 
 module.exports = class mainController {
   static async loginHandler(req, res, next) {
@@ -18,6 +18,33 @@ module.exports = class mainController {
         role: user.role,
         fullName: user.fullName,
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getFacilities(req, res, next) {
+    try {
+      const facilities = await Facilities.findAll();
+      res.status(200).json(facilities);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getCities(req, res, next) {
+    try {
+      const cities = await City.findAll();
+      res.status(200).json(cities);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getRules(req, res, next) {
+    try {
+      const rules = await Rules.findAll();
+      res.status(200).json(rules);
     } catch (err) {
       next(err);
     }

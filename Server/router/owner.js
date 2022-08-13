@@ -4,6 +4,15 @@ const OwnerController = require("../controllers/OwnerController");
 
 router.post("/register", OwnerController.registerHandler);
 
-router.get("/boardinghouses", OwnerController.getBoardingHouses);
+router.get(
+  "/boardinghouses",
+  authentication,
+  OwnerController.getBoardingHouses
+);
+router.get(
+  "/boardinghouse/:id",
+  authentication,
+  OwnerController.getBoardingHousesById
+);
 
 module.exports = router;

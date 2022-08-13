@@ -1,12 +1,12 @@
 const { verifyToken } = require("../helpers/helpers");
-const { User } = require("../models/");
+const { Users } = require("../models/");
 
 const authentication = async (req, res, next) => {
   try {
     const { access_token } = req.headers;
     const decode = verifyToken(access_token);
 
-    const user = await User.findOne({ where: { email: decode.email } });
+    const user = await Users.findOne({ where: { email: decode.email } });
     if (!user) {
       throw { name: "Unauthorized" };
     }

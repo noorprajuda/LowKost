@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class BoardingHouseFacilities extends Model {
     static associate(models) {
       BoardingHouseFacilities.belongsTo(models.BoardingHouses);
-      BoardingHouseFacilities.hasOne(models.Facilities);
+      BoardingHouseFacilities.belongsTo(models.Facilities);
     }
   }
   BoardingHouseFacilities.init(

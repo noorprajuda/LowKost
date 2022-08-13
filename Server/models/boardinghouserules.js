@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class BoardingHouseRules extends Model {
     static associate(models) {
-      BoardingHouseRules.hasOne(models.Rules);
+      BoardingHouseRules.belongsTo(models.Rules);
       BoardingHouseRules.belongsTo(models.BoardingHouses);
     }
   }
