@@ -2,15 +2,9 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class BoardingHouses extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-      BoardingHouses.belongsTo(models.User);
-      BoardingHouses.belongsTo(models.Category);
+      BoardingHouses.belongsTo(models.Users);
+      BoardingHouses.belongsTo(models.Categories);
       BoardingHouses.belongsTo(models.City);
       BoardingHouses.hasMany(models.Bookmarks);
       BoardingHouses.hasMany(models.Images);
@@ -28,11 +22,15 @@ module.exports = (sequelize, DataTypes) => {
       location: DataTypes.GEOMETRY,
       slug: DataTypes.STRING,
       mainImg: DataTypes.STRING,
+      address: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "BoardingHouses",
     }
   );
+  BoardingHouses.beforeCreate((instance, option) => {
+    instance.slug = instance.name.replace(/\s+/g, "-").toLowerCase();
+  });
   return BoardingHouses;
 };

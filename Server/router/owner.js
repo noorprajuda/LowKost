@@ -1,10 +1,9 @@
 const router = require("express").Router();
 const authentication = require("../middlewares/authentication");
+const OwnerController = require("../controllers/OwnerController");
 
-router.post("/register");
+router.post("/register", OwnerController.registerHandler);
 
-router.post("/login");
-
-router.use(authentication);
+router.get("/boardinghouses", OwnerController.getBoardingHouses);
 
 module.exports = router;
