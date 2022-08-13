@@ -1,5 +1,7 @@
+
 import axios from "axios";
-import { BOARDING_HOUSES_FETCH_SUCCESS } from "./actionType";
+import { BOARDING_HOUSES_FETCH_SUCCESS,BOARDING_HOUSE_FETCH_SUCCESS, } from "./actionType";
+
 
 const baseUrl = "https://5da9-139-192-206-182.ap.ngrok.io";
 
@@ -9,6 +11,7 @@ export const fetchBoardingHousesSuccess = (payload) => {
     payload,
   };
 };
+
 
 // export const fetchBoardingHouses = () => {
 //   return (dispatch, getState) => {
@@ -28,6 +31,13 @@ export const fetchBoardingHousesSuccess = (payload) => {
 //       .catch((err) => console.log(err));
 //   };
 // };
+
+export const fetchBoardingHouseIdSuccess = (payload) => {
+  return {
+    type: BOARDING_HOUSE_FETCH_SUCCESS,
+    payload,
+  };
+};
 
 export const fetchBoardingHouses = () => {
   console.log("mausk");
@@ -83,5 +93,29 @@ export const login = (formLogin) => {
         reject(err);
       }
     });
+  };
+};
+
+export const fetchBoardingHouseById = (id) => {
+  const baseUrl = "http://localhost:3004/BoardingHouses";
+  const access_token = localStorage.getItem("access_token");
+  return (dispatch, getState) => {
+    return fetch(`${baseUrl}/${id}`, {
+      // headers: {
+      //   access_token: access_token,
+      // },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data, "<<<<data fetchBoardingHouse");
+        dispatch(fetchBoardingHouseIdSuccess(data));
+        console.log("getState BoardingHouse>>>", getState());
+      })
+      .catch(console.log);
   };
 };

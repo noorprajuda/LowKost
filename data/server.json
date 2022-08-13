@@ -5,191 +5,250 @@
       "name": "Kost Kiara 51",
       "price": 1100000,
       "CategoryId": 1,
-      "CityId": "Jakarta Timur",
-      "roomQty": 20,
+      "CityId": 1,
+      "totalRoom": 20,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
-      "latitude": "-6.31845",
-      "longtitude": "106.89748"
+      "location": "-6.31845 106.89748",
+      "mainImg":"https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
     },
     {
       "id": 2,
       "name": "Kost Exclusive Mango",
       "price": 750000,
       "CategoryId": 1,
-      "CityId": "Jakarta Barat",
-      "roomQty": 10,
+      "CityId": 1,
+      "totalRoom": 10,
       "UserId": 1,
       "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
-      "latitude": "-6.13853",
-      "longtitude": "106.70409"
+      "location": "-6.13853 106.70409",
+      "mainImg":"https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
     },
     {
       "id": 3,
       "name": "Kost Kendari",
       "price": 500000,
       "CategoryId": 1,
-      "CityId": "Jakarta Selatan",
-      "roomQty": 8,
+      "CityId": 1,
+      "totalRoom": 8,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
-      "latitude": "-6.27685",
-      "longtitude": "106.80707"
+      "location": "-6.27685 106.80707",
+      "mainImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
     },
     {
       "id": 4,
       "name": "Kost Margonda Kramat",
       "price": 1100000,
       "CategoryId": 1,
-      "CityId": "Jakarta Utara",
-      "roomQty": 5,
+      "CityId": 1,
+      "totalRoom": 5,
       "UserId": 1,
-      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
-      "latitude": "-6.131164",
-      "longtitude": "106.85564"
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
+      "location": "-6.131164 106.85564",
+      "mainImg":"https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
     },
     {
       "id": 5,
       "name": "Kost Arkana Sadewa",
       "price": 1450000,
       "CategoryId": 1,
-      "CityId": "Jakarta Barat",
-      "roomQty": 15,
+      "CityId": 1,
+      "totalRoom": 15,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
-      "latitude": "-6.17642",
-      "longtitude": "106.77266"
+      "location": "-6.17642 106.77266",
+      "mainImg":"https://cf.bstatic.com/xdata/images/hotel/max1024x768/330259388.jpg?k=003642c2db45b979d3fa9555882b428e7e03702617507f1b935fd68c9508b117&o=&hp=1"
     }
   ],
   "Categories": [
     {
-      "id": 1,
       "name": "Kos Putri"
     },
     {
-      "id": 2,
       "name": "Kos Putra"
     },
     {
-      "id": 3,
       "name": "Kos Campur"
     }
   ],
   "Rules": [
     {
-      "name": "Akses 24 Jam",
-      "BoardingHousesID": 1
+      "name": "Akses 24 Jam"
     },
     {
-      "name": "Khusus Karyawan",
-      "BoardingHousesID": 1
+      "name": "Khusus Karyawan"
     },
     {
-      "name": "Boleh Bawa Hewan",
-      "BoardingHousesID": 1
+      "name": "Boleh Bawa Hewan"
     }
   ],
   "Images": [
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399628044.jpeg",
+      "BoardingHouseId": 1
     },
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/0402202216439962816.jpeg",
+      "BoardingHouseId": 1
     },
     {
-      "CloudUrl": "",
-      "BoardingHousesID": 1
-    }
-  ],
-  "Rooms": [
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399628162.jpeg",
+      "BoardingHouseId": 1
+    },
     {
-      "BoardingHousesID": 1,
-      "UserId": 1
-    }
-  ],
-  "Bookmarks": [
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399534981.jpeg",
+      "BoardingHouseId": 2
+    },
     {
-      "UserId": 1,
-      "BoardingHousesID": 2,
-      "Status": "Unpaid"
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399534952.jpeg",
+      "BoardingHouseId": 2
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399535067.jpeg",
+      "BoardingHouseId": 2
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601289.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601352.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399601375.jpeg",
+      "BoardingHouseId": 3
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527344.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527327.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527380.jpeg",
+      "BoardingHouseId": 4
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/a7b41dd1644489215805620528a7c71aa-375x500.jpg",
+      "BoardingHouseId": 5
+    },
+    {
+      "imgUrl": "https://infokost.b-cdn.net/wp-content/uploads/2022/02/037356a1644489215822620529037dba7-375x500.jpg",
+      "BoardingHouseId": 5
+    },
+    {
+      "imgUrl": "https://infokost.id/wp-content/uploads/2022/02/142dbfb164448921598562052f14380a3-450x300.jpg",
+      "BoardingHouseId": 5
     }
   ],
   "Users": [
     {
-      "Email": "admin@mail.com",
-      "Password": "12345678",
-      "PhoneNumber": "086363628781",
-      "Role": "Admin"
+      "fullName":"Admin 1",
+      "email": "admin@mail.com",
+      "password": "12345678",
+      "phoneNumber": "086363628781",
+      "role": "Admin",
+      "address":"Jalan boulevard 1 no 12"
     }
   ],
   "Facilities": [
     {
-      "BoardingHouseId": 1,
       "name": "AC"
     },
     {
-      "BoardingHouseId": 1,
       "name": "Shower"
     },
     {
-      "BoardingHouseId": 1,
       "name": "K.Mandi Dalam"
     },
     {
-      "BoardingHouseId": 1,
       "name": "Air Panas"
     },
     {
-      "BoardingHouseId": 2,
-      "name": "Air Panas"
-    },
-    {
-      "BoardingHouseId": 2,
-      "name": "AC"
-    },
-    {
-      "BoardingHouseId": 2,
       "name": "TV"
     },
     {
-      "BoardingHouseId": 2,
       "name": "Lemari Baju"
     }
   ],
-  "Facilities": [
+  "BoardingHouseFacilities":[
     {
-      "BoardingHouseId": 1,
-      "name": "AC"
+      "FacilityId":1,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 1,
-      "name": "Shower"
+      "FacilityId":2,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 1,
-      "name": "K.Mandi Dalam"
+      "FacilityId":3,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 1,
-      "name": "Air Panas"
+      "FacilityId":4,
+      "BoardingHouseId":1
+    }
+  ],
+  "BoardingHouseRules":[
+    {
+      "RuleId":1,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 2,
-      "name": "Air Panas"
+      "RuleId":2,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 2,
-      "name": "AC"
+      "RuleId":3,
+      "BoardingHouseId":1
     },
     {
-      "BoardingHouseId": 2,
-      "name": "TV"
+      "RuleId":1,
+      "BoardingHouseId":2
     },
     {
-      "BoardingHouseId": 2,
-      "name": "Lemari Baju"
+      "RuleId":2,
+      "BoardingHouseId":2
+    },
+    {
+      "RuleId":3,
+      "BoardingHouseId":2
+    }
+  ],
+  "City":[
+    {
+      "name":"Jakarta"
+    },
+    {
+      "name":"Surabaya"
+    },
+    {
+      "name":"Bekasi"
+    },
+    {
+      "name":"Bandung"
+    },
+    {
+      "name":"Medan"
+    },
+    {
+      "name":"Depok"
+    },
+    {
+      "name":"Tangerang"
+    },
+    {
+      "name":"Palembang"
+    },
+    {
+      "name":"Semarang"
+    },
+    {
+      "name":"Makassar"
     }
   ]
 }
