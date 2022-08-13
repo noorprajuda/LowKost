@@ -23,7 +23,6 @@ class ControllerClient {
   static async registerClient(req, res, next) {
     try {
       const { fullName, email, password, phoneNumber, address } = req.body;
-
       let input = {
         fullName,
         email,

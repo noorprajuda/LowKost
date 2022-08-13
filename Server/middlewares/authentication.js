@@ -10,10 +10,10 @@ const authentication = async (req, res, next) => {
     if (!user) {
       throw { name: "Unauthorized" };
     }
-    if (user.role !== "Admin") throw { name: "Forbidden" };
     req.user = {
       id: user.id,
       email: user.email,
+      role: user.role,
     };
     next();
   } catch (err) {

@@ -38,7 +38,7 @@ module.exports = {
 
     BoardingHouses.forEach((el) => {
       (el.createdAt = new Date()), (el.updatedAt = new Date());
-      el.slug = el.name.replace(" ", "-");
+      el.slug = el.name.replace(/\s+/g, "-").toLowerCase();
       el.location = Sequelize.fn("ST_GeomFromText", `POINT(${el.location})`);
       delete el.id;
     });

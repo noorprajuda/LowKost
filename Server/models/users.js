@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Users.hasMany(models.BoardingHouses);
       Users.hasMany(models.Bookmarks);
+      Users.hasOne(models.MyBooking);
     }
   }
   Users.init(
@@ -42,10 +43,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Users",
     }
   );
+  Users.beforeCreate((instance, option) => {
+    instance.password = hashPassword(instance.password);
 
-  Users.beforeCreate((user, options) => {
-    const bcrypt = hashPassword(user.password);
-    user.password = bcrypt;
   });
   return Users;
 };
