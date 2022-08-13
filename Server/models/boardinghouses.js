@@ -4,7 +4,10 @@ module.exports = (sequelize, DataTypes) => {
   class BoardingHouses extends Model {
     static associate(models) {
       BoardingHouses.belongsTo(models.Users);
-      BoardingHouses.belongsTo(models.Categories);
+      BoardingHouses.belongsTo(models.Categories, {
+        foreignKey: "CategoryId",
+        onDelete: "Cascade",
+      });
       BoardingHouses.belongsTo(models.City);
       BoardingHouses.hasMany(models.Bookmarks);
       BoardingHouses.hasMany(models.Images);
