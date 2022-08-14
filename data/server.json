@@ -10,7 +10,7 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
       "location": "-6.31845 106.89748",
-      "mainImg":"https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
+      "mainImg": "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "UserId": 1,
       "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
       "location": "-6.13853 106.70409",
-      "mainImg":"https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
+      "mainImg": "https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
       "location": "-6.27685 106.80707",
-      "mainImg":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
+      "mainImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
       "location": "-6.131164 106.85564",
-      "mainImg":"https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
+      "mainImg": "https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
     },
     {
       "id": 5,
@@ -58,7 +58,7 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
       "location": "-6.17642 106.77266",
-      "mainImg":"https://cf.bstatic.com/xdata/images/hotel/max1024x768/330259388.jpg?k=003642c2db45b979d3fa9555882b428e7e03702617507f1b935fd68c9508b117&o=&hp=1"
+      "mainImg": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/330259388.jpg?k=003642c2db45b979d3fa9555882b428e7e03702617507f1b935fd68c9508b117&o=&hp=1"
     }
   ],
   "Categories": [
@@ -147,12 +147,28 @@
   ],
   "Users": [
     {
-      "fullName":"Admin 1",
+      "fullName": "Admin 1",
       "email": "admin@mail.com",
       "password": "12345678",
       "phoneNumber": "086363628781",
       "role": "Admin",
-      "address":"Jalan boulevard 1 no 12"
+      "address": "Jalan boulevard 1 no 12"
+    },
+    {
+      "fullName": "User 1",
+      "email": "user1@mail.com",
+      "password": "12345678",
+      "phoneNumber": "086363628781",
+      "role": "Tenant",
+      "address": "Jalan Kenangan 1 no 12"
+    },
+    {
+      "fullName": "Owner 1",
+      "email": "owner@mail.com",
+      "password": "12345678",
+      "phoneNumber": "086363628781",
+      "role": "Owner",
+      "address": "Jalan Kenangan 1 no 12"
     }
   ],
   "Facilities": [
@@ -175,80 +191,80 @@
       "name": "Lemari Baju"
     }
   ],
-  "BoardingHouseFacilities":[
+  "BoardingHouseFacilities": [
     {
-      "FacilityId":1,
-      "BoardingHouseId":1
+      "FacilityId": 1,
+      "BoardingHouseId": 1
     },
     {
-      "FacilityId":2,
-      "BoardingHouseId":1
+      "FacilityId": 2,
+      "BoardingHouseId": 1
     },
     {
-      "FacilityId":3,
-      "BoardingHouseId":1
+      "FacilityId": 3,
+      "BoardingHouseId": 1
     },
     {
-      "FacilityId":4,
-      "BoardingHouseId":1
+      "FacilityId": 4,
+      "BoardingHouseId": 1
     }
   ],
-  "BoardingHouseRules":[
+  "BoardingHouseRules": [
     {
-      "RuleId":1,
-      "BoardingHouseId":1
+      "RuleId": 1,
+      "BoardingHouseId": 1
     },
     {
-      "RuleId":2,
-      "BoardingHouseId":1
+      "RuleId": 2,
+      "BoardingHouseId": 1
     },
     {
-      "RuleId":3,
-      "BoardingHouseId":1
+      "RuleId": 3,
+      "BoardingHouseId": 1
     },
     {
-      "RuleId":1,
-      "BoardingHouseId":2
+      "RuleId": 1,
+      "BoardingHouseId": 2
     },
     {
-      "RuleId":2,
-      "BoardingHouseId":2
+      "RuleId": 2,
+      "BoardingHouseId": 2
     },
     {
-      "RuleId":3,
-      "BoardingHouseId":2
+      "RuleId": 3,
+      "BoardingHouseId": 2
     }
   ],
-  "City":[
+  "City": [
     {
-      "name":"Jakarta"
+      "name": "Jakarta"
     },
     {
-      "name":"Surabaya"
+      "name": "Surabaya"
     },
     {
-      "name":"Bekasi"
+      "name": "Bekasi"
     },
     {
-      "name":"Bandung"
+      "name": "Bandung"
     },
     {
-      "name":"Medan"
+      "name": "Medan"
     },
     {
-      "name":"Depok"
+      "name": "Depok"
     },
     {
-      "name":"Tangerang"
+      "name": "Tangerang"
     },
     {
-      "name":"Palembang"
+      "name": "Palembang"
     },
     {
-      "name":"Semarang"
+      "name": "Semarang"
     },
     {
-      "name":"Makassar"
+      "name": "Makassar"
     }
   ]
 }
