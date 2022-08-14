@@ -46,13 +46,13 @@ export default function DetailPage() {
             <div className="w-1/4 h-[400px] md:w-1/2 md:pl-4 justify-between">
               <div className="p-2 w-full h-1/2">
                 <img
-                  src={localBoardingHouse.mainImg}
+                  src={localBoardingHouse.Images[0].imgUrl}
                   className="w-[800px] h-full object-cover"
                 />
               </div>
               <div className="relative p-2 w-full h-1/2">
                 <img
-                  src={localBoardingHouse.mainImg}
+                  src={localBoardingHouse.Images[1].imgUrl}
                   className=" w-[800px] mt-4 h-full object-cover"
                 />
                 <button
@@ -66,40 +66,63 @@ export default function DetailPage() {
           </div>
           {/* </div> */}
         </div>
+        {JSON.stringify(localBoardingHouse, null, 2)}
         <div className="flex flex-row justify-between">
           <div className="py-5 px-12 w-[900px]">
             <h2 className="font-bold text-left text-4xl mb-10">
-              {localBoardingHouse.name}
+              <a
+                href="#"
+                className="items-left px-1 py-1 mb-3 text-sm font-small text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+              >
+                {localBoardingHouse.City.name}
+              </a>
+
+              <br />
+              <div className="mt-1">{localBoardingHouse.name}</div>
 
               <div className="flex flex-row justify-between">
                 <a
                   href="#"
                   className="mt-1 inline-block bg-green-500 text-white px-6 py-3 text-sm hover:bg-gray-800"
                 >
-                  Kost Campur
+                  {localBoardingHouse.Category.name}
                 </a>
               </div>
             </h2>
             <div className="w-full">
               <p className="mb-1 text-gray-700 text-justify whitespace-pre-line">
+                By {localBoardingHouse.User.fullName}
+                <br />
                 {localBoardingHouse.description}
               </p>
-
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Facilities:
+                <br />
                 <span className="font-normal">
-                  <p>Akses 24 Jam</p>
-                  <p>Boleh Bawa Hewan</p>
-                  <p>Khusus Karyawan</p>
+                  {localBoardingHouse.BoardingHouseFacilities.map(
+                    (facility, index) => {
+                      return (
+                        <>
+                          {facility.Facility.name}
+                          <br />
+                        </>
+                      );
+                    }
+                  )}
                 </span>
               </div>
-
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Rules:
+                <br />
                 <span className="font-normal">
-                  <p>Akses 24 Jam</p>
-                  <p>Boleh Bawa Hewan</p>
-                  <p>Khusus Karyawan</p>
+                  {localBoardingHouse.BoardingHouseRules.map((rule, index) => {
+                    return (
+                      <>
+                        {rule.Rule.name}
+                        <br />
+                      </>
+                    );
+                  })}
                 </span>
               </div>
             </div>

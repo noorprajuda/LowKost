@@ -56,7 +56,7 @@ class ControllerClient {
           {
             model: Users,
             attributes: {
-              exclude: ["createdAt", "updatedAt"],
+              exclude: ["password", "createdAt", "updatedAt"],
             },
           },
         ],
