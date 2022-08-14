@@ -14,5 +14,6 @@ router.get(
   authentication,
   OwnerController.getBoardingHousesById
 );
+router.post("/boardinghouse", authentication, OwnerController.addBoardingHouse);
 
 module.exports = router;

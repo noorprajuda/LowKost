@@ -2,7 +2,6 @@ const router = require("express").Router();
 const routerClient = require("./routerClient");
 const owner = require("./owner");
 const mainController = require("../controllers/mainController");
-const { route } = require("./owner");
 
 router.post("/login", mainController.loginHandler);
 router.get("/facilities", mainController.getFacilities);
