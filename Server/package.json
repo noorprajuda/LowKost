@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx nodemon bin/www",
     "start": "node app.js",
-    "test": "jest --runInBand --forceExit --coverage"
+    "test": "npx jest --forceExit --verbose --detectOpenHandles --runInBand --coverage",
+    "db:test": "sequelize --env test db:drop && sequelize --env test db:create && sequelize --env test db:migrate && sequelize --env test db:seed:all"
   },
   "keywords": [],
   "author": "",
