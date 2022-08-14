@@ -16,4 +16,16 @@ router.get(
 );
 router.post("/boardinghouse", authentication, OwnerController.addBoardingHouse);
 
+router.put(
+  "/boardinghouse/:id",
+  authentication,
+  OwnerController.updateBoardingHouse
+);
+
+router.delete(
+  "/boardinghouse/:id",
+  authentication,
+  OwnerController.deleteBoardingHouse
+);
+
 module.exports = router;
