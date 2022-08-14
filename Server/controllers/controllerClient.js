@@ -154,7 +154,11 @@ class ControllerClient {
       const { id } = req.params;
       const { id: UserId } = req.user;
 
-      const bookmarkFind = await Bookmarks.findByPk(id);
+      const bookmarkFind = await BoardingHouses.findOne({
+        where: {
+          id: id,
+        },
+      });
 
       if (!bookmarkFind) {
         throw { name: "NotFound" };
