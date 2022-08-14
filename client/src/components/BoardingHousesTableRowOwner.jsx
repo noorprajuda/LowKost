@@ -17,7 +17,7 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
             {boardingHouses.CategoryId}-2022
           </td> */}
           <td className="py-4 px-6 text-center">
-            <img src={boardingHouses.mainImg} alt="" className="w-96" />
+            <img src={boardingHouses.mainImg} alt="" className="w-96 h-40" />
           </td>
 
           <th
@@ -33,12 +33,14 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
                 .split(",")[0]
             }
           </td>
-          <td className="py-4 px-6 text-center">{boardingHouses.CategoryId}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.CityId}</td>
+          <td className="py-4 px-6 text-center">
+            {boardingHouses.Category.name}
+          </td>
+          <td className="py-4 px-6 text-center">{boardingHouses.City.name}</td>
           <td className="py-4 px-6 text-center">{boardingHouses.totalRoom}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.UserId}</td>
+          {/* <td className="py-4 px-6 text-center">{boardingHouses.UserId}</td> */}
           <td className="py-4 px-6 text-xs">{boardingHouses.description}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.location}</td>
+          {/* <td className="py-4 px-6 text-center">{boardingHouses.location}</td> */}
           <td className="py-4 px-6 text-center">
             <a
               href="#"

@@ -41,10 +41,12 @@ module.exports = class OwnerController {
     try {
       const boardinghouses = await BoardingHouses.findAll({
         include: [{ model: Categories }, { model: City }],
+        // attributes: { exclude: ["location"] },
         where: { UserId: req.user.id },
       });
       res.status(200).json(boardinghouses);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -86,13 +88,13 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        StackImages,
+        // StackImages,
         StackFacilities,
       } = req.body;
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
-          address,
+          address: address,
         })
         .asPromise();
       let jsn = response.json.results;
@@ -120,10 +122,10 @@ module.exports = class OwnerController {
         return { BoardingHouseId: newBoardingHouse.id, RuleId: rule.id };
       });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      const images = await StackImages.map((img) => {
-        return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
-      });
-      await Images.bulkCreate(images, { transaction: t });
+      // const images = await StackImages.map((img) => {
+      //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
+      // });
+      // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
         return { FaciltyId: el.id, BoardingHouseId: newBoardingHouse.id };
       });
@@ -131,6 +133,7 @@ module.exports = class OwnerController {
       await t.commit();
       res.status(200).json({ message: "Successfull add new Kos" });
     } catch (err) {
+      console.log(err);
       await t.rollback();
       next(err);
     }

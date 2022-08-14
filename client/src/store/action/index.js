@@ -1,9 +1,14 @@
-
 import axios from "axios";
-import { BOARDING_HOUSES_FETCH_SUCCESS,BOARDING_HOUSE_FETCH_SUCCESS, } from "./actionType";
+import {
+  BOARDING_HOUSES_FETCH_SUCCESS,
+  BOARDING_HOUSE_FETCH_SUCCESS,
+  CITIES_FETCH_SUCCESS,
+  CATEGORIES_FETCH_SUCCESS,
+  FACILITIES_FETCH_SUCCESS,
+  RULES_FETCH_SUCCESS,
+} from "./actionType";
 
-
-const baseUrl = "https://5da9-139-192-206-182.ap.ngrok.io";
+const baseUrl = "http://localhost:4000";
 
 export const fetchBoardingHousesSuccess = (payload) => {
   return {
@@ -12,26 +17,6 @@ export const fetchBoardingHousesSuccess = (payload) => {
   };
 };
 
-
-// export const fetchBoardingHouses = () => {
-//   return (dispatch, getState) => {
-//     const headers = {
-//       "Content-Type": "application/json",
-//       access_token: localStorage.getItem("access_token"),
-//     };
-//     fetch(`${baseUrl}/owner/boardinghouses`, { headers })
-//       .then((res) => {
-//         if (res.ok) {
-//           return res.json();
-//         } else {
-//           throw new Error("Error Sir");
-//         }
-//       })
-//       .then((data) => dispatch(fetchBoardingHousesSuccess(data)))
-//       .catch((err) => console.log(err));
-//   };
-// };
-
 export const fetchBoardingHouseIdSuccess = (payload) => {
   return {
     type: BOARDING_HOUSE_FETCH_SUCCESS,
@@ -39,16 +24,96 @@ export const fetchBoardingHouseIdSuccess = (payload) => {
   };
 };
 
+export const fetchRulesSuccess = (payload) => {
+  return {
+    type: RULES_FETCH_SUCCESS,
+    payload,
+  };
+};
+
+export const fetchFacilitiesSuccess = (payload) => {
+  return {
+    type: FACILITIES_FETCH_SUCCESS,
+    payload,
+  };
+};
+
+export const fetchCitiesSuccess = (payload) => {
+  return {
+    type: CITIES_FETCH_SUCCESS,
+    payload,
+  };
+};
+
 export const fetchBoardingHouses = () => {
-  console.log("mausk");
   return async (dispatch) => {
     try {
-      const resp = await axios.get(`${baseUrl}/user/boardinghouses/1`);
-      console.log(resp);
-      // dispatch(fetchBoardingHousesSuccess(resp.data))
+      const resp = await axios.get(`${baseUrl}/owner/boardinghouses`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      });
+      dispatch(fetchBoardingHousesSuccess(resp.data));
     } catch (error) {
       console.log("error");
     }
+  };
+};
+
+export const fetchCities = () => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.get(`${baseUrl}/cities`);
+      dispatch(fetchCitiesSuccess(resp.data));
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};
+
+export const fetchRules = () => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.get(`${baseUrl}/rules`);
+      dispatch(fetchRulesSuccess(resp.data));
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};
+
+export const fetchFacilities = () => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.get(`${baseUrl}/facilities`);
+      dispatch(fetchFacilitiesSuccess(resp.data));
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};
+
+export const createBoardingHouse = (formBoardingHouse) => {
+  console.log(formBoardingHouse, "sds");
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await axios.post(`${baseUrl}/owner/boardinghouse`, formBoardingHouse, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+
+        console.log(formBoardingHouse, "dari index");
+        console.log(localStorage.getItem("access_token"));
+        dispatch(fetchBoardingHouses());
+
+        resolve();
+      } catch (err) {
+        console.log(err, "aaaa");
+        reject(err);
+      }
+    });
   };
 };
 
@@ -65,11 +130,21 @@ export const registerOwner = (formRegister) => {
   };
 };
 
-export const registerTenant = (formRegister) => {
+export const registerTenant = (formBoardingHouse) => {
   return (dispatch, getState) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const resp = await axios.post(`${baseUrl}/user/register`, formRegister);
+        const resp = await axios.post(
+          `${baseUrl}/user/register`,
+          {
+            headers: {
+              access_token: localStorage.getItem("access_token"),
+            },
+          },
+          formBoardingHouse
+        );
+
+        dispatch(fetchBoardingHousesSuccess());
 
         resolve();
       } catch (err) {
@@ -97,7 +172,6 @@ export const login = (formLogin) => {
 };
 
 export const fetchBoardingHouseById = (id) => {
-  const baseUrl = "http://localhost:3004/BoardingHouses";
   const access_token = localStorage.getItem("access_token");
   return (dispatch, getState) => {
     return fetch(`${baseUrl}/${id}`, {
