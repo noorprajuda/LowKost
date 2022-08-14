@@ -102,7 +102,6 @@ module.exports = class OwnerController {
         let res = jsn[i];
         latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
       }
-
       const newBoardingHouse = await BoardingHouses.create(
         {
           name,
@@ -127,14 +126,103 @@ module.exports = class OwnerController {
       // });
       // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
-        return { FaciltyId: el.id, BoardingHouseId: newBoardingHouse.id };
+        return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
       });
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
-      res.status(200).json({ message: "Successfull add new Kos" });
+      res
+        .status(200)
+        .json({ message: `Successfull add new Kos ${newBoardingHouse.name}` });
     } catch (err) {
       console.log(err);
       await t.rollback();
+      next(err);
+    }
+  }
+
+  static async updateBoardingHouse(req, res, next) {
+    const t = await sequelize.transaction();
+    try {
+      const { id } = req.params;
+      const {
+        name,
+        price,
+        CategoryId,
+        CityId,
+        totalRoom,
+        description,
+        mainImg,
+        address,
+        StackRules,
+        StackImages,
+        StackFacilities,
+      } = req.body;
+      let latlong = "";
+      const response = await googleMapsClient
+        .geocode({
+          address: address,
+        })
+        .asPromise();
+      let jsn = response.json.results;
+      for (let i = 0; i < jsn.length; i++) {
+        let res = jsn[i];
+        latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
+      }
+      const boardinghouse = await BoardingHouses.update(
+        {
+          name,
+          price,
+          CategoryId,
+          CityId,
+          totalRoom,
+          description,
+          mainImg,
+          address,
+          UserId: req.user.id,
+          location: Sequelize.fn("ST_GeomFromText", `POINT(${latlong})`),
+        },
+        { transaction: t, where: { id } }
+      );
+      const rules = StackRules.map((rule) => {
+        return { BoardingHouseId: boardinghouse.id, RuleId: rule.id };
+      });
+      await BoardingHouseRules.destroy({
+        where: { BoardingHouseId: boardinghouse.id },
+        transaction: t,
+      });
+      await BoardingHouseRules.bulkCreate(rules, { transaction: t });
+      const images = await StackImages.map((img) => {
+        return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
+      });
+      await Images.destroy({
+        where: { BoardingHouseId: boardinghouse.id, transaction: t },
+      });
+      await Images.bulkCreate(images, { transaction: t });
+      const facilities = StackFacilities.map((el) => {
+        return { FacilityId: el.id, BoardingHouseId: boardinghouse.id };
+      });
+      await BoardingHouseFacilities.destroy({
+        where: { BoardingHouseId: boardinghouse.id },
+      });
+      await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
+      await t.commit();
+      res
+        .status(200)
+        .json({ message: `Successfull update ${boardinghouse.name}` });
+    } catch (err) {
+      await t.rollback();
+      next(err);
+    }
+  }
+
+  static async deleteBoardingHouse(req, res, next) {
+    try {
+      const { id } = req.params;
+      const checkHouse = await BoardingHouses.findByPk(id);
+      if (!checkHouse) throw { name: "NotFound" };
+      await BoardingHouses.destroy({ where: { id } });
+      res.status(200).json({ message: `Successfully delete data` });
+    } catch (err) {
       next(err);
     }
   }

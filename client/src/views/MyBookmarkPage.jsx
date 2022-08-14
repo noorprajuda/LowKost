@@ -1,10 +1,10 @@
-import BoardingHousesTableOwner from "../components/BoardingHousesTableOwner";
+import BoardingHousesTableBookmark from "../components/BoardingHousesTableBookmark";
 import { Link } from "react-router-dom";
 
-export default function HomePageOwner() {
+export default function MyBookmarkPage() {
   return (
     <>
-      <div className="mt-20">
+      <div className="mt-16">
         <div class="border-b border-gray-200 dark:border-gray-700">
           <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
             <li class="mr-2">
@@ -22,7 +22,7 @@ export default function HomePageOwner() {
                 >
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                 </svg>
-                Listed Boarding Houses
+                My Bookmarks
               </a>
             </li>
             <li class="mr-2">
@@ -91,7 +91,7 @@ export default function HomePageOwner() {
             </li>
           </ul>
         </div>
-        <BoardingHousesTableOwner />
+        <BoardingHousesTableBookmark />
       </div>
     </>
   );

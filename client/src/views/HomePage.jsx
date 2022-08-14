@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
-import { fetchBoardingHouses } from "../store/action";
+import { fetchBoardingHousesUser } from "../store/action";
 import useFetch from "../hooks/useFetch";
 
 export default function HomePage() {
-  const { loading } = useFetch("http://localhost:3004/boardingHouses");
+  const { loading } = useFetch("http://localhost:4000/user/boardingHouses");
 
   const dispatch = useDispatch();
   let [mainImg, setMainImg] = useState("");
@@ -15,7 +15,7 @@ export default function HomePage() {
   );
 
   useEffect(() => {
-    dispatch(fetchBoardingHouses());
+    dispatch(fetchBoardingHousesUser());
   }, []);
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function HomePage() {
               alt=""
             />
           </div>
+          {JSON.stringify(boardingHouses[0], null, 2)}
           <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
             {boardingHouses.map((boardingHouse, index) => {
               return (
