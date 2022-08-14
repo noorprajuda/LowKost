@@ -19,7 +19,7 @@ const {
   hashPassword,
   compareHash,
 } = require("../helpers/helpers");
-const { MIDTRANS_SERVER_KEY } = process.env;
+const { MIDTRANS_SERVER_KEY, MIDTRANS_CLIENT_KEY } = process.env;
 
 class ControllerClient {
   static async registerClient(req, res, next) {
@@ -47,7 +47,7 @@ class ControllerClient {
     }
   }
 
-  static async bourdingHouses(req, res, next) {
+  static async boardingHouses(req, res, next) {
     try {
       let kos = await BoardingHouses.findAll({
         include: [
@@ -131,7 +131,7 @@ class ControllerClient {
 
   static async myBookmark(req, res, next) {
     try {
-      const { id } = req.params;
+      const { id } = req.user;
       const myBookmark = await Bookmarks.findAll({
         where: {
           UserId: id,
@@ -154,9 +154,9 @@ class ControllerClient {
       const { id } = req.params;
       const { id: UserId } = req.user;
 
-      const bookmarkFind = await Bookmarks.findByPk(id);
+      const findBoardingHouse = await BoardingHouses.findByPk(id);
 
-      if (!bookmarkFind) {
+      if (!findBoardingHouse) {
         throw { name: "NotFound" };
       }
 
@@ -204,6 +204,7 @@ class ControllerClient {
         // Set to true if you want Production Environment (accept real transaction).
         isProduction: false,
         serverKey: process.env.MIDTRANS_SERVER_KEY,
+        clientKey: process.env.MIDTRANS_CLIENT_KEY,
       });
 
       let parameter = {

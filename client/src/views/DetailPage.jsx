@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook } from "react-icons/ai";
 import {
-  fetchBoardingHouseById,
+  fetchBoardingHouseByIdUser,
   fetchBoardingHouses,
 } from "../store/action/index";
 import { useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ export default function DetailPage() {
 
   useEffect(() => {
     console.log("Masuk UseEffect");
-    dispatch(fetchBoardingHouseById(id));
+    dispatch(fetchBoardingHouseByIdUser(id));
   }, []);
 
   const localBoardingHouse = useSelector(
