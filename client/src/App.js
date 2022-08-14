@@ -12,7 +12,7 @@ import BoardingHouseFormUpdate from "./components/BoardingHouseFormUpdate";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import DetailPage from "./views/DetailPage";
-
+import MyBookmarkPage from "./views/MyBookmarkPage";
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/:id" element={<DetailPage />} />
+        <Route path="/bookmark" element={<MyBookmarkPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register-owner" element={<RegisterOwner />} />
         <Route path="/register-tenant" element={<RegisterTenant />} />
