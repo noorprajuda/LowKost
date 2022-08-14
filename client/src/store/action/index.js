@@ -26,7 +26,7 @@ export const fetchBoardingHousesUserSuccess = (payload) => {
 export const fetchBoardingHousesUser = () => {
   return async (dispatch) => {
     try {
-      const resp = await axios.get(`${baseUrlUser}/user/boardingHouses`);
+      const resp = await axios.get(`${baseUrlUser}/user/boardinghouses`);
       // console.log(resp);
       dispatch(fetchBoardingHousesUserSuccess(resp.data));
     } catch (error) {
@@ -110,7 +110,7 @@ export const fetchBoardingHouseByIdUser = (id) => {
   const access_token = localStorage.getItem("access_token");
   return async (dispatch) => {
     try {
-      const resp = await axios.get(`${baseUrlUser}/user/boardingHouses/${id}`);
+      const resp = await axios.get(`${baseUrlUser}/user/boardinghouses/${id}`);
       dispatch(fetchBoardingHouseByIdUserSuccess(resp.data));
     } catch (error) {
       console.log("error");
