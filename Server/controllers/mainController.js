@@ -20,6 +20,7 @@ module.exports = class mainController {
         email,
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }

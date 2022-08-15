@@ -76,7 +76,6 @@ class ControllerClient {
 
       res.status(200).json(kos);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }

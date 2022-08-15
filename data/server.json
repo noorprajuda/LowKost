@@ -1,7 +1,6 @@
 {
   "BoardingHouses": [
     {
-      "id": 1,
       "name": "Kost Kiara 51",
       "price": 1100000,
       "CategoryId": 1,
@@ -13,7 +12,6 @@
       "mainImg": "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
     },
     {
-      "id": 2,
       "name": "Kost Exclusive Mango",
       "price": 750000,
       "CategoryId": 1,
@@ -25,7 +23,6 @@
       "mainImg": "https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
     },
     {
-      "id": 3,
       "name": "Kost Kendari",
       "price": 500000,
       "CategoryId": 1,
@@ -37,7 +34,6 @@
       "mainImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
     },
     {
-      "id": 4,
       "name": "Kost Margonda Kramat",
       "price": 1100000,
       "CategoryId": 1,
@@ -49,7 +45,6 @@
       "mainImg": "https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
     },
     {
-      "id": 5,
       "name": "Kost Arkana Sadewa",
       "price": 1450000,
       "CategoryId": 1,
