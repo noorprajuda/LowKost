@@ -32,7 +32,6 @@ export default function Map(){
       return isLoaded ? (
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={center}
           zoom={15}
           onLoad={onLoad}
           onUnmount={onUnmount}

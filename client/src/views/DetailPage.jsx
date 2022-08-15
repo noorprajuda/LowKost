@@ -20,11 +20,22 @@ export default function DetailPage() {
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
   });
+  const [center, setCenter] = useState({ lat: null, lng: null });
+  const [loading, setLoading] = useState(true);
   const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
+    if(center.lat == null){
+      const bounds = new window.google.maps.LatLngBounds({
+        "lat": -6.1484511,
+        "lng": 106.697525
+    });
     map.fitBounds(bounds);
     setMap(map);
-  }, []);
+    }else{
+      const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+    }
+  }, [center]);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -36,10 +47,23 @@ export default function DetailPage() {
   const localBoardingHouse = useSelector(
     (state) => state.boardingHouses.boardingHouse
   );
+
   useEffect(() => {
     // console.log("Masuk UseEffect");
-    dispatch(fetchBoardingHouseByIdUser(id));
+    dispatch(fetchBoardingHouseByIdUser(id)).then(() => {
+      setLoading(false);
+    });
   }, [id]);
+
+  useEffect(() => {
+    if (!loading) {
+      console.log(localBoardingHouse.location, "PPPPPPPPPPPPpp")
+      setCenter({
+        lat: localBoardingHouse.location.coordinates[0],
+        lng: localBoardingHouse.location.coordinates[1],
+      });
+    }
+  }, [loading]);
 
   console.log(localBoardingHouse, "<<<<localBoardingHouse");
 
@@ -55,7 +79,6 @@ export default function DetailPage() {
   });
 
   const [map, setMap] = useState(null);
-
 
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
@@ -82,10 +105,11 @@ export default function DetailPage() {
     width: "400px",
     height: "400px",
   };
-  const center = {
-    lat: localBoardingHouse.location?localBoardingHouse.location.coordinates[0]: null,
-    lng: localBoardingHouse.location?localBoardingHouse.location.coordinates[1]:null ,
-  };
+  // const center = {
+  //   lat: -6.131164,
+  //   lng:106.85564,
+  // };
+  console.log(center, "<<<<<<,,");
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(createMyBooking(id, formMyBooking));
@@ -94,8 +118,10 @@ export default function DetailPage() {
   if (localBoardingHouse.length === 0) return null;
 
   console.log(id, "<<<<id");
-
-  return (
+  if (loading) {
+    return <p>loading</p>;
+  }
+  return isLoaded ? (
     <>
       <div className="mt-14 py-24 px-12">
         <div className="container mx-auto flex ">
@@ -123,7 +149,7 @@ export default function DetailPage() {
                 <button
                   onClick={handleImagesPage}
                   type="button"
-                  class="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  className="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
                 >
                   See all photos
                 </button>
@@ -203,26 +229,25 @@ export default function DetailPage() {
               </div>
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Lokasi:
-                {isLoaded ? (
-                  <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    center={center}
-                    zoom={17}
-                    onLoad={onLoad}
-                    onUnmount={onUnmount}
-                  >
-                    <Marker key={localBoardingHouse.id} position={center} title={localBoardingHouse.name} />
-                    <></>
-                  </GoogleMap>
-                ) : null}
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  zoom={16}
+                  onLoad={onLoad}
+                  onUnmount={onUnmount}
+                  center={center}
+                >
+                  <Marker key={1} position={center} />
+                  <></>
+                </GoogleMap>
+                {JSON.stringify(center)}
               </div>
             </div>
           </div>
 
           <div className="py-5 px-12">
-            <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-              <form onSubmit={submitHandler} class="space-y-6">
-                <h5 class="text-xl font-medium text-gray-900 dark:text-white">
+            <div className="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+              <form onSubmit={submitHandler} className="space-y-6">
+                <h5 className="text-xl font-medium text-gray-900 dark:text-white">
                   Rp. {localBoardingHouse.price.toLocaleString("id-ID")} / month
                 </h5>
 
@@ -235,7 +260,7 @@ export default function DetailPage() {
 
                 <button
                   type="submit"
-                  class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Apply now
                 </button>
@@ -245,5 +270,5 @@ export default function DetailPage() {
         </div>
       </div>
     </>
-  );
+  ) : null;
 }

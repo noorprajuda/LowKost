@@ -123,7 +123,7 @@ export const login = (formLogin) => {
 };
 
 export const fetchBoardingHouseByIdUser = (id) => {
-  const access_token = localStorage.getItem("access_token");
+  console.log("TESSSSSSSSSSSSSSSSSSSSSSSSs", id);
   return async (dispatch) => {
     try {
       const resp = await axios.get(`${baseUrl}/user/boardinghouses/${id}`);
