@@ -1,5 +1,13 @@
 "use strict";
 
+const midtransClient = require("midtrans-client");
+
+let snap = new midtransClient.Snap({
+  isProduction: false,
+  serverKey: "SB-Mid-server-KwbMC2l_R8bDHB8ywGDpx_aG",
+  clientKey: "SB-Mid-client-FNQJSAVphK029Fk0",
+});
+
 const {
   BoardingHouses,
   Bookmarks,
@@ -322,7 +330,9 @@ class ControllerClient {
 
   static async payment(req, res, next) {
     try {
-      const { price } = req.body;
+      const { amount } = req.body;
+
+      console.log(req.body, "<<<<<req body");
 
       let snap = new midtransClient.Snap({
         // Set to true if you want Production Environment (accept real transaction).
@@ -334,13 +344,13 @@ class ControllerClient {
       let parameter = {
         transaction_details: {
           order_id: Math.floor(Math.random() * 10000000000000),
-          gross_amount: price,
+          gross_amount: amount,
         },
         credit_card: {
           secure: true,
         },
         customer_details: {
-          email: req.findUser.email,
+          email: req.user.email,
         },
       };
 

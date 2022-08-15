@@ -113,6 +113,7 @@ export const login = (formLogin) => {
         localStorage.setItem("access_token", resp.data.access_token);
         localStorage.setItem("role", resp.data.role);
         localStorage.setItem("fullName", resp.data.fullName);
+        localStorage.setItem("email", resp.data.email);
         resolve();
       } catch (err) {
         reject(err);

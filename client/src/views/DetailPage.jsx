@@ -7,7 +7,9 @@ import {
   fetchBoardingHouseByIdUser,
   fetchBoardingHouses,
   createMyBooking,
+  addToMyBookmark,
 } from "../store/action/index";
+
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -37,6 +39,19 @@ export default function DetailPage() {
     UserId: "",
     startDate: "",
   });
+
+
+  const addToMyBookmarkHandle = (e) => {
+    e.preventDefault();
+    dispatch(addToMyBookmark(e.target.value))
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -116,6 +131,16 @@ export default function DetailPage() {
                 >
                   {localBoardingHouse.Category.name}
                 </a>
+
+                <button
+                  value={localBoardingHouse.id}
+                  onClick={addToMyBookmarkHandle}
+                  className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl underline"
+                >
+                  {"♥ bookmark"}
+
+                  {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
+                </button>
               </div>
             </h2>
             <div className="w-full">
