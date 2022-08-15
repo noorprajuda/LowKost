@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook } from "react-icons/ai";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import {
   fetchBoardingHouseByIdUser,
   fetchBoardingHouses,
@@ -13,18 +14,31 @@ import Swal from "sweetalert2";
 
 export default function DetailPage() {
   const navigate = useNavigate();
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
+  });
+  const onLoad = useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+    setMap(map);
+  }, []);
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null);
+  }, []);
 
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const localBoardingHouse = useSelector(
+    (state) => state.boardingHouses.boardingHouse
+  );
   useEffect(() => {
     // console.log("Masuk UseEffect");
     dispatch(fetchBoardingHouseByIdUser(id));
   }, [id]);
 
-  const localBoardingHouse = useSelector(
-    (state) => state.boardingHouses.boardingHouse
-  );
   console.log(localBoardingHouse, "<<<<localBoardingHouse");
 
   const handleImagesPage = (e) => {
@@ -37,7 +51,7 @@ export default function DetailPage() {
     UserId: "",
     startDate: "",
   });
-
+  const [map, setMap] = useState(null);
   const onChange = (e) => {
     const { value, name } = e.target;
     const newForm = {
@@ -48,7 +62,14 @@ export default function DetailPage() {
     newForm[name] = value;
     setFormMyBooking(newForm);
   };
-
+  const containerStyle = {
+    width: "400px",
+    height: "400px",
+  };
+  const center = {
+    lat: localBoardingHouse.location?localBoardingHouse.location.coordinates[0]: null,
+    lng: localBoardingHouse.location?localBoardingHouse.location.coordinates[1]:null ,
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(createMyBooking(id, formMyBooking));
@@ -153,6 +174,21 @@ export default function DetailPage() {
                     );
                   })}
                 </span>
+              </div>
+              <div className="text-gray-700 text-left mt-5 font-semibold">
+                Lokasi:
+                {isLoaded ? (
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={17}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
+                  >
+                    <Marker key={localBoardingHouse.id} position={center} title={localBoardingHouse.name} />
+                    <></>
+                  </GoogleMap>
+                ) : null}
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const authentication = require("../middlewares/authentication");
 const OwnerController = require("../controllers/OwnerController");
+const authorizationOwner = require("../middlewares/authorizationOwner");
 
 router.post("/register", OwnerController.registerHandler);
 
@@ -25,6 +26,7 @@ router.put(
 router.delete(
   "/boardinghouse/:id",
   authentication,
+  authorizationOwner,
   OwnerController.deleteBoardingHouse
 );
 

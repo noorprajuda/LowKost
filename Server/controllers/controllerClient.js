@@ -13,12 +13,6 @@ const {
   Facilities,
   Users,
 } = require("../models");
-const {
-  signToken,
-  verifyToken,
-  hashPassword,
-  compareHash,
-} = require("../helpers/helpers");
 const { MIDTRANS_SERVER_KEY, MIDTRANS_CLIENT_KEY } = process.env;
 
 class ControllerClient {
@@ -49,7 +43,9 @@ class ControllerClient {
 
   static async boardingHouses(req, res, next) {
     try {
-      let kos = await BoardingHouses.findAll({
+      const { city } = req.query;
+
+      const options = {
         include: [
           { model: Categories, attributes: ["name"] },
           { model: City, attributes: ["name"] },
@@ -60,11 +56,18 @@ class ControllerClient {
             },
           },
         ],
-
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
-      });
+      };
+
+      if (city) {
+        options.where = {
+          CityId: city,
+        };
+      }
+
+      let kos = await BoardingHouses.findAll(options);
 
       res.status(200).json(kos);
     } catch (err) {

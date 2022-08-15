@@ -15,6 +15,7 @@ import DetailPage from "./views/DetailPage";
 import MyBookmarksPage from "./views/MyBookmarksPage";
 import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
+import Map from "./components/Map";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/owner" element={<HomePageOwner />} />
         <Route path="/owner-add" element={<AddBoardingHousesOwner />} />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
       <Footer />
     </div>
