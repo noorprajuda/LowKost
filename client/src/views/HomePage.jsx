@@ -38,7 +38,7 @@ export default function HomePage() {
               alt=""
             />
           </div>
-          {JSON.stringify(boardingHouses[0], null, 2)}
+
           <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
             {boardingHouses.map((boardingHouse, index) => {
               return (

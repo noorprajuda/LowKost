@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
@@ -5,23 +6,68 @@ import { AiFillFacebook } from "react-icons/ai";
 import {
   fetchBoardingHouseByIdUser,
   fetchBoardingHouses,
+  createMyBooking,
+  addToMyBookmark,
 } from "../store/action/index";
+
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function DetailPage() {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Masuk UseEffect");
+    // console.log("Masuk UseEffect");
     dispatch(fetchBoardingHouseByIdUser(id));
-  }, []);
+  }, [id]);
 
   const localBoardingHouse = useSelector(
     (state) => state.boardingHouses.boardingHouse
   );
   console.log(localBoardingHouse, "<<<<localBoardingHouse");
+
+  const handleImagesPage = (e) => {
+    navigate(`/${localBoardingHouse.id}/images`);
+    e.preventDefault();
+  };
+
+  const [formMyBooking, setFormMyBooking] = useState({
+    BoardingHouseId: "",
+    UserId: "",
+    startDate: "",
+  });
+
+
+  const addToMyBookmarkHandle = (e) => {
+    e.preventDefault();
+    dispatch(addToMyBookmark(e.target.value))
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    const newForm = {
+      BoardingHouseId: localBoardingHouse.id,
+      startDate: formMyBooking.startDate,
+    };
+
+    newForm[name] = value;
+    setFormMyBooking(newForm);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(createMyBooking(id, formMyBooking));
+  };
 
   if (localBoardingHouse.length === 0) return null;
 
@@ -30,9 +76,6 @@ export default function DetailPage() {
   return (
     <>
       <div className="mt-14 py-24 px-12">
-        {/* <h1>DETAIL PAGE</h1>
-        {JSON.stringify(localBoardingHouse, null, 2)} */}
-
         <div className="container mx-auto flex ">
           {/* <div className="w-full md:w-1/2 md:pr-4 flex flex-row mb-12 md:mb-0"> */}
           <div className="flex flex-row">
@@ -56,6 +99,7 @@ export default function DetailPage() {
                   className=" w-[800px] mt-4 h-full object-cover"
                 />
                 <button
+                  onClick={handleImagesPage}
                   type="button"
                   class="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
                 >
@@ -66,7 +110,7 @@ export default function DetailPage() {
           </div>
           {/* </div> */}
         </div>
-        {JSON.stringify(localBoardingHouse, null, 2)}
+
         <div className="flex flex-row justify-between">
           <div className="py-5 px-12 w-[900px]">
             <h2 className="font-bold text-left text-4xl mb-10">
@@ -87,6 +131,16 @@ export default function DetailPage() {
                 >
                   {localBoardingHouse.Category.name}
                 </a>
+
+                <button
+                  value={localBoardingHouse.id}
+                  onClick={addToMyBookmarkHandle}
+                  className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl underline"
+                >
+                  {"♥ bookmark"}
+
+                  {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
+                </button>
               </div>
             </h2>
             <div className="w-full">
@@ -130,12 +184,17 @@ export default function DetailPage() {
 
           <div className="py-5 px-12">
             <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-              <form class="space-y-6" action="#">
+              <form onSubmit={submitHandler} class="space-y-6">
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">
                   Rp. {localBoardingHouse.price.toLocaleString("id-ID")} / month
                 </h5>
 
-                <input className="rounded-lg w-full" type="date" />
+                <input
+                  name="startDate"
+                  onChange={onChange}
+                  className="rounded-lg w-full"
+                  type="date"
+                />
 
                 <button
                   type="submit"

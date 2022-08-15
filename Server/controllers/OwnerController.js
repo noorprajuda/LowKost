@@ -33,6 +33,7 @@ module.exports = class OwnerController {
         message: `new user with email ${newUser.email} has been successfully registered`,
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }

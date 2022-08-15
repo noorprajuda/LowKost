@@ -28,7 +28,7 @@ function boardingHousesReducer(state = initialState, action) {
 
     case SINGLE_HOUSE_OWNER_FETCH_SUCESS:
       return { ...state, singleHouseOwner: action.payload };
-
+      
     default:
       return state;
   }

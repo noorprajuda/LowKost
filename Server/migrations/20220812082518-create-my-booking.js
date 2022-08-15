@@ -34,6 +34,7 @@ module.exports = {
       },
       status: {
         type: Sequelize.STRING,
+        defaulValue: "Unpaid",
       },
       createdAt: {
         allowNull: false,
