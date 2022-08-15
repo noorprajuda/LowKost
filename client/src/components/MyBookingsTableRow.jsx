@@ -1,27 +1,25 @@
-
 import axios from "axios";
 import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteMyBookingByIdUser,
   fetchMyBookingsByIdUser,
 } from "../store/action";
 
-// const midtransClient = require("midtrans-client");
-
-// let snap = new midtransClient.Snap({
-//   isProduction: false,
-//   serverKey: "SB-Mid-server-KwbMC2l_R8bDHB8ywGDpx_aG",
-//   clientKey: "SB-Mid-client-FNQJSAVphK029Fk0",
-// });
-
 const baseUrl = "http://localhost:4000";
 
 export default function MyBookingsTableRow({ myBooking }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [changeStatus, setChangeStatus] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchMyBookingsByIdUser());
+  }, [changeStatus]);
 
   const deleteMyBooking = (e) => {
     dispatch(deleteMyBookingByIdUser(e.target.value))
@@ -33,69 +31,75 @@ export default function MyBookingsTableRow({ myBooking }) {
       });
   };
 
-  // const paymentHandler = async () => {
-  //   try {
-  //     const obj = {
-  //       email: localStorage.getItem("email"),
-  //       name: localStorage.getItem("fullName"),
-  //       amount: myBooking.BoardingHouse.price,
-  //     };
-  //     const access_token = localStorage.getItem("access_token");
-  //     console.log("access_token", access_token);
-  //     const { data } = await axios({
-  //       method: "post",
-  //       url: `${baseUrl}/user/payment`,
-  //       headers: { access_token },
-  //       data: {
-  //         email: obj.email,
-  //         amount: obj.amount,
-  //         name: obj.name,
-  //       },
-  //     });
+  const paymentHandler = async (e) => {
+    try {
+      const obj = {
+        email: localStorage.getItem("email"),
+        name: localStorage.getItem("fullName"),
+        amount: myBooking.BoardingHouse.price,
+      };
+      const access_token = localStorage.getItem("access_token");
+      console.log("access_token", access_token);
+      const { data } = await axios({
+        method: "post",
+        url: `${baseUrl}/user/payment`,
+        headers: { access_token },
+        data: {
+          email: obj.email,
+          amount: obj.amount,
+          name: obj.name,
+        },
+      });
 
-  //     console.log("data>>>", data);
+      console.log("data>>>", data);
 
-  //     let tio = this;
+      let tio = this;
 
-  //     window.snap.pay(data.token, {
-  //       onSuccess(result) {
-  //         tio.updateStatusHandler(result.order_id);
-  //         console.log(result.order_id);
+      console.log(window);
 
-  //         tio.router.push({ name: "subscribe" });
+      window.snap.pay(data.token, {
+        onSuccess: async (result) => {
+          console.log(result);
 
-  //         let baseUrl = "http://localhost:4000";
+          console.log(result.order_id);
 
-  //         axios({
-  //           method: "patch",
-  //           url: `${baseUrl}/changeSubscribe`,
-  //           headers: { access_token: access_token },
-  //           data: { email: localStorage.email },
-  //         });
+          let baseUrl = "http://localhost:4000";
 
-  //         Swal.fire(
-  //           "Payment Success",
-  //           "You are subscribed! Thank you for using our service!",
-  //           "success"
-  //         );
-  //       },
+          const resp = await axios({
+            method: "patch",
+            url: `${baseUrl}/user/mybookings/${e.target.value}`,
+            headers: { access_token: access_token },
+            data: { email: localStorage.email },
+          });
 
-  //       onPending(result) {
-  //         tio.router.push({ name: "subscribe" });
-  //       },
-  //       onClose(result) {
-  //         tio.router.push({ name: "subscribe" });
-  //       },
+          console.log(resp);
 
-  //       onError(result) {
-  //         Swal.fire("Payment Failed", "", "error");
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //     // Swal.fire(`${err.response.data.message}`, '', 'error')
-  //   }
-  // };
+          if (resp.status === 200) {
+            setChangeStatus(true);
+            Swal.fire(
+              "Payment Success",
+              "Thank you for using our service!",
+              "success"
+            );
+          }
+        },
+
+        onPending(result) {
+          navigate("my-bookings");
+        },
+        onClose(result) {
+          navigate("my-bookings");
+        },
+
+        onError(result) {
+          Swal.fire("Payment Failed", "", "error");
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      // Swal.fire(`${err.response.data.message}`, '', 'error')
+    }
+  };
 
   const updateStatusHandler = async (OrderId) => {
     try {
@@ -107,14 +111,14 @@ export default function MyBookingsTableRow({ myBooking }) {
     }
   };
 
-  // const getpayments = async () => {
-  //   try {
-  //     const { data } = await axios.get(`${baseUrl}/user/payment`);
-  //     this.payments = data;
-  //   } catch (err) {
-  //     Swal.fire(`${err.response.data.message}`, "", "error");
-  //   }
-  // };
+  const getpayments = async () => {
+    try {
+      const { data } = await axios.get(`${baseUrl}/user/payment`);
+      this.payments = data;
+    } catch (err) {
+      Swal.fire(`${err.response.data.message}`, "", "error");
+    }
+  };
 
   return (
     <>
@@ -164,20 +168,34 @@ export default function MyBookingsTableRow({ myBooking }) {
             {myBooking.BoardingHouse.location.coordinates[1]}
           </td>
           <td className="py-4 px-6 text-xs">{myBooking.startDate}</td>
-          <td className="py-4 px-6 text-xs">{myBooking.status}</td>
-          <td className="py-4 px-6 text-center">
+          {myBooking.status == "Paid" ? (
+            <td className="py-4 px-6 text-xs font-bold text-green-600">
+              {myBooking.status}
+            </td>
+          ) : (
+            <td className="py-4 px-6 text-xs font-bold text-red-600 ">
+              {myBooking.status}
+            </td>
+          )}
 
-            <button className="font-medium text-blue-600  hover:underline">
-              Pay
-            </button>
-            <button
-              value={myBooking.id}
-              onClick={deleteMyBooking}
-              className="font-medium text-red-600  hover:underline"
-            >
-              Delete
-            </button>
-          </td>
+          {myBooking.status == "Paid" ? null : (
+            <td className="py-4 px-6 text-center">
+              <button
+                value={myBooking.id}
+                onClick={paymentHandler}
+                className="font-medium text-blue-600  hover:underline"
+              >
+                Pay
+              </button>
+              <button
+                value={myBooking.id}
+                onClick={deleteMyBooking}
+                className="font-medium text-red-600  hover:underline"
+              >
+                Delete
+              </button>
+            </td>
+          )}
         </tr>
       </tbody>
     </>

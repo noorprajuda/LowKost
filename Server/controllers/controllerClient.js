@@ -2,11 +2,11 @@
 
 const midtransClient = require("midtrans-client");
 
-let snap = new midtransClient.Snap({
-  isProduction: false,
-  serverKey: "SB-Mid-server-KwbMC2l_R8bDHB8ywGDpx_aG",
-  clientKey: "SB-Mid-client-FNQJSAVphK029Fk0",
-});
+// let snap = new midtransClient.Snap({
+//   isProduction: false,
+//   serverKey: "SB-Mid-server-KwbMC2l_R8bDHB8ywGDpx_aG",
+//   clientKey: "SB-Mid-client-FNQJSAVphK029Fk0",
+// });
 
 const {
   BoardingHouses,
@@ -307,6 +307,41 @@ class ControllerClient {
     }
   }
 
+  static async changeMyBookingStatus(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { id: UserId } = req.user;
+
+      const findMyBooking = await MyBooking.findByPk(id);
+
+      if (!findMyBooking) {
+        throw { name: "NotFound" };
+      }
+
+      const updatedMyBooking = await MyBooking.update(
+        { status: "Paid" },
+        {
+          where: {
+            id,
+          },
+          order: [["id", "ASC"]],
+        }
+      );
+
+      console.log(updatedMyBooking, "<<<<updated MyBooking");
+
+      if (!updatedMyBooking) {
+        throw { name: "NotFound" };
+      }
+
+      res.status(200).json({
+        message: "My booking succesfully paid",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async deleteMyBooking(req, res, next) {
     try {
       const { id } = req.params;
@@ -359,6 +394,8 @@ class ControllerClient {
 
       const transaction = await snap.createTransaction(parameter);
       let transactionToken = transaction.token;
+
+      console.log(transactionToken, "<<<<<transactionToken");
 
       res.status(201).json({
         statusCode: 201,

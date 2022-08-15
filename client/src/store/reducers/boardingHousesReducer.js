@@ -2,59 +2,47 @@ import {
   BOARDING_HOUSES_FETCH_SUCCESS,
   BOARDING_HOUSES_FETCH_USER_SUCCESS,
   BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS,
+  BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
+  SINGLE_HOUSE_OWNER_FETCH_SUCESS,
 } from "../action/actionType";
 
 const initialState = {
   boardingHouses: [],
   boardingHouse: {
-    id: 4,
-    name: "Kost Margonda Kramat",
-    price: 1100000,
-    CategoryId: 1,
-    CityId: 1,
-    totalRoom: 5,
-    UserId: 1,
-    description:
-      "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
+    id: null,
+    name: "",
+    price: null,
+    CategoryId: null,
+    CityId: null,
+    totalRoom: null,
+    UserId: null,
+    description: "",
     location: {
-      type: "Point",
-      coordinates: [-6.131164, 106.85564],
+      type: "",
+      coordinates: [],
     },
-    slug: "kost-margonda-kramat",
-    mainImg:
-      "https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg",
+    slug: "",
+    mainImg: null,
     address: null,
     Category: {
-      name: "Kos Putri",
+      name: "",
     },
     City: {
-      name: "Jakarta",
+      name: "",
     },
     User: {
-      id: 1,
-      fullName: "Admin 1",
-      email: "admin@mail.com",
-      address: "Jalan boulevard 1 no 12",
-      role: "Admin",
-      phoneNumber: "086363628781",
+      id: null,
+      fullName: "",
+      email: "",
+      address: "",
+      role: "",
+      phoneNumber: "",
     },
-    Images: [
-      {
-        imgUrl:
-          "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527344.jpeg",
-      },
-      {
-        imgUrl:
-          "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527327.jpeg",
-      },
-      {
-        imgUrl:
-          "https://infokost.b-cdn.net/wp-content/uploads/2022/02/04022022164399527380.jpeg",
-      },
-    ],
+    Images: [],
     BoardingHouseFacilities: [],
     BoardingHouseRules: [],
   },
+  singleHouseOwner: { BoardingHouseRules: [], BoardingHouseFacilities: [] },
 };
 
 function boardingHousesReducer(state = initialState, action) {
@@ -67,6 +55,12 @@ function boardingHousesReducer(state = initialState, action) {
 
     case BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS:
       return { ...state, boardingHouse: action.payload };
+
+    case BOOKMARK_BY_ID_FETCH_USER_SUCCESS:
+      return { ...state, boardingHouse: action.payload };
+
+    case SINGLE_HOUSE_OWNER_FETCH_SUCESS:
+      return { ...state, singleHouseOwner: action.payload };
 
     default:
       return state;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerOwner } from "../store/action";
+import Swal from "sweetalert2";
 
 export default function RegisterOwner() {
   const dispatch = useDispatch();
@@ -40,6 +41,11 @@ export default function RegisterOwner() {
         }
       })
       .then((data) => {
+        Swal.fire(
+          "Selamat!",
+          "Anda akan diarahkan ke halaman login!",
+          "success"
+        );
         navigate("/login");
       })
       .catch((err) => console.log(err));

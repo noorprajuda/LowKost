@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerOwner } from "../store/action";
+import Swal from "sweetalert2";
 
 export default function RegisterTenant() {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ export default function RegisterTenant() {
     e.preventDefault();
     dispatch(registerOwner(formRegister))
       .then(() => {
+        Swal.fire(
+          "Selamat!",
+          "Anda akan diarahkan ke halaman login!",
+          "success"
+        );
         navigate("/login");
       })
       .catch((err) => console.log(err));
@@ -137,7 +143,7 @@ export default function RegisterTenant() {
                       required=""
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="ml-3 text-xs">
                     <label className="font-light text-gray-500 dark:text-gray-300">
                       Saya setuju dengan{" "}
                       <a
@@ -154,8 +160,17 @@ export default function RegisterTenant() {
                   onClick={handleSave}
                   className="w-full text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Daftar
+                  Registrasi
                 </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Jik anda tertarik menjadi mitra kami, klik{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    <Link to="/register-owner">disini</Link>
+                  </a>
+                </p>
               </form>
             </div>
           </div>
