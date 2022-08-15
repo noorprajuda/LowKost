@@ -13,6 +13,12 @@ router.post(
   authentication,
   ControllerClient.createMyBooking
 );
+
+router.patch(
+  "/mybookings/:id",
+  authentication,
+  ControllerClient.changeMyBookingStatus
+);
 router.delete(
   "/mybookings/:id",
   authentication,

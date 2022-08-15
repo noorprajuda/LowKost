@@ -49,7 +49,7 @@ export default function MyBookingsTable() {
     return (
       <>
         <div className="mt-20 mb-20">
-          <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+          <div className="overflow-x-auto relative shadow-md sm:rounded-lg px-10">
             {/* {JSON.stringify(myBookings, null, 2)} */}
 
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
