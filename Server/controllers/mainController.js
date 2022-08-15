@@ -19,6 +19,7 @@ module.exports = class mainController {
         fullName: user.fullName,
       });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
