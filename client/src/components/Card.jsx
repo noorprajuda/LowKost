@@ -27,12 +27,15 @@ export default function Card({ boardingHouse }) {
     e.preventDefault();
   };
 
-  return (
+  return(
     <>
+
       <div
         onClick={handleDetailPage}
         className="cursor-pointer relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
       >
+
+      <div className="relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <img
           className="rounded-t-lg h-[200px] w-full object-cover"
           src={boardingHouse.mainImg}
@@ -63,7 +66,15 @@ export default function Card({ boardingHouse }) {
           <p className="mb-4 text-justify font-normal text-gray-700 dark:text-gray-400">
             {boardingHouse.description.substring(0, 200)}...
           </p>
+
+          <button
+            className="absolute bottom-2 right-5 text-blue-700 font-semibold"
+            onClick={handleDetailPage}
+          >
+            See details...
+          </button>
         </div>
+      </div>
       </div>
     </>
   );

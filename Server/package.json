@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "npx nodemon bin/www",
     "start": "node app.js",
-    "test": "jest --runInBand --forceExit --coverage"
+    "test": "npx jest --forceExit --verbose --detectOpenHandles --runInBand --coverage",
+    "db:test": "sequelize --env test db:drop && sequelize --env test db:create && sequelize --env test db:migrate && sequelize --env test db:seed:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google/maps": "^1.1.3",
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

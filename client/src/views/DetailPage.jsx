@@ -40,6 +40,7 @@ export default function DetailPage() {
     startDate: "",
   });
 
+
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
     dispatch(addToMyBookmark(e.target.value))

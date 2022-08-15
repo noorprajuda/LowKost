@@ -1,5 +1,7 @@
+
 import axios from "axios";
 import Swal from "sweetalert2";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -164,12 +166,10 @@ export default function MyBookingsTableRow({ myBooking }) {
           <td className="py-4 px-6 text-xs">{myBooking.startDate}</td>
           <td className="py-4 px-6 text-xs">{myBooking.status}</td>
           <td className="py-4 px-6 text-center">
-            <button
-              // onClick={paymentHandler}
-              className="font-medium text-blue-600  hover:underline"
-            >
+
+            <button className="font-medium text-blue-600  hover:underline">
               Pay
-            </button>{" "}
+            </button>
             <button
               value={myBooking.id}
               onClick={deleteMyBooking}
