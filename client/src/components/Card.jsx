@@ -29,7 +29,10 @@ export default function Card({ boardingHouse }) {
 
   return (
     <>
-      <div className="relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div
+        onClick={handleDetailPage}
+        className="cursor-pointer relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+      >
         <img
           className="rounded-t-lg h-[200px] w-full object-cover"
           src={boardingHouse.mainImg}
@@ -42,15 +45,6 @@ export default function Card({ boardingHouse }) {
               <a className="inline-flex items-left py-1 px-1 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                 {boardingHouse.City.name}
               </a>
-              <button
-                value={boardingHouse.id}
-                onClick={addToMyBookmarkHandle}
-                className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl underline"
-              >
-                {"♥ bookmark"}
-
-                {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
-              </button>
             </div>
 
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -69,13 +63,6 @@ export default function Card({ boardingHouse }) {
           <p className="mb-4 text-justify font-normal text-gray-700 dark:text-gray-400">
             {boardingHouse.description.substring(0, 200)}...
           </p>
-
-          <button
-            className="absolute bottom-2 right-5 text-blue-700 font-semibold"
-            onClick={handleDetailPage}
-          >
-            See details...
-          </button>
         </div>
       </div>
     </>
