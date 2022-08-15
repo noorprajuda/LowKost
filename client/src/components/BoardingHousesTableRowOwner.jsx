@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteBoardingHouseOwner } from "../store/action";
 
 export default function BoardingHousesTableRow({ boardingHouses }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const updateHandler = (id) => {
     navigate(`/${id}/update`);
+  };
+
+  const removeHandler = (e, id) => {
+    e.preventDefault();
+    dispatch(deleteBoardingHouseOwner(id));
   };
 
   return (
@@ -49,7 +55,11 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
             >
               Edit{" "}
             </a>
-            <a href="#" className="font-medium text-red-600  hover:underline">
+            <a
+              onClick={(e) => removeHandler(e, boardingHouses.id)}
+              href="#"
+              className="font-medium text-red-600  hover:underline"
+            >
               Delete
             </a>
           </td>

@@ -91,6 +91,7 @@ module.exports = class OwnerController {
         // StackImages,
         StackFacilities,
       } = req.body;
+
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -154,9 +155,11 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        StackImages,
+        // StackImages,
         StackFacilities,
       } = req.body;
+      console.log(req.body, "<<<<");
+      console.log(StackRules);
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -184,32 +187,33 @@ module.exports = class OwnerController {
         { transaction: t, where: { id } }
       );
       const rules = StackRules.map((rule) => {
-        return { BoardingHouseId: boardinghouse.id, RuleId: rule.id };
+        return { BoardingHouseId: id, RuleId: rule.RuleId };
       });
-      await BoardingHouseRules.destroy({
-        where: { BoardingHouseId: boardinghouse.id },
-        transaction: t,
-      });
+      // await BoardingHouseRules.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id },
+      //   transaction: t,
+      // });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      const images = await StackImages.map((img) => {
-        return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
-      });
-      await Images.destroy({
-        where: { BoardingHouseId: boardinghouse.id, transaction: t },
-      });
-      await Images.bulkCreate(images, { transaction: t });
+      // const images = await StackImages.map((img) => {
+      //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
+      // });
+      // await Images.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id, transaction: t },
+      // });
+      // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
-        return { FacilityId: el.id, BoardingHouseId: boardinghouse.id };
+        return { FacilityId: el.id, BoardingHouseId: el.FacilityId };
       });
-      await BoardingHouseFacilities.destroy({
-        where: { BoardingHouseId: boardinghouse.id },
-      });
+      // await BoardingHouseFacilities.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id },
+      // });
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
       res
         .status(200)
         .json({ message: `Successfull update ${boardinghouse.name}` });
     } catch (err) {
+      console.log(err);
       await t.rollback();
       next(err);
     }

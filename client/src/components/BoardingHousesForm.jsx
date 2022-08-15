@@ -34,10 +34,6 @@ export default function BoardingHousesForm() {
     dispatch(fetchRules());
   }, []);
 
-  // useEffect(() => {
-  //   if ()
-  // })
-
   const [formBoardingHouse, setFormBoardingHouse] = useState({
     name: "",
     price: "",
@@ -53,19 +49,6 @@ export default function BoardingHousesForm() {
     StackFacilities: [],
   });
 
-  // function rulesChangeHandler(e) {
-  //   e.preventDefault();
-  //   const temp = [];
-  //   if (e.target.checked) {
-  //     temp.push({ id: e.target.value });
-  //     setKosRules(temp);
-  //   } else {
-  //     temp.filter((e) => e !== e.target.value);
-  //     setKosRules(temp);
-  //   }
-  //   console.log(kosRules);
-  // }
-
   const rulesCheckHandler = (e) => {
     const { value, name, checked } = e.target;
 
@@ -76,38 +59,18 @@ export default function BoardingHousesForm() {
     }
   };
 
-  // const checkHandler = (e) => {
-  //   const { value, name, checked } = e.target;
-  //   const { StackRules, StackFacilities } = formBoardingHouse;
-
-  //   if (checked) {
-  //     if (name === "StackRules") {
-  //       setFormBoardingHouse({
-  //         StackRules: [...StackRules, { id: value }],
-  //       });
-  //     } else if (name === "StackFacilities") {
-  //       setFormBoardingHouse({
-  //         StackFacilities: [...StackFacilities, { id: value }],
-  //       });
-  //     }
-  // } else {
-  //   setFormBoardingHouse({
-  //     StackRules: StackRules.filter((e) => e.id !== value),
-  //     StackFacilities: StackFacilities.filter((e) => e.id !== value),
-  //   });
-  // }
-  // };
-
   const facilitiesCheckHandler = (e) => {
     const { value, name, checked } = e.target;
     const { StackFacilities } = formBoardingHouse;
 
     if (checked) {
       setFormBoardingHouse({
+        ...formBoardingHouse,
         StackFacilities: [...StackFacilities, { id: value }],
       });
     } else {
       setFormBoardingHouse({
+        ...formBoardingHouse,
         StackFacilities: StackFacilities.filter((e) => e.id !== value),
       });
     }
@@ -116,11 +79,8 @@ export default function BoardingHousesForm() {
   const changeFormHandler = (e) => {
     const { value, name, checked } = e.target;
 
-    // const checkedValue = e.target.value;
-    // console.log(checkedValue);
-
     const newForm = {
-      StackRules: checkRules,
+      // StackRules: checkRules,
       // StackImages: formBoardingHouse.StackImages,
       StackFacilities: formBoardingHouse.StackFacilities,
       name: formBoardingHouse.name,
@@ -139,10 +99,11 @@ export default function BoardingHousesForm() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(createBoardingHouse(formBoardingHouse));
-    // navigate("/owner");
+    dispatch(createBoardingHouse(formBoardingHouse, checkRules));
+    navigate("/owner");
     // console.log(kosRules);
-    console.log(formBoardingHouse);
+    // console.log(checkRules, "rules");
+    // console.log(formBoardingHouse);
     // console.log(formBoardingHouse.StackRules);
     // console.log(formBoardingHouse.StackFacilities);
 

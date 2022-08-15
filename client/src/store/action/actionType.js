@@ -12,3 +12,6 @@ export const BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS =
 
 export const BOOKMARK_BY_ID_FETCH_USER_SUCCESS =
   "boardingHouses/BOOKMARK_BY_ID_FETCH_USER_SUCCESS";
+
+export const SINGLE_HOUSE_OWNER_FETCH_SUCESS =
+  "singleBoardingHouses/fetchSuccess";

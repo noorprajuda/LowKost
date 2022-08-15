@@ -9,6 +9,7 @@ import {
   BOARDING_HOUSES_FETCH_USER_SUCCESS,
   BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS,
   BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
+  SINGLE_HOUSE_OWNER_FETCH_SUCESS,
 } from "./actionType";
 
 const baseUrl = "http://localhost:4000";
@@ -74,6 +75,13 @@ export const fetchCitiesSuccess = (payload) => {
   };
 };
 
+export const singleHouseOwnerSuccess = (payload) => {
+  return {
+    type: SINGLE_HOUSE_OWNER_FETCH_SUCESS,
+    payload,
+  };
+};
+
 export const fetchBoardingHouses = () => {
   return async (dispatch) => {
     try {
@@ -122,19 +130,31 @@ export const fetchFacilities = () => {
   };
 };
 
-export const createBoardingHouse = (formBoardingHouse) => {
-  console.log(formBoardingHouse, "sds");
+export const createBoardingHouse = (formBoardingHouse, checkRules) => {
   return (dispatch, getState) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await axios.post(`${baseUrl}/owner/boardinghouse`, formBoardingHouse, {
-          headers: {
-            access_token: localStorage.getItem("access_token"),
+        await axios.post(
+          `${baseUrl}/owner/boardinghouse`,
+          {
+            StackFacilities: formBoardingHouse.StackFacilities,
+            name: formBoardingHouse.name,
+            price: formBoardingHouse.price,
+            CategoryId: formBoardingHouse.CategoryId,
+            CityId: formBoardingHouse.CityId,
+            totalRoom: formBoardingHouse.totalRoom,
+            description: formBoardingHouse.description,
+            mainImg: formBoardingHouse.mainImg,
+            address: formBoardingHouse.address,
+            StackRules: checkRules,
           },
-        });
+          {
+            headers: {
+              access_token: localStorage.getItem("access_token"),
+            },
+          }
+        );
 
-        console.log(formBoardingHouse, "dari index");
-        console.log(localStorage.getItem("access_token"));
         dispatch(fetchBoardingHouses());
 
         resolve();
@@ -173,7 +193,7 @@ export const registerTenant = (formBoardingHouse) => {
           formBoardingHouse
         );
 
-        dispatch(fetchBoardingHousesSuccess());
+        dispatch(fetchBoardingHouses());
 
         resolve();
       } catch (err) {
@@ -195,6 +215,44 @@ export const login = (formLogin) => {
         resolve();
       } catch (err) {
         reject(err);
+      }
+    });
+  };
+};
+
+export const deleteBoardingHouseOwner = (id) => {
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await axios.delete(`${baseUrl}/owner/boardinghouse/${id}`, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        dispatch(fetchBoardingHouses());
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+};
+
+export const fetchSingleHouseOwner = (id) => {
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resp = await axios.get(`${baseUrl}/owner/boardinghouse/${id}`, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+
+        dispatch(singleHouseOwnerSuccess(resp.data));
+
+        resolve();
+      } catch (error) {
+        reject(error);
       }
     });
   };
@@ -233,5 +291,42 @@ export const fetchBookmarkByIdUser = (id) => {
         console.log("getState BoardingHouse>>>", getState());
       })
       .catch(console.log);
+  };
+};
+
+export const updateBoardingHouse = (id, formUpdate) => {
+  console.log(id);
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await axios.put(
+          `${baseUrl}/owner/boardinghouse/${id}`,
+          {
+            StackFacilities: formUpdate.StackFacilities,
+            name: formUpdate.name,
+            price: formUpdate.price,
+            CategoryId: formUpdate.CategoryId,
+            CityId: formUpdate.CityId,
+            totalRoom: formUpdate.totalRoom,
+            description: formUpdate.description,
+            mainImg: formUpdate.mainImg,
+            address: formUpdate.address,
+            StackRules: formUpdate.StackRules,
+          },
+          {
+            headers: {
+              access_token: localStorage.getItem("access_token"),
+            },
+          }
+        );
+
+        dispatch(fetchBoardingHouses());
+
+        resolve();
+      } catch (err) {
+        console.log(err, "aaaa");
+        reject(err);
+      }
+    });
   };
 };
