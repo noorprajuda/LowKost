@@ -6,7 +6,7 @@ window.React2 = require("react");
 console.log(window.React1 === window.React2);
 
 export default function Card({ boardingHouse }) {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
@@ -19,14 +19,22 @@ export default function Card({ boardingHouse }) {
         console.error("Error:", error);
       });
   };
+
   const navigate = useNavigate();
+
   const handleDetailPage = (e) => {
     navigate(`/${boardingHouse.id}`);
     e.preventDefault();
   };
 
-  return (
+  return(
     <>
+
+      <div
+        onClick={handleDetailPage}
+        className="cursor-pointer relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+      >
+
       <div className="relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
         <img
           className="rounded-t-lg h-[200px] w-full object-cover"
@@ -40,15 +48,6 @@ export default function Card({ boardingHouse }) {
               <a className="inline-flex items-left py-1 px-1 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                 {boardingHouse.City.name}
               </a>
-              <button
-                value={boardingHouse.id}
-                onClick={addToMyBookmarkHandle}
-                className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl underline"
-              >
-                {"♥ bookmark"}
-
-                {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
-              </button>
             </div>
 
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -75,6 +74,7 @@ export default function Card({ boardingHouse }) {
             See details...
           </button>
         </div>
+      </div>
       </div>
     </>
   );
