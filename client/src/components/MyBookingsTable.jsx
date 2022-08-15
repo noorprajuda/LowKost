@@ -1,23 +1,27 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBookmarkByIdUser } from "../store/action";
-import BoardingHousesTableRow from "./BoardingHousesTableRow";
+import { fetchMyBookingsByIdUser } from "../store/action";
+import MyBookingsTableRow from "./MyBookingsTableRow";
 
-export default function BoardingHousesTable() {
+export default function MyBookingsTable() {
   const dispatch = useDispatch();
-  const boardingHouses = useSelector(
-    (state) => state.boardingHouses.boardingHouses
-  );
+  const myBookings = useSelector((state) => state.myBookings.myBookings);
+  // const [localBookmarks, setLocalBookmarks] = useState(bookmarks);
 
   useEffect(() => {
-    dispatch(fetchBookmarkByIdUser());
+    dispatch(fetchMyBookingsByIdUser());
+    // setLocalBookmarks(bookmarks);
   }, []);
 
-  if (!boardingHouses.length) {
+  // useEffect(() => {
+  //   setLocalBookmarks(bookmarks);
+  // }, [bookmarks]);
+
+  if (!myBookings) {
     return (
       <div
         role="status"
-        className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center px-8 py-8"
+        className="mt-20 space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center px-8 py-8"
       >
         <div className="flex justify-center items-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
           <svg
@@ -44,14 +48,13 @@ export default function BoardingHousesTable() {
   } else {
     return (
       <>
-        <div>
+        <div className="mt-20 mb-20">
           <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+            {/* {JSON.stringify(myBookings, null, 2)} */}
+
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  {/* <th scope="col" className="py-3 px-6">
-                    ID
-                  </th> */}
                   <th scope="col" className="py-3 px-6">
                     Image
                   </th>
@@ -59,25 +62,31 @@ export default function BoardingHousesTable() {
                     Name
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Price
+                    Price / month
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    CategoryId
+                    Category
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    CityId
+                    City
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    roomQty
+                    Room Quantity
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    UserId
+                    By
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    description
+                    Description
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    location
+                    Location
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Start date
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Status
                   </th>
 
                   <th scope="col" className="py-3 px-6">
@@ -85,11 +94,11 @@ export default function BoardingHousesTable() {
                   </th>
                 </tr>
               </thead>
-              {boardingHouses.map((boardingHouses) => {
+              {myBookings.map((myBooking) => {
                 return (
-                  <BoardingHousesTableRow
-                    key={boardingHouses.id}
-                    boardingHouses={boardingHouses}
+                  <MyBookingsTableRow
+                    key={myBooking.id}
+                    myBooking={myBooking}
                   />
                 );
               })}

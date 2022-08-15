@@ -17,6 +17,7 @@ module.exports = class mainController {
         access_token,
         role: user.role,
         fullName: user.fullName,
+        email,
       });
     } catch (err) {
       next(err);

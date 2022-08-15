@@ -1,6 +1,7 @@
 import {
   BOARDING_HOUSES_FETCH_SUCCESS,
-  BOARDING_HOUSE_FETCH_SUCCESS,
+  BOARDING_HOUSES_FETCH_USER_SUCCESS,
+  BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS,
 } from "../action/actionType";
 
 const initialState = { boardingHouses: [], boardingHouse: [] };
@@ -15,6 +16,7 @@ function boardingHousesReducer(state = initialState, action) {
 
     case BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS:
       return { ...state, boardingHouse: action.payload };
+
     default:
       return state;
   }
