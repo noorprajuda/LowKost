@@ -8,27 +8,56 @@ export default function useFetch(url) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+    const access_token = localStorage.getItem("access_token");
+    if (!access_token) {
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          // setData(data);
+          dispatch({ type: "products/fetchSuccess", payload: data });
+        })
+        .catch((error) => {
+          console.log(
+            "There has been a problem with your fetch operation",
+            error
+          );
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      fetch(url, {
+        headers: {
+          access_token: access_token,
+        },
       })
-      .then((data) => {
-        console.log(data);
-        // setData(data);
-        dispatch({ type: "products/fetchSuccess", payload: data });
-      })
-      .catch((error) => {
-        console.log(
-          "There has been a problem with your fetch operation",
-          error
-        );
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          // setData(data);
+          dispatch({ type: "products/fetchSuccess", payload: data });
+        })
+        .catch((error) => {
+          console.log(
+            "There has been a problem with your fetch operation",
+            error
+          );
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [url]);
 
   return { data, loading };
