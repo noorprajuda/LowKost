@@ -2,9 +2,15 @@ import {
   BOARDING_HOUSES_FETCH_SUCCESS,
   BOARDING_HOUSES_FETCH_USER_SUCCESS,
   BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS,
+  BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
+  SINGLE_HOUSE_OWNER_FETCH_SUCESS,
 } from "../action/actionType";
 
-const initialState = { boardingHouses: [], boardingHouse: [] };
+const initialState = {
+  boardingHouses: [],
+  boardingHouse: [],
+  singleHouseOwner: { BoardingHouseRules: [], BoardingHouseFacilities: [] },
+};
 
 function boardingHousesReducer(state = initialState, action) {
   switch (action.type) {
@@ -17,6 +23,12 @@ function boardingHousesReducer(state = initialState, action) {
     case BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS:
       return { ...state, boardingHouse: action.payload };
 
+    case BOOKMARK_BY_ID_FETCH_USER_SUCCESS:
+      return { ...state, boardingHouse: action.payload };
+
+    case SINGLE_HOUSE_OWNER_FETCH_SUCESS:
+      return { ...state, singleHouseOwner: action.payload };
+      
     default:
       return state;
   }

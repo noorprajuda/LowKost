@@ -42,10 +42,12 @@ module.exports = class OwnerController {
     try {
       const boardinghouses = await BoardingHouses.findAll({
         include: [{ model: Categories }, { model: City }],
+        // attributes: { exclude: ["location"] },
         where: { UserId: req.user.id },
       });
       res.status(200).json(boardinghouses);
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -87,9 +89,10 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        StackImages,
+        // StackImages,
         StackFacilities,
       } = req.body;
+
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -120,10 +123,10 @@ module.exports = class OwnerController {
         return { BoardingHouseId: newBoardingHouse.id, RuleId: rule.id };
       });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      const images = await StackImages.map((img) => {
-        return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
-      });
-      await Images.bulkCreate(images, { transaction: t });
+      // const images = await StackImages.map((img) => {
+      //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
+      // });
+      // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
         return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
       });
@@ -133,6 +136,7 @@ module.exports = class OwnerController {
         .status(200)
         .json({ message: `Successfull add new Kos ${newBoardingHouse.name}` });
     } catch (err) {
+      console.log(err);
       await t.rollback();
       next(err);
     }
@@ -152,9 +156,11 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        StackImages,
+        // StackImages,
         StackFacilities,
       } = req.body;
+      console.log(req.body, "<<<<");
+      console.log(StackRules);
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -182,32 +188,33 @@ module.exports = class OwnerController {
         { transaction: t, where: { id } }
       );
       const rules = StackRules.map((rule) => {
-        return { BoardingHouseId: boardinghouse.id, RuleId: rule.id };
+        return { BoardingHouseId: id, RuleId: rule.RuleId };
       });
-      await BoardingHouseRules.destroy({
-        where: { BoardingHouseId: boardinghouse.id },
-        transaction: t,
-      });
+      // await BoardingHouseRules.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id },
+      //   transaction: t,
+      // });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      const images = await StackImages.map((img) => {
-        return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
-      });
-      await Images.destroy({
-        where: { BoardingHouseId: boardinghouse.id, transaction: t },
-      });
-      await Images.bulkCreate(images, { transaction: t });
+      // const images = await StackImages.map((img) => {
+      //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
+      // });
+      // await Images.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id, transaction: t },
+      // });
+      // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
-        return { FacilityId: el.id, BoardingHouseId: boardinghouse.id };
+        return { FacilityId: el.id, BoardingHouseId: el.FacilityId };
       });
-      await BoardingHouseFacilities.destroy({
-        where: { BoardingHouseId: boardinghouse.id },
-      });
+      // await BoardingHouseFacilities.destroy({
+      //   where: { BoardingHouseId: boardinghouse.id },
+      // });
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
       res
         .status(200)
         .json({ message: `Successfull update ${boardinghouse.name}` });
     } catch (err) {
+      console.log(err);
       await t.rollback();
       next(err);
     }

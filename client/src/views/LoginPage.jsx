@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../store/action";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -24,13 +25,29 @@ export default function LoginPage() {
   };
 
   const handleSave = (e) => {
+    e.preventDefault();
     dispatch(login(formLogin))
       .then((resp) => {
         if (localStorage.getItem("role") === "Owner") {
+          Swal.fire(
+            "Hebat!",
+            "Anda akan diarahkan ke halaman home!",
+            "success"
+          );
           navigate("/owner");
         } else if (localStorage.getItem("role") === "Admin") {
+          Swal.fire(
+            "Hebat!",
+            "Anda akan diarahkan ke halaman admin!",
+            "success"
+          );
           navigate("/admin");
         } else {
+          Swal.fire(
+            "Hebat!",
+            "Anda akan diarahkan ke halaman home!",
+            "success"
+          );
           navigate("/");
         }
       })
@@ -46,7 +63,7 @@ export default function LoginPage() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign In
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form onSubmit={handleSave} className="space-y-4 md:space-y-6">
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Your email
@@ -100,20 +117,19 @@ export default function LoginPage() {
                 </div>
                 <button
                   type="submit"
-                  onClick={handleSave}
                   className="w-full text-white bg-slate-800 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Sign In
                 </button>
-                {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  First time comer? create account
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Pengguna baru silahkan registrasi terlebih dahulu{" "}
                   <a
                     href="#"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
-                    here
+                    <Link to="/register-tenant">disini</Link>
                   </a>
-                </p> */}
+                </p>
               </form>
             </div>
           </div>

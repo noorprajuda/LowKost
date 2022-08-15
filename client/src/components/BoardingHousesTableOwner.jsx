@@ -62,23 +62,23 @@ export default function BoardingHousesTable() {
                     Price
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    CategoryId
+                    Category
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    CityId
+                    City
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    roomQty
+                    Room Available
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  {/* <th scope="col" className="py-3 px-6">
                     UserId
-                  </th>
+                  </th> */}
                   <th scope="col" className="py-3 px-6">
                     description
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  {/* <th scope="col" className="py-3 px-6">
                     location
-                  </th>
+                  </th> */}
 
                   <th scope="col" className="py-3 px-6">
                     action

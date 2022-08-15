@@ -1,11 +1,192 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createBoardingHouse,
+  fetchCities,
+  fetchFacilities,
+  fetchRules,
+} from "../store/action";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 export default function BoardingHousesForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const cities = useSelector((state) => state.boardingHousesIdentifier.cities);
+  const facilities = useSelector(
+    (state) => state.boardingHousesIdentifier.facilities
+  );
+  const rules = useSelector((state) => state.boardingHousesIdentifier.rules);
+
+  const [checkRules, setCheckRules] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchCities());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchFacilities());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchRules());
+  }, []);
+
+  const [formBoardingHouse, setFormBoardingHouse] = useState({
+    name: "",
+    price: "",
+    CategoryId: "",
+    CityId: "",
+    totalRoom: "",
+    description: "",
+    mainImg: "",
+    description: "",
+    address: "",
+    StackRules: [],
+    // StackImages: [],
+    StackFacilities: [],
+  });
+
+  const rulesCheckHandler = (e) => {
+    const { value, name, checked } = e.target;
+
+    if (checked) {
+      setCheckRules([...checkRules, { id: value }]);
+    } else {
+      setCheckRules(checkRules.filter((e) => e.id !== value));
+    }
+  };
+
+  const facilitiesCheckHandler = (e) => {
+    const { value, name, checked } = e.target;
+    const { StackFacilities } = formBoardingHouse;
+
+    if (checked) {
+      setFormBoardingHouse({
+        ...formBoardingHouse,
+        StackFacilities: [...StackFacilities, { id: value }],
+      });
+    } else {
+      setFormBoardingHouse({
+        ...formBoardingHouse,
+        StackFacilities: StackFacilities.filter((e) => e.id !== value),
+      });
+    }
+  };
+
+  const changeFormHandler = (e) => {
+    const { value, name, checked } = e.target;
+
+    const newForm = {
+      // StackRules: checkRules,
+      // StackImages: formBoardingHouse.StackImages,
+      StackFacilities: formBoardingHouse.StackFacilities,
+      name: formBoardingHouse.name,
+      price: formBoardingHouse.price,
+      CategoryId: formBoardingHouse.CategoryId,
+      CityId: formBoardingHouse.CityId,
+      totalRoom: formBoardingHouse.totalRoom,
+      description: formBoardingHouse.description,
+      mainImg: formBoardingHouse.mainImg,
+      address: formBoardingHouse.address,
+    };
+
+    newForm[name] = value;
+    setFormBoardingHouse(newForm);
+  };
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    dispatch(createBoardingHouse(formBoardingHouse, checkRules));
+    navigate("/owner");
+    // console.log(kosRules);
+    // console.log(checkRules, "rules");
+    // console.log(formBoardingHouse);
+    // console.log(formBoardingHouse.StackRules);
+    // console.log(formBoardingHouse.StackFacilities);
+
+    // .then((resp) => {
+    //   Swal.fire("Hebat!", "Anda akan diarahkan ke halaman home!", "success");
+    //   navigate("/owner");
+    // })
+    // .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div>
         <div className="flex flex-row">
           <div className="basis-1/4"></div>
           <div className="basis-2/4 px-8 py-8">
-            <form>
+            <form onSubmit={handleSave}>
+              <h1 className="text-4xl text-left font-semibold">
+                A. Fasilitas & Peraturan Kosan
+              </h1>
+              <label
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                for="user_avatar"
+              >
+                Fasilitas Kosan
+              </label>
+              <fieldset class="mb-6 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+                <legend class="sr-only">Checkbox variants</legend>
+                {facilities.map((facility) => {
+                  return (
+                    <div class="flex items-center mb-4">
+                      <input
+                        id="StackFacilities"
+                        type="checkbox"
+                        name="StackFacilities"
+                        onChange={facilitiesCheckHandler}
+                        key={facility.id}
+                        value={facility.id}
+                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="checkbox-1"
+                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        {facility.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </fieldset>
+              <label
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                for="user_avatar"
+              >
+                Peraturan Kosan
+              </label>
+              <fieldset class="mb-6 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
+                <legend class="sr-only">Checkbox variants</legend>
+                {rules.map((rule, index) => {
+                  return (
+                    <div class="flex items-center mb-4">
+                      <input
+                        id="StackRules"
+                        type="checkbox"
+                        name="StackRules"
+                        onChange={rulesCheckHandler}
+                        key={rule.id}
+                        value={rule.id}
+                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="checkbox-2"
+                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        {rule.name}
+                      </label>
+                    </div>
+                  );
+                })}
+              </fieldset>
+              <h1 className="text-4xl text-left font-semibold">
+                B. Detail Kosan
+              </h1>
               <div class="mb-6">
                 <label
                   for="email"
@@ -14,8 +195,10 @@ export default function BoardingHousesForm() {
                   Nama Kos
                 </label>
                 <input
-                  type="email"
-                  id="email"
+                  type="name"
+                  id="name"
+                  name="name"
+                  onChange={changeFormHandler}
                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   placeholder="Kos Adinda 77 Minimalis"
                   required
@@ -29,15 +212,21 @@ export default function BoardingHousesForm() {
                   Wilayah Kosan
                 </label>
                 <select
-                  id="countries"
+                  id="CityId"
+                  onChange={changeFormHandler}
+                  name="CityId"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option selected disabled>
                     Pilih Kota
                   </option>
-                  <option>Jakarta</option>
-                  <option>Bandung</option>
-                  <option>Bali</option>
+                  {cities.map((city) => {
+                    return (
+                      <option key={city.id} value={city.id}>
+                        {city.name}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
               <div class="mb-6">
@@ -48,8 +237,10 @@ export default function BoardingHousesForm() {
                   Alamat Lengkap Kosan
                 </label>
                 <input
-                  type="email"
-                  id="email"
+                  type="address"
+                  id="address"
+                  name="address"
+                  onChange={changeFormHandler}
                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   placeholder="Jl. Peta Barat No.33 rt.10 rw.13 Kalideres Jakarta Barat"
                   required
@@ -69,6 +260,8 @@ export default function BoardingHousesForm() {
                 <input
                   type="text"
                   id="website-admin"
+                  name="price"
+                  onChange={changeFormHandler}
                   class="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="1.450.000"
                 />
@@ -82,17 +275,37 @@ export default function BoardingHousesForm() {
                 </label>
                 <select
                   id="countries"
+                  name="CategoryId"
+                  onChange={changeFormHandler}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option selected disabled>
                     Pilih kategori
                   </option>
-                  <option>Kosan Putri</option>
-                  <option>Kosan Putra</option>
-                  <option>Kosan Campur</option>
+                  <option value={1}>Kosan Putri</option>
+                  <option value={2}>Kosan Putra</option>
+                  <option value={3}>Kosan Campur</option>
                 </select>
               </div>
+
               <div className="mb-6">
+                <label
+                  for="message"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                >
+                  Deskripsi
+                </label>
+                <textarea
+                  id="message"
+                  name="description"
+                  onChange={changeFormHandler}
+                  rows="4"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Leave a comment..."
+                ></textarea>
+              </div>
+
+              {/* <div className="mb-6">
                 <label
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   for="user_avatar"
@@ -104,6 +317,8 @@ export default function BoardingHousesForm() {
                   aria-describedby="user_avatar_help"
                   id="user_avatar"
                   type="file"
+                  name="mainImg"
+                  onChange={changeFormHandler}
                 />
                 <div
                   class="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -111,225 +326,26 @@ export default function BoardingHousesForm() {
                 >
                   Gambar ini akan menjadi penanda kosan anda di halaman penyewa.
                 </div>
+              </div> */}
+
+              <div class="mb-6">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Gambar Utama Kosan "URL"
+                </label>
+                <input
+                  type="mainImg"
+                  id="mainImg"
+                  name="mainImg"
+                  onChange={changeFormHandler}
+                  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                  placeholder="http://www.image.com"
+                  required
+                />
               </div>
-              <label
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                for="user_avatar"
-              >
-                Fasilitas Kosan
-              </label>
-              <fieldset class="mb-6 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
-                <legend class="sr-only">Checkbox variants</legend>
 
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-3"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-3"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I am 18 years or older
-                  </label>
-                </div>
-              </fieldset>
-              <label
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                for="user_avatar"
-              >
-                Peraturan Kosan
-              </label>
-              <fieldset class="mb-6 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
-                <legend class="sr-only">Checkbox variants</legend>
-
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-2"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-2"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I want to get promotional offers
-                  </label>
-                </div>
-
-                <div class="flex items-center mb-4">
-                  <input
-                    id="checkbox-3"
-                    type="checkbox"
-                    value=""
-                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    for="checkbox-3"
-                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                  >
-                    I am 18 years or older
-                  </label>
-                </div>
-              </fieldset>
               <div class="mb-6">
                 <label
                   for="password"
@@ -340,6 +356,8 @@ export default function BoardingHousesForm() {
                 <input
                   type="number"
                   id="password"
+                  onChange={changeFormHandler}
+                  name="totalRoom"
                   placeholder="Total Room Available"
                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   required

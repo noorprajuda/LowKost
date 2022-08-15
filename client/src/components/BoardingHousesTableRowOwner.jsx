@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteBoardingHouseOwner } from "../store/action";
 
 export default function BoardingHousesTableRow({ boardingHouses }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const updateHandler = (id) => {
     navigate(`/${id}/update`);
+  };
+
+  const removeHandler = (e, id) => {
+    e.preventDefault();
+    dispatch(deleteBoardingHouseOwner(id));
   };
 
   return (
@@ -17,7 +23,7 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
             {boardingHouses.CategoryId}-2022
           </td> */}
           <td className="py-4 px-6 text-center">
-            <img src={boardingHouses.mainImg} alt="" className="w-96" />
+            <img src={boardingHouses.mainImg} alt="" className="w-96 h-40" />
           </td>
 
           <th
@@ -33,12 +39,14 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
                 .split(",")[0]
             }
           </td>
-          <td className="py-4 px-6 text-center">{boardingHouses.CategoryId}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.CityId}</td>
+          <td className="py-4 px-6 text-center">
+            {boardingHouses.Category.name}
+          </td>
+          <td className="py-4 px-6 text-center">{boardingHouses.City.name}</td>
           <td className="py-4 px-6 text-center">{boardingHouses.totalRoom}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.UserId}</td>
+          {/* <td className="py-4 px-6 text-center">{boardingHouses.UserId}</td> */}
           <td className="py-4 px-6 text-xs">{boardingHouses.description}</td>
-          <td className="py-4 px-6 text-center">{boardingHouses.location}</td>
+          {/* <td className="py-4 px-6 text-center">{boardingHouses.location}</td> */}
           <td className="py-4 px-6 text-center">
             <a
               href="#"
@@ -47,7 +55,11 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
             >
               Edit{" "}
             </a>
-            <a href="#" className="font-medium text-red-600  hover:underline">
+            <a
+              onClick={(e) => removeHandler(e, boardingHouses.id)}
+              href="#"
+              className="font-medium text-red-600  hover:underline"
+            >
               Delete
             </a>
           </td>
