@@ -3,14 +3,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillFacebook } from "react-icons/ai";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import {
   fetchBoardingHouseByIdUser,
   fetchBoardingHouses,
   createMyBooking,
   addToMyBookmark,
 } from "../store/action/index";
-import {MarkerF} from '@react-google-maps/api'
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 

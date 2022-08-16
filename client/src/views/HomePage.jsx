@@ -32,11 +32,8 @@ export default function HomePage() {
     setLocalBoardingHouses(boardingHouses);
   }, [boardingHouses]);
 
-
   console.log(mainImg);
   console.log(boardingHouses);
-
-
 
   const [cityId, setCityId] = useState(0);
 
@@ -71,8 +68,6 @@ export default function HomePage() {
       setLocalBoardingHouses(boardingHouses);
     }
   }, [categoryId]);
-
-
 
   return (
     <>
@@ -184,6 +179,11 @@ export default function HomePage() {
               </>
             );
           })} */}
+          <div className="ml-20 mr-20 flex flex-row justify-between mb-5">
+            <p>
+              <a>Kota Jakarta</a>
+            </p>
+          </div>
         </div>
       ) : (
         <p>Loading...</p>
