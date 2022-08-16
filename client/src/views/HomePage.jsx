@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
+import CardCity from "../components/CardCity";
 import { fetchBoardingHousesUser, fetchCities } from "../store/action";
 import useFetch from "../hooks/useFetch";
 import image from "../assets/LowKostBanner.jpeg";
@@ -167,18 +168,18 @@ export default function HomePage() {
           </div>
 
           {/* Filter Google Map */}
-          {/* <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+          <h1 className="pt-4 mb-5 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
             Lihat kos di Google Map
-          </h1> */}
-          {/* 
-          {categories.map((category, index) => {
-            return (
-              <>
-                <CardCity />
-                <option value={category.id}>{category.name}</option>
-              </>
-            );
-          })} */}
+          </h1>
+          <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
+            {cities.map((city, index) => {
+              return (
+                <>
+                  <CardCity key={city.id} city={city} />
+                </>
+              );
+            })}
+          </div>
         </div>
       ) : (
         <p>Loading...</p>
