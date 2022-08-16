@@ -5,9 +5,11 @@ router.post("/register", ControllerClient.registerClient);
 
 router.get("/boardinghouses", ControllerClient.boardingHouses);
 router.post("/payment", authentication, ControllerClient.payment);
-router.get("/boardinghouses/:id", ControllerClient.bourdingHousesId);
 
 router.get("/mybookings", authentication, ControllerClient.myBookings);
+router.get("/bookmark", authentication, ControllerClient.myBookmark);
+router.get("/searchboardinghouses", ControllerClient.searchHandler);
+router.get("/boardinghouses/:id", ControllerClient.bourdingHousesId);
 router.post(
   "/mybookings/:id",
   authentication,
@@ -25,7 +27,6 @@ router.delete(
   ControllerClient.deleteMyBooking
 );
 
-router.get("/bookmark", authentication, ControllerClient.myBookmark);
 router.post("/bookmark/:id", authentication, ControllerClient.createBookmark);
 router.delete("/bookmark/:id", authentication, ControllerClient.deleteBookmark);
 
