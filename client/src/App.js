@@ -13,6 +13,7 @@ import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import DetailPage from "./views/DetailPage";
 import GoogleMapPage from "./views/GoogleMapPage";
+import GoogleMapSearchPage from "./views/GoogleMapSearchPage";
 import MyBookmarksPage from "./views/MyBookmarksPage";
 import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
@@ -69,7 +70,8 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
-        <Route path="/Kos/:id" element={<GoogleMapPage />} />
+        <Route path="/kos/:id" element={<GoogleMapPage />} />
+        <Route path="/cari/:address" element={<GoogleMapSearchPage />} />
       </Routes>
       <Footer />
     </div>

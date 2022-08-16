@@ -14,7 +14,7 @@ const containerStyle = {
   height: "100%",
 };
 
-export default function GoogleMapPage() {
+export default function GoogleMapSearchPage() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",

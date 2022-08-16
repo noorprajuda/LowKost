@@ -82,8 +82,8 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
     setAddress(value);
   };
 
-  const handleSearch = (e) => {
-    navigate(`/cari/${e.target.value}`);
+  const handleSearch = () => {
+    navigate(`/cari/${address}`);
   };
 
   if ((isScriptLoaded, isScriptLoadSucceed)) {
