@@ -15,7 +15,7 @@
     {
       "name": "Kost Exclusive Mango",
       "price": 750000,
-      "CategoryId": 1,
+      "CategoryId": 2,
       "CityId": 2,
       "totalRoom": 10,
       "UserId": 1,
@@ -27,7 +27,7 @@
     {
       "name": "Kost Kendari",
       "price": 500000,
-      "CategoryId": 1,
+      "CategoryId": 2,
       "CityId": 3,
       "totalRoom": 8,
       "UserId": 1,
@@ -39,7 +39,7 @@
     {
       "name": "Kost Margonda Kramat",
       "price": 1100000,
-      "CategoryId": 1,
+      "CategoryId": 3,
       "CityId": 4,
       "totalRoom": 5,
       "UserId": 1,
