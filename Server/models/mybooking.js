@@ -17,11 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "MyBooking",
-      hooks: {
-        beforeCreate(instance) {
-          instance.status = "Unpaid";
-        },
-      },
     }
   );
   return MyBooking;

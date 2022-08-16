@@ -22,6 +22,7 @@ const dataCity = require("../../data/server.json").City;
 const dataRules = require("../../data/server.json").Rules;
 
 let access_token = "";
+let access_token_fail = "";
 beforeAll(async () => {
   try {
     const dataCitynew = await City.bulkCreate(dataCity);
@@ -39,6 +40,11 @@ beforeAll(async () => {
       id: 1,
       email: "admin@mail.com",
       role: "Tenant",
+    });
+    access_token_fail = signToken({
+      id: 9,
+      email: "1231241fas@mail.com",
+      role: "Admin",
     });
 
     const dataRulesnwe = await Rules.bulkCreate(dataRules);
@@ -361,5 +367,38 @@ describe("Post /user/payment", () => {
       .catch((err) => {
         // console.log(err);
       });
+  });
+});
+
+describe("patch /user/mybookings/:id", () => {
+  test("patch changeMyBookingStatus", async () => {
+    const response = await request(app)
+      .patch("/user/mybookings/1")
+      .set({ access_token });
+    await expect(response.status).toBe(200);
+    expect(body.message).toEqual(expect.any(Object));
+  });
+
+  test("Fail case changeMyBookingStatus", () => {
+    request(app)
+      .patch("/user/mybookings/1")
+      .set({ access_token })
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+});
+
+describe("Auhthentication", () => {
+  test("Get all BoardingHouses Tenant", async () => {
+    const response = await request(app)
+      .get("/owner/boardinghouses")
+      .set({ access_token_fail });
+    await expect(response.status).toBe(401);
+    await expect(response.body).toEqual(expect.any(Object));
   });
 });
