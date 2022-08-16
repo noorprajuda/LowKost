@@ -31,6 +31,14 @@ router.get(
   authentication,
   OwnerController.getBoardingHouses
 );
+
+router.get("/listTenant/:id", authentication, OwnerController.getListTenant);
+router.delete(
+  "/listTenant/:id/:userId",
+  authentication,
+  OwnerController.deleteListTenant
+);
+
 router.get(
   "/boardinghouse/:id",
   authentication,
