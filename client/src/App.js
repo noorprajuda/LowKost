@@ -12,12 +12,12 @@ import BoardingHouseFormUpdate from "./components/BoardingHouseFormUpdate";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import DetailPage from "./views/DetailPage";
+import GoogleMapPage from "./views/GoogleMapPage";
 import MyBookmarksPage from "./views/MyBookmarksPage";
 import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
 import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
-import Map from "./components/Map";
 
 function App() {
   return (
@@ -67,7 +67,7 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
-        <Route path="/Kos/:id" element={<Map />} />
+        <Route path="/Kos/:id" element={<GoogleMapPage />} />
       </Routes>
       <Footer />
     </div>
