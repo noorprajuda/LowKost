@@ -76,7 +76,7 @@ export default function Map() {
   return isLoaded && !loading ? (
     <>
       <div className="mt-20 flex flex-row">
-        <div className="basis-1/2 h-screen ">
+        <div className="sticky top-20 mb-20 basis-1/2 h-screen ">
           <GoogleMap
             mapContainerStyle={containerStyle}
             zoom={16}

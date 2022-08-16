@@ -18,6 +18,8 @@ import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
 import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
+import PlacesAutocomplete from "react-places-autocomplete";
+import scriptLoader from "react-async-script-loader";
 
 function App() {
   return (
