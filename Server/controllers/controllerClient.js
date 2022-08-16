@@ -20,8 +20,13 @@ const {
   Rules,
   Facilities,
   Users,
+  sequelize,
 } = require("../models");
 const { MIDTRANS_SERVER_KEY, MIDTRANS_CLIENT_KEY } = process.env;
+const googleMapsClient = require("@google/maps").createClient({
+  key: process.env.GOOGLE_MAPS_API,
+  Promise: Promise,
+});
 
 class ControllerClient {
   static async registerClient(req, res, next) {
@@ -255,6 +260,7 @@ class ControllerClient {
       const createMyBooking = await MyBooking.create(input);
       res.status(201).json({ message: "Succesfully add data to My Bookings" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -285,6 +291,7 @@ class ControllerClient {
   static async deleteBookmark(req, res, next) {
     try {
       const { id } = req.params;
+      console.log(id, "<<<<<");
 
       const findBookmark = await Bookmarks.findByPk(id);
 
@@ -302,6 +309,7 @@ class ControllerClient {
         message: "Bookmark succesfully delete",
       });
     } catch (err) {
+      console.log(err, "<<<<<<<<<<<<<<<<<<<<data error");
       next(err);
     }
   }
@@ -351,11 +359,11 @@ class ControllerClient {
         throw { name: "NotFound" };
       }
 
-      await MyBooking.destroy({
-        where: {
-          id,
-        },
-      });
+      // await MyBooking.destroy({
+      //   where: {
+      //     id,
+      //   },
+      // });
 
       res.status(200).json({
         message: "My Booking succesfully delete",
@@ -400,6 +408,56 @@ class ControllerClient {
         statusCode: 201,
         token: transactionToken,
       });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async searchHandler(req, res, next) {
+    try {
+      const { address } = req.body;
+      console.log(address);
+      const response = await googleMapsClient
+        .geocode({
+          address: address,
+        })
+        .asPromise();
+      console.log(response);
+      if (!response.json.results.length) throw { name: "invalidAddress" };
+      let jsn = response.json.results;
+      let latlong = "";
+      for (let i = 0; i < jsn.length; i++) {
+        let res = jsn[i];
+        latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
+      }
+      console.log(latlong, "<<<<<<<<<< ");
+      const long = latlong.split(" ")[1];
+      const lat = latlong.split(" ")[0];
+      const distance = 5000;
+      const result = await sequelize.query(
+        `SELECT
+      *
+    FROM
+      "BoardingHouses"
+    where
+      ST_DWithin(location,
+      ST_MakePoint(:lat,
+      :long),
+      :distance,
+    true) = true;`,
+        {
+          replacements: {
+            distance: +distance,
+            long: parseFloat(long),
+            lat: parseFloat(lat),
+          },
+          logging: console.log,
+          plain: false,
+          raw: false,
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+      res.status(200).json(result);
     } catch (err) {
       next(err);
     }

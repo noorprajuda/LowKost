@@ -101,6 +101,7 @@ module.exports = class OwnerController {
           address: address,
         })
         .asPromise();
+      if (!response.json.results.length) throw { name: "invalidAddress" };
       let jsn = response.json.results;
       for (let i = 0; i < jsn.length; i++) {
         let res = jsn[i];
@@ -219,7 +220,6 @@ module.exports = class OwnerController {
       res
         .status(200)
         .json({ message: `Successfull update boardingHouse${id}` });
-
     } catch (err) {
       console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PUT");
       await t.rollback();
