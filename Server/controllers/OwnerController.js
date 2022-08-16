@@ -93,6 +93,8 @@ module.exports = class OwnerController {
         StackFacilities,
       } = req.body;
 
+      console.log(req.body);
+
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -127,7 +129,7 @@ module.exports = class OwnerController {
       // const images = await StackImages.map((img) => {
       //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
       // });
-      // await Images.bulkCreate(images, { transaction: t });
+      // await Images.bulkCreate(StackImages, { transaction: t });
       const facilities = StackFacilities.map((el) => {
         return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
       });
@@ -160,8 +162,9 @@ module.exports = class OwnerController {
         // StackImages,
         StackFacilities,
       } = req.body;
-      console.log(req.body, "<<<<");
       console.log(StackRules);
+      console.log(StackFacilities);
+
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -188,6 +191,7 @@ module.exports = class OwnerController {
         },
         { transaction: t, where: { id } }
       );
+      if (boardinghouse <= 0) throw { name: "NotFound" };
       const rules = StackRules.map((rule) => {
         return { BoardingHouseId: id, RuleId: rule.RuleId };
       });
@@ -204,14 +208,18 @@ module.exports = class OwnerController {
       // });
       // await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
-        return { FacilityId: el.id, BoardingHouseId: el.FacilityId };
+        return { FacilityId: el.FacilityId, BoardingHouseId: id };
       });
       await BoardingHouseFacilities.destroy({
         where: { BoardingHouseId: id },
       });
+
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
-      res.status(200).json({ message: `Successfull updated` });
+      res
+        .status(200)
+        .json({ message: `Successfull update boardingHouse${id}` });
+
     } catch (err) {
       console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PUT");
       await t.rollback();
@@ -230,5 +238,13 @@ module.exports = class OwnerController {
     } catch (err) {
       next(err);
     }
+  }
+
+  static async uploadImage(req, res, next) {
+    // console.log(req.body.formData, "<<<");
+    console.log(req.file, "file");
+    let finalImageUrl =
+      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
+    res.status(200).json({ image: finalImageUrl });
   }
 };

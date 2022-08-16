@@ -22,6 +22,9 @@ export default function BoardingHousesForm() {
 
   const [checkRules, setCheckRules] = useState([]);
 
+  const [image, setImage] = useState("");
+  const [saveImage, setSaveImage] = useState(null);
+
   useEffect(() => {
     dispatch(fetchCities());
   }, []);
@@ -45,9 +48,16 @@ export default function BoardingHousesForm() {
     description: "",
     address: "",
     StackRules: [],
-    // StackImages: [],
+    mainImg: "",
     StackFacilities: [],
   });
+
+  const handleImageUpload = (e) => {
+    let uploaded = e.target.files[0];
+    console.log(uploaded);
+
+    setSaveImage(uploaded);
+  };
 
   const rulesCheckHandler = (e) => {
     const { value, name, checked } = e.target;
@@ -81,7 +91,7 @@ export default function BoardingHousesForm() {
 
     const newForm = {
       // StackRules: checkRules,
-      // StackImages: formBoardingHouse.StackImages,
+      // mainImg: formBoardingHouse.mainImg,
       StackFacilities: formBoardingHouse.StackFacilities,
       name: formBoardingHouse.name,
       price: formBoardingHouse.price,
@@ -99,9 +109,10 @@ export default function BoardingHousesForm() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(createBoardingHouse(formBoardingHouse, checkRules));
-    navigate("/owner");
-    // console.log(kosRules);
+    dispatch(createBoardingHouse(formBoardingHouse, checkRules, saveImage));
+    // navigate("/owner");
+    // console.log(saveImage);
+    // // console.log(kosRules);
     // console.log(checkRules, "rules");
     // console.log(formBoardingHouse);
     // console.log(formBoardingHouse.StackRules);
@@ -242,7 +253,7 @@ export default function BoardingHousesForm() {
                 ></textarea>
               </div>
 
-              {/* <div className="mb-6">
+              <div className="mb-6">
                 <label
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   for="user_avatar"
@@ -254,8 +265,8 @@ export default function BoardingHousesForm() {
                   aria-describedby="user_avatar_help"
                   id="user_avatar"
                   type="file"
-                  name="mainImg"
-                  onChange={changeFormHandler}
+                  name="img"
+                  onChange={handleImageUpload}
                 />
                 <div
                   class="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -263,7 +274,7 @@ export default function BoardingHousesForm() {
                 >
                   Gambar ini akan menjadi penanda kosan anda di halaman penyewa.
                 </div>
-              </div> */}
+              </div>
 
               <div class="mb-6">
                 <label

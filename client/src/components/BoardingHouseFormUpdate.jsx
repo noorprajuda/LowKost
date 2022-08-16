@@ -109,9 +109,9 @@ export default function BoardingHouseFormUpdate() {
       mainImg: formUpdate.mainImg,
       description: formUpdate.description,
       address: formUpdate.address,
-      StackRules: [],
+      StackRules: [...formUpdate.StackRules],
       // StackImages: [],
-      StackFacilities: [],
+      StackFacilities: [...formUpdate.StackFacilities],
     };
 
     newUpdate[name] = value;
@@ -145,6 +145,7 @@ export default function BoardingHouseFormUpdate() {
     e.preventDefault();
     dispatch(updateBoardingHouse(id, formUpdate));
     navigate("/owner");
+    // console.log(formUpdate);
   };
 
   return (
