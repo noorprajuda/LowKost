@@ -10,7 +10,7 @@ import {
   createMyBooking,
   addToMyBookmark,
 } from "../store/action/index";
-
+import {MarkerF} from '@react-google-maps/api'
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -20,23 +20,33 @@ export default function DetailPage() {
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
   });
-  const [center, setCenter] = useState({ lat: null, lng: null });
+  const [center, setCenter] = useState({ lat: null, lng: null});
   const [loading, setLoading] = useState(true);
-  const onLoad = useCallback(function callback(map) {
-    if(center.lat == null){
-      const bounds = new window.google.maps.LatLngBounds({
-        "lat": -6.1484511,
-        "lng": 106.697525
-    });
-    map.fitBounds(bounds);
-    setMap(map);
-    }else{
-      const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
-    }
-  }, [center]);
+  // const onLoad = useCallback(function callback(map) {
+  //   if(!center.lat){
+  //     const bounds = new window.google.maps.LatLngBounds({
+  //       "lat": -6.173110,
+  //       "lng": 106.829361
+  //     });
+  //     map.fitBounds(bounds);
+  //     setMap(map);
+  //   }else{
+  //     const bounds = new window.google.maps.LatLngBounds();
+  //     bounds.extend(center)
+  //     map.fitBounds(bounds);
+  //     setMap(map);
+  //   }
+  // }, [center]);
 
+  // const position={
+  //   //       "lat": -6.173110,
+  //   //       "lng": 106.829361
+  //   //     }
+  const onLoad = marker =>{
+    console.log('marker', marker)
+  }
+  
+  const [map, setMap] = useState(null);
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
@@ -78,7 +88,7 @@ export default function DetailPage() {
     startDate: "",
   });
 
-  const [map, setMap] = useState(null);
+
 
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
@@ -105,10 +115,6 @@ export default function DetailPage() {
     width: "400px",
     height: "400px",
   };
-  // const center = {
-  //   lat: -6.131164,
-  //   lng:106.85564,
-  // };
   console.log(center, "<<<<<<,,");
   const submitHandler = (e) => {
     e.preventDefault();
@@ -118,8 +124,8 @@ export default function DetailPage() {
   if (localBoardingHouse.length === 0) return null;
 
   console.log(id, "<<<<id");
-  if (loading) {
-    return <p>loading</p>;
+  if (!center.lat) {
+    return <p>loading...</p>;
   }
   return isLoaded ? (
     <>
@@ -229,16 +235,16 @@ export default function DetailPage() {
               </div>
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Lokasi:
-                <GoogleMap
+                {!center.lat ? <p>Loading...</p> : (<GoogleMap
                   mapContainerStyle={containerStyle}
                   zoom={16}
-                  onLoad={onLoad}
-                  onUnmount={onUnmount}
+                  // onLoad={onLoad}
+                  // onUnmount={onUnmount}
                   center={center}
                 >
-                  <Marker key={1} position={center} />
+                  <MarkerF key={localBoardingHouse.id} onLoad={onLoad} position={center} />
                   <></>
-                </GoogleMap>
+                </GoogleMap>)}
                 {JSON.stringify(center)}
               </div>
             </div>
