@@ -232,6 +232,10 @@ export default function DetailPage() {
               </div>
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Lokasi:
+                <br />
+                <span className="font-normal">
+                  {localBoardingHouse.address}
+                </span>
                 {!center.lat ? (
                   <p>Loading...</p>
                 ) : (
@@ -250,7 +254,7 @@ export default function DetailPage() {
                     <></>
                   </GoogleMap>
                 )}
-                {JSON.stringify(center)}
+                {/* {JSON.stringify(center)} */}
               </div>
             </div>
           </div>
