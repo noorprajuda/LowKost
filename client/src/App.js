@@ -17,6 +17,8 @@ import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
 import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
+import Map from "./components/Map";
+
 
 function App() {
   return (
@@ -66,6 +68,7 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
       <Footer />
     </div>

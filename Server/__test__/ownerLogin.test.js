@@ -8,15 +8,32 @@ const {
   compareHash,
 } = require("../helpers/helpers");
 
+let userCrate = {
+  fullName: "rivaldiHeriyan",
+  email: "owner@mail.com",
+  password: "123456",
+  phoneNumber: "021354687",
+  role: "Owner",
+  address: "Jl.kenangan",
+};
+
 let owner_acces_token = "";
-beforeAll(() => {
-  try {
-    owner_acces_token = signToken({
-      id: 3,
+beforeAll((done) => {
+  Users.create(userCrate)
+    // .then((registeredUser) => {
+    //   owner_acces_token = signToken({
+    //     id: registeredUser.id,
+    //     email: registeredUser.email,
+    //     role: registeredUser.role,
+    //   });
+    // })
+    .then(() => {
+      done();
+    })
+    .catch((err) => {
+      console.log(err);
+      done(err);
     });
-  } catch (err) {
-    console.log(err);
-  }
 });
 
 afterAll((done) => {
@@ -115,11 +132,14 @@ describe("post /owner/register", () => {
 
 describe("post /login", () => {
   test("seccess login", async () => {
-    const userData = {
-      email: "admin@mail.com",
-      password: "12345678",
-    };
-    const response = await request(app).post("/login").send(userData);
+    // const userData = {
+    //   email: "owner@mail.com",
+    //   password: "123456",
+    // };
+    const response = await request(app).post("/login").send({
+      email: "owner@mail.com",
+      password: "123456",
+    });
     await expect(response.status).toBe(200);
     await expect(response.body).toHaveProperty(
       "access_token",

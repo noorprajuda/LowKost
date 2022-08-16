@@ -104,6 +104,7 @@ module.exports = class OwnerController {
         let res = jsn[i];
         latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
       }
+      console.log(latlong, "<<<<<<<<<< ");
       const newBoardingHouse = await BoardingHouses.create(
         {
           name,
