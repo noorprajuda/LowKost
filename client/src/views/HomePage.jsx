@@ -38,10 +38,10 @@ export default function HomePage() {
 
   // VVVVVVVVVVV-=-=-=-=-=-=-=-=VVVVVVVVV
 
-  const [cityId, setCityId] = useState(null);
+  const [cityId, setCityId] = useState(0);
 
   useEffect(() => {
-    if (cityId !== null) {
+    if (cityId != 0) {
       const filteredBoardingHouses = boardingHouses.filter(
         (boardingHouse) => boardingHouse.CityId == cityId
       );
@@ -58,10 +58,10 @@ export default function HomePage() {
     { id: 3, name: "Kos Campur" },
   ];
 
-  const [categoryId, setCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState(0);
 
   useEffect(() => {
-    if (categoryId !== null) {
+    if (categoryId != 0) {
       const filteredBoardingHouses = boardingHouses.filter(
         (boardingHouse) => boardingHouse.CategoryId == categoryId
       );
@@ -123,7 +123,7 @@ export default function HomePage() {
                   console.log(e.target.value, "<<<<< e target value city");
                 }}
               >
-                <option disabled>--SELECT ONE--</option>
+                <option value={0}>Semua Kota</option>
 
                 {cities.map((city, index) => {
                   return (
@@ -147,7 +147,7 @@ export default function HomePage() {
                   console.log(e.target.value, "<<<<< e target value category");
                 }}
               >
-                <option disabled>--SELECT ONE--</option>
+                <option value={0}>Semua kategori</option>
 
                 {categories.map((category, index) => {
                   return (
@@ -169,6 +169,20 @@ export default function HomePage() {
               );
             })}
           </div>
+
+          {/* Filter Google Map */}
+          {/* <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+            Lihat kos di Google Map
+          </h1> */}
+          {/* 
+          {categories.map((category, index) => {
+            return (
+              <>
+                <CardCity />
+                <option value={category.id}>{category.name}</option>
+              </>
+            );
+          })} */}
         </div>
       ) : (
         <p>Loading...</p>
