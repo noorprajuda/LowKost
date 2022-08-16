@@ -106,14 +106,14 @@ export default function HomePage() {
           </div>
           {/* {JSON.stringify(localBoardingHouses, null, 2)} */}
           <div className="ml-20 mr-20 flex flex-row justify-between mb-5">
-            <div className="w-[600px] flex flex-row justify-between ">
+            <div className="w-[500px] flex flex-row justify-between ">
               {/* Filter by city */}
-              <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+              <h1 className="pt-6 text-2xl text-gray-600 sm:text-5xl lg:text-2xl font-bold tracking-tighter leading-tight whitespace-nowrap">
                 Cari kos berdasar kota
               </h1>
 
               <select
-                className="ml-2 h-[50px] w-[300px] mt-4"
+                className="ml-2 rounded-lg h-[50px] w-[300px] mt-4"
                 value={cityId}
                 onChange={(e) => {
                   setCityId(e.target.value);
@@ -131,13 +131,13 @@ export default function HomePage() {
                 })}
               </select>
             </div>
-            <div className="w-[600px] flex flex-row justify-between ">
+            <div className="w-[570px] flex flex-row justify-between ">
               {/* Filter by category */}
-              <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+              <h1 className="pt-6 text-2xl text-gray-600 sm:text-5xl lg:text-2xl font-bold tracking-tighter leading-tight whitespace-nowrap">
                 Cari kos berdasar kategori
               </h1>
               <select
-                className="ml-2 h-[50px] w-[300px] mt-4"
+                className="ml-2 rounded-lg h-[50px] w-[300px] mt-4"
                 value={categoryId}
                 onChange={(e) => {
                   setCategoryId(e.target.value);
