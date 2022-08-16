@@ -31,9 +31,9 @@ export default function Card({ boardingHouse }) {
     <>
       <div
         onClick={handleDetailPage}
-        className="cursor-pointer relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+        className="cursor-pointer h-full relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
       >
-        <div className="relative max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div className="relative h-full max-w-sm bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <img
             className="rounded-t-lg h-[200px] w-full object-cover"
             src={boardingHouse.mainImg}

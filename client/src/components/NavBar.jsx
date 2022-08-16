@@ -8,6 +8,12 @@ export default function Navbar() {
     e.preventDefault();
   };
 
+  const handleLogout = (e) => {
+    localStorage.clear();
+    navigate(`/login`);
+    e.preventDefault();
+  };
+
   const handleToHomePage = (e) => {
     navigate(`/`);
     e.preventDefault();
@@ -22,6 +28,8 @@ export default function Navbar() {
     navigate(`/my-bookings`);
     e.preventDefault();
   };
+
+  const access_token = localStorage.getItem("access_token");
 
   return (
     <>
@@ -39,13 +47,24 @@ export default function Navbar() {
             </span>
           </a>
           <div className="flex md:order-2">
-            <button
-              onClick={handleLoginPage}
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 "
-            >
-              Log in
-            </button>
+            {access_token ? (
+              <button
+                onClick={handleLogout}
+                type="button"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 "
+              >
+                Log out
+              </button>
+            ) : (
+              <button
+                onClick={handleLoginPage}
+                type="button"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 "
+              >
+                Log in
+              </button>
+            )}
+
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
