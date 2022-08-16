@@ -9,7 +9,6 @@ export default function HomePage() {
 
   const dispatch = useDispatch();
   let [mainImg, setMainImg] = useState("");
-  // const [boardingHouses, setBoardingHouses] = [];
   const boardingHouses = useSelector(
     (state) => state.boardingHouses.boardingHouses
   );
@@ -23,9 +22,6 @@ export default function HomePage() {
       "https://static.mamikos.com/uploads/cache/data/style/2022-07-29/8RfLwycx-360x480.jpg"
     );
   }, [boardingHouses]);
-
-  console.log(mainImg);
-  console.log(boardingHouses);
 
   return (
     <>

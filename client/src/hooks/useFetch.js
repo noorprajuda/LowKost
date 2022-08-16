@@ -18,7 +18,6 @@ export default function useFetch(url) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           // setData(data);
           dispatch({ type: "products/fetchSuccess", payload: data });
         })
@@ -44,7 +43,6 @@ export default function useFetch(url) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           // setData(data);
           dispatch({ type: "products/fetchSuccess", payload: data });
         })
