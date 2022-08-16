@@ -247,4 +247,60 @@ module.exports = class OwnerController {
       req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
     res.status(200).json({ image: finalImageUrl });
   }
+
+  static async getListTenant(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const listTenant = await MyBooking.findAll({
+        where: {
+          BoardingHouseId: id,
+          status: "Paid",
+        },
+        include: {
+          model: BoardingHouses,
+          include: [
+            { model: Categories, attributes: ["name"] },
+            { model: City, attributes: ["name"] },
+            {
+              model: Users,
+              attributes: {
+                exclude: ["createdAt", "updatedAt", "password"],
+              },
+            },
+            { model: Images, attributes: ["imgUrl"] },
+          ],
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
+      });
+
+      res.status(200).json(listTenant);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async deleteListTenant(req, res, next) {
+    try {
+      const { id, userId } = req.params;
+
+      const findMyBooking = await MyBooking.findByPk(id);
+
+      if (!findMyBooking) {
+        throw { name: "NotFound" };
+      }
+
+      const destroyList = await MyBooking.destroy({
+        where: {
+          UserId: userId,
+        },
+      });
+
+      res.status(200).json({ message: "User has been deleted" });
+    } catch (err) {
+      next(err);
+    }
+  }
 };
