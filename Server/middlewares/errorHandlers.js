@@ -1,5 +1,4 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
   switch (err.name) {
     case "JsonWebTokenError":
       res.status(401).json({ message: "Token invalid!" });
@@ -15,8 +14,6 @@ function errorHandler(err, req, res, next) {
       err.errors.map((el) => errors.push(el.message));
       res.status(400).json({ message: errors[0] });
       break;
-    case "SequelizeUniqueConstraintError":
-      res.status(400).json({ message: "Email is already registered!" });
     default:
       res.status(500).json({ message: "Internal server error" });
       break;
