@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { addToMyBookmark } from "../store/action";
 require("react-dom");
 window.React2 = require("react");
-console.log(window.React1 === window.React2);
 
 export default function Card({ boardingHouse }) {
   const dispatch = useDispatch();

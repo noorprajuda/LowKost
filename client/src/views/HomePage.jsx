@@ -10,7 +10,6 @@ export default function HomePage() {
 
   const dispatch = useDispatch();
   let [mainImg, setMainImg] = useState("");
-  // const [boardingHouses, setBoardingHouses] = [];
   const boardingHouses = useSelector(
     (state) => state.boardingHouses.boardingHouses
   );
@@ -33,10 +32,11 @@ export default function HomePage() {
     setLocalBoardingHouses(boardingHouses);
   }, [boardingHouses]);
 
+
   console.log(mainImg);
   console.log(boardingHouses);
 
-  // VVVVVVVVVVV-=-=-=-=-=-=-=-=VVVVVVVVV
+
 
   const [cityId, setCityId] = useState(0);
 
@@ -72,7 +72,8 @@ export default function HomePage() {
     }
   }, [categoryId]);
 
-  // AAAAAAAA-=-=-=-=-=-=-=-=AAAAAAA
+
+
   return (
     <>
       {loading === false ? (
