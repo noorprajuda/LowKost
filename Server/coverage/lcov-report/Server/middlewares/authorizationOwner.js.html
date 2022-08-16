@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Server/middlewares/errorHandlers.js</title>
+    <title>Code coverage report for Server/middlewares/authorizationOwner.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">Server/middlewares</a> errorHandlers.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">Server/middlewares</a> authorizationOwner.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">86.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>13/15</span>
             </div>
         
             
@@ -86,52 +86,64 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">39x</span>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function errorHandler(err, req, res, next) {
-  switch (err.name) {
-    case "JsonWebTokenError":
-      res.status(401).json({ message: "Token invalid!" });
-      break;
-    case "Unauthorized":
-      res.status(401).json({ message: "Invalid email/password" });
-      break;
-    case "NotFound":
-      res.status(404).json({ message: "Not Found" });
-      break;
-    case "SequelizeValidationError":
-      let errors = [];
-      err.errors.map((el) =&gt; errors.push(el.message));
-      res.status(400).json({ message: errors[0] });
-      break;
-    default:
-      res.status(500).json({ message: "Internal server error" });
-      break;
-  }
-}
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { BoardingHouses, Users } = require("../models");
 &nbsp;
-module.exports = errorHandler;
+const authrozationOwner = async (req, res, next) =&gt; {
+  try {
+    const { id: ownerId, role } = req.user;
+    const { id: boudinghousesId } = req.params;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!+boudinghousesId) {
+<span class="cstat-no" title="statement not covered" >      throw { name: "NotFound" };</span>
+    }
+&nbsp;
+    const boardinghouse = await BoardingHouses.findByPk(boudinghousesId);
+&nbsp;
+    if (!boardinghouse) {
+      throw { name: "NotFound" };
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (role !== "Owner" &amp;&amp; boardinghouse.UserId !== ownerId) {
+<span class="cstat-no" title="statement not covered" >      throw { name: "Forbidden" };</span>
+    }
+&nbsp;
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+&nbsp;
+module.exports = authrozationOwner;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
