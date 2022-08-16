@@ -19,7 +19,7 @@ export default function DetailPage() {
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
   });
-  const [center, setCenter] = useState({ lat: null, lng: null});
+  const [center, setCenter] = useState({ lat: null, lng: null });
   const [loading, setLoading] = useState(true);
   // const onLoad = useCallback(function callback(map) {
   //   if(!center.lat){
@@ -41,10 +41,10 @@ export default function DetailPage() {
   //   //       "lat": -6.173110,
   //   //       "lng": 106.829361
   //   //     }
-  const onLoad = marker =>{
-    console.log('marker', marker)
-  }
-  
+  const onLoad = (marker) => {
+    console.log("marker", marker);
+  };
+
   const [map, setMap] = useState(null);
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -66,7 +66,7 @@ export default function DetailPage() {
 
   useEffect(() => {
     if (!loading) {
-      console.log(localBoardingHouse.location, "PPPPPPPPPPPPpp")
+      console.log(localBoardingHouse.location, "PPPPPPPPPPPPpp");
       setCenter({
         lat: localBoardingHouse.location.coordinates[0],
         lng: localBoardingHouse.location.coordinates[1],
@@ -86,8 +86,6 @@ export default function DetailPage() {
     UserId: "",
     startDate: "",
   });
-
-
 
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
@@ -120,7 +118,7 @@ export default function DetailPage() {
     dispatch(createMyBooking(id, formMyBooking));
   };
 
-  if (localBoardingHouse.length === 0) return null;
+  if (localBoardingHouse.length == 0) return null;
 
   console.log(id, "<<<<id");
   if (!center.lat) {
@@ -234,16 +232,24 @@ export default function DetailPage() {
               </div>
               <div className="text-gray-700 text-left mt-5 font-semibold">
                 Lokasi:
-                {!center.lat ? <p>Loading...</p> : (<GoogleMap
-                  mapContainerStyle={containerStyle}
-                  zoom={16}
-                  // onLoad={onLoad}
-                  // onUnmount={onUnmount}
-                  center={center}
-                >
-                  <MarkerF key={localBoardingHouse.id} onLoad={onLoad} position={center} />
-                  <></>
-                </GoogleMap>)}
+                {!center.lat ? (
+                  <p>Loading...</p>
+                ) : (
+                  <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    zoom={16}
+                    // onLoad={onLoad}
+                    // onUnmount={onUnmount}
+                    center={center}
+                  >
+                    <MarkerF
+                      key={localBoardingHouse.id}
+                      onLoad={onLoad}
+                      position={center}
+                    />
+                    <></>
+                  </GoogleMap>
+                )}
                 {JSON.stringify(center)}
               </div>
             </div>
