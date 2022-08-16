@@ -137,27 +137,70 @@ export default function DetailPage() {
               />
             </div>
 
-            <div className="w-1/4 h-[400px] md:w-1/2 md:pl-4 justify-between">
-              <div className="p-2 w-full h-1/2">
-                <img
-                  src={localBoardingHouse.Images[0].imgUrl}
-                  className="w-[800px] h-full object-cover"
-                />
+            {localBoardingHouse.Images.length >= 2 ? (
+              <div className="w-1/4 h-[400px] md:w-1/2 md:pl-4 justify-between">
+                <div className="p-2 w-full h-1/2">
+                  <img
+                    src={localBoardingHouse.Images[0].imgUrl}
+                    className="w-[800px] h-full object-cover"
+                  />
+                </div>
+                <div className="relative p-2 w-full h-1/2">
+                  <img
+                    src={localBoardingHouse.Images[1].imgUrl}
+                    className=" w-[800px] mt-4 h-full object-cover"
+                  />
+                  <button
+                    onClick={handleImagesPage}
+                    type="button"
+                    className="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Lihat semua foto
+                  </button>
+                </div>
               </div>
-              <div className="relative p-2 w-full h-1/2">
-                <img
-                  src={localBoardingHouse.Images[1].imgUrl}
-                  className=" w-[800px] mt-4 h-full object-cover"
-                />
-                <button
-                  onClick={handleImagesPage}
-                  type="button"
-                  className="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-                >
-                  See all photos
-                </button>
+            ) : localBoardingHouse.Images.length == 1 ? (
+              <div className="w-1/4 h-[400px] md:w-1/2 md:pl-4 justify-between">
+                <div className="p-2 w-full h-1/2">
+                  <img
+                    src={localBoardingHouse.Images[0].imgUrl}
+                    className="w-[800px] h-full object-cover"
+                  />
+                </div>
+                <div className="mt-2 relative pr-2 pl-2 pt-2 w-full h-1/2">
+                  <div className="outline outline-1 outline-gray-200 align-center w-[600px] h-full ">
+                    <h5 className="pt-20 text-gray-700">Tidak ada foto lain</h5>
+                  </div>
+                  <button
+                    onClick={handleImagesPage}
+                    type="button"
+                    className="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Lihat semua foto
+                  </button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="w-1/4 h-[400px] md:w-1/2 md:pl-4 justify-between">
+                <div className="p-2 w-full h-1/2">
+                  <div className="outline outline-1 outline-gray-200 align-center w-[600px] h-full ">
+                    <h5 className="pt-20 text-gray-700">Tidak ada foto lain</h5>
+                  </div>
+                </div>
+                <div className="mt-3 relative pr-2 pl-2 pt-2 w-full h-1/2">
+                  <div className="outline outline-1 outline-gray-200 align-center w-[600px] h-full ">
+                    <h5 className="pt-20 text-gray-700">Tidak ada foto lain</h5>
+                  </div>
+                  <button
+                    onClick={handleImagesPage}
+                    type="button"
+                    className="absolute bottom-0 right-5 text-gray-800 font-bold bg-gray-100 hover:text-gray-400 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                  >
+                    Lihat semua foto
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
           {/* </div> */}
         </div>
@@ -230,32 +273,6 @@ export default function DetailPage() {
                   })}
                 </span>
               </div>
-              <div className="text-gray-700 text-left mt-5 font-semibold">
-                Lokasi:
-                <br />
-                <span className="font-normal">
-                  {localBoardingHouse.address}
-                </span>
-                {!center.lat ? (
-                  <p>Loading...</p>
-                ) : (
-                  <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    zoom={16}
-                    // onLoad={onLoad}
-                    // onUnmount={onUnmount}
-                    center={center}
-                  >
-                    <MarkerF
-                      key={localBoardingHouse.id}
-                      onLoad={onLoad}
-                      position={center}
-                    />
-                    <></>
-                  </GoogleMap>
-                )}
-                {/* {JSON.stringify(center)} */}
-              </div>
             </div>
           </div>
 
@@ -280,6 +297,34 @@ export default function DetailPage() {
                   Apply now
                 </button>
               </form>
+            </div>
+            <div className="text-gray-700 text-left mt-5 font-semibold">
+              Lokasi:
+              <br />
+              <div className="w-[420px]">
+                <span className="font-normal ">
+                  {localBoardingHouse.address}
+                </span>
+              </div>
+              {!center.lat ? (
+                <p>Loading...</p>
+              ) : (
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  zoom={16}
+                  // onLoad={onLoad}
+                  // onUnmount={onUnmount}
+                  center={center}
+                >
+                  <MarkerF
+                    key={localBoardingHouse.id}
+                    onLoad={onLoad}
+                    position={center}
+                  />
+                  <></>
+                </GoogleMap>
+              )}
+              {/* {JSON.stringify(center)} */}
             </div>
           </div>
         </div>
