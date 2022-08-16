@@ -145,10 +145,23 @@ export const fetchFacilities = () => {
   };
 };
 
-export const createBoardingHouse = (formBoardingHouse, checkRules) => {
+export const createBoardingHouse = (
+  formBoardingHouse,
+  checkRules,
+  saveImage
+) => {
   return (dispatch, getState) => {
+    // console.log(saveImage.name, "action");
     return new Promise(async (resolve, reject) => {
       try {
+        let formData = new FormData();
+        formData.append("photo", saveImage);
+
+        console.log(formData.get("photo"), "ini append");
+        console.log(saveImage, "<<<");
+        console.log(formData, ">>>");
+        const image = await axios.post(`${baseUrl}/owner/upload`, formData);
+
         await axios.post(
           `${baseUrl}/owner/boardinghouse`,
           {
@@ -159,9 +172,10 @@ export const createBoardingHouse = (formBoardingHouse, checkRules) => {
             CityId: formBoardingHouse.CityId,
             totalRoom: formBoardingHouse.totalRoom,
             description: formBoardingHouse.description,
-            mainImg: formBoardingHouse.mainImg,
+            mainImg: image.data.image,
             address: formBoardingHouse.address,
             StackRules: checkRules,
+            StackImages: image.data,
           },
           {
             headers: {
