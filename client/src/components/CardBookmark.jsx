@@ -82,7 +82,7 @@ export default function CardBookmark({ bookmark }) {
           onClick={deleteBookmark}
           className="absolute bottom-2 left-1 inline-flex ml-3 mt-[-50px] w-[280px] h-[40px] justify-center items-center py-3 px-5 text-sm font-small text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 "
         >
-          Delete
+          Hapus
         </button>
       </div>
     </>

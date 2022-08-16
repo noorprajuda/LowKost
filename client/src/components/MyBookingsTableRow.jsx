@@ -160,39 +160,44 @@ export default function MyBookingsTableRow({ myBooking }) {
           <td className="py-4 px-6 text-center">
             {myBooking.BoardingHouse.User.fullName}
           </td>
-          <td className="py-4 px-6 text-xs">
-            {myBooking.BoardingHouse.description}
+          <td className="py-4 px-6 text-center text-xs">
+            {myBooking.BoardingHouse.address}
           </td>
-          <td className="py-4 px-6 text-center">
+          {/* <td className="py-4 px-6 text-xs">
+            {myBooking.BoardingHouse.description}
+          </td> */}
+          {/* <td className="py-4 px-6 text-center">
             {myBooking.BoardingHouse.location.coordinates[0]},{" "}
             {myBooking.BoardingHouse.location.coordinates[1]}
-          </td>
+          </td> */}
           <td className="py-4 px-6 text-xs">{myBooking.startDate}</td>
           {myBooking.status == "Paid" ? (
             <td className="py-4 px-6 text-xs font-bold text-green-600">
-              {myBooking.status}
+              {"Lunas"}
             </td>
           ) : (
             <td className="py-4 px-6 text-xs font-bold text-red-600 ">
-              {myBooking.status}
+              {"Belum Lunas"}
             </td>
           )}
 
-          {myBooking.status == "Paid" ? null : (
+          {myBooking.status == "Paid" ? (
+            <td className="py-4 px-6 text-center">-</td>
+          ) : (
             <td className="py-4 px-6 text-center">
               <button
                 value={myBooking.id}
                 onClick={paymentHandler}
                 className="font-medium text-blue-600  hover:underline"
               >
-                Pay
+                Bayar
               </button>
               <button
                 value={myBooking.id}
                 onClick={deleteMyBooking}
                 className="font-medium text-red-600  hover:underline"
               >
-                Delete
+                Hapus
               </button>
             </td>
           )}

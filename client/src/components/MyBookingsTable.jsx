@@ -56,41 +56,44 @@ export default function MyBookingsTable() {
               <thead className="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="py-3 px-6">
-                    Image
+                    Foto
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Name
+                    Nama
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Price / month
+                    Harga / bulan
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Category
+                    Kategori
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    City
+                    Kota
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Room Quantity
+                    Jumlah Kamar
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    By
+                    Oleh
                   </th>
-                  <th scope="col" className="py-3 px-6">
+                  {/* <th scope="col" className="py-3 px-6">
                     Description
                   </th>
                   <th scope="col" className="py-3 px-6">
                     Location
+                  </th> */}
+                  <th scope="col" className="py-3 px-6">
+                    Alamat
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Start date
+                    Tanggal mulai
                   </th>
                   <th scope="col" className="py-3 px-6">
                     Status
                   </th>
 
                   <th scope="col" className="py-3 px-6">
-                    action
+                    Aksi
                   </th>
                 </tr>
               </thead>

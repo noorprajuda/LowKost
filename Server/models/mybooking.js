@@ -20,8 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate(instance) {
           instance.status = "Unpaid";
-          instance.createdAt = new Date();
-          instance.updatedAt = new Date();
         },
       },
     }
