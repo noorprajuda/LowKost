@@ -38,23 +38,39 @@ export default function HomePage() {
 
   // VVVVVVVVVVV-=-=-=-=-=-=-=-=VVVVVVVVV
 
-  const [city, setCity] = useState(null);
+  const [cityId, setCityId] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchBoardingHousesUser());
-  }, []);
-
-  useEffect(() => {
-    if (city !== null) {
+    if (cityId !== null) {
       const filteredBoardingHouses = boardingHouses.filter(
-        (boardingHouse) => boardingHouse.CityId == city
+        (boardingHouse) => boardingHouse.CityId == cityId
       );
       setLocalBoardingHouses(filteredBoardingHouses);
       console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
     } else {
       setLocalBoardingHouses(boardingHouses);
     }
-  }, [city]);
+  }, [cityId]);
+
+  const categories = [
+    { id: 1, name: "Kos Putri" },
+    { id: 2, name: "Kos Putra" },
+    { id: 3, name: "Kos Campur" },
+  ];
+
+  const [categoryId, setCategoryId] = useState(null);
+
+  useEffect(() => {
+    if (categoryId !== null) {
+      const filteredBoardingHouses = boardingHouses.filter(
+        (boardingHouse) => boardingHouse.CategoryId == categoryId
+      );
+      setLocalBoardingHouses(filteredBoardingHouses);
+      console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
+    } else {
+      setLocalBoardingHouses(boardingHouses);
+    }
+  }, [categoryId]);
 
   // AAAAAAAA-=-=-=-=-=-=-=-=AAAAAAA
   return (
@@ -63,7 +79,7 @@ export default function HomePage() {
         <div className="mt-14 mb-28">
           <div className="relative flex justify-center text-center">
             <img
-              className="ml-20 mr-20 mb-20 mt-20 h-[500px] w-full object-cover"
+              className="ml-20 mr-20 mb-5 mt-20 h-[500px] w-full object-cover"
               src={mainImg}
               alt=""
             />
@@ -91,30 +107,59 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-          {JSON.stringify(localBoardingHouses, null, 2)}
+          {/* {JSON.stringify(localBoardingHouses, null, 2)} */}
+          <div className="ml-20 mr-20 flex flex-row justify-between mb-5">
+            <div className="w-[600px] flex flex-row justify-between ">
+              {/* Filter by city */}
+              <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+                Cari kos berdasar kota
+              </h1>
 
-          {JSON.stringify(cities, null, 2)}
+              <select
+                className="ml-2 h-[50px] w-[300px] mt-4"
+                value={cityId}
+                onChange={(e) => {
+                  setCityId(e.target.value);
+                  console.log(e.target.value, "<<<<< e target value city");
+                }}
+              >
+                <option disabled>--SELECT ONE--</option>
 
-          <select
-            value={city}
-            onChange={(e) => {
-              setCity(e.target.value);
-              console.log(e.target.value, "<<<<< e target value ");
-            }}
-          >
-            <option disabled>--SELECT ONE--</option>
+                {cities.map((city, index) => {
+                  return (
+                    <>
+                      <option value={city.id}>{city.name}</option>
+                    </>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="w-[600px] flex flex-row justify-between ">
+              {/* Filter by category */}
+              <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+                Cari kos berdasar kategori
+              </h1>
+              <select
+                className="ml-2 h-[50px] w-[300px] mt-4"
+                value={categoryId}
+                onChange={(e) => {
+                  setCategoryId(e.target.value);
+                  console.log(e.target.value, "<<<<< e target value category");
+                }}
+              >
+                <option disabled>--SELECT ONE--</option>
 
-            {cities.map((city, index) => {
-              return (
-                <>
-                  <option value={city.id}>{city.name}</option>
-                </>
-              );
-            })}
-          </select>
-
+                {categories.map((category, index) => {
+                  return (
+                    <>
+                      <option value={category.id}>{category.name}</option>
+                    </>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
           {/* Display Card Boarding Houses */}
-
           <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
             {localBoardingHouses.map((boardingHouse, index) => {
               return (
