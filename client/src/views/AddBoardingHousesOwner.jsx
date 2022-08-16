@@ -18,7 +18,7 @@ export default function AddBoardingHousesOwner() {
                 >
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                 </svg>
-                <Link to="/owner">Listed Boarding Houses</Link>
+                <Link to="/owner">Daftar Kosan</Link>
               </a>
             </li>
             <li class="mr-2">
@@ -41,7 +41,7 @@ export default function AddBoardingHousesOwner() {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                Add Boarding House
+                Tambah Kosan
               </a>
             </li>
             <li class="mr-2">
@@ -58,10 +58,10 @@ export default function AddBoardingHousesOwner() {
                 >
                   <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
                 </svg>
-                Edit Boarding Houses
+                Rubah Kosan
               </a>
             </li>
-            <li class="mr-2">
+            {/* <li class="mr-2">
               <a
                 href="#"
                 class="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
@@ -87,7 +87,7 @@ export default function AddBoardingHousesOwner() {
               <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">
                 Disabled
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
         <BoardingHousesForm />

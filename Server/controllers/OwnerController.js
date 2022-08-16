@@ -191,10 +191,10 @@ module.exports = class OwnerController {
       const rules = StackRules.map((rule) => {
         return { BoardingHouseId: id, RuleId: rule.RuleId };
       });
-      // await BoardingHouseRules.destroy({
-      //   where: { BoardingHouseId: boardinghouse.id },
-      //   transaction: t,
-      // });
+      await BoardingHouseRules.destroy({
+        where: { BoardingHouseId: id },
+        transaction: t,
+      });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
       // const images = await StackImages.map((img) => {
       //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
@@ -206,14 +206,12 @@ module.exports = class OwnerController {
       const facilities = StackFacilities.map((el) => {
         return { FacilityId: el.id, BoardingHouseId: el.FacilityId };
       });
-      // await BoardingHouseFacilities.destroy({
-      //   where: { BoardingHouseId: boardinghouse.id },
-      // });
+      await BoardingHouseFacilities.destroy({
+        where: { BoardingHouseId: id },
+      });
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
-      res
-        .status(200)
-        .json({ message: `Successfull update ${boardinghouse.name}` });
+      res.status(200).json({ message: `Successfull updated` });
     } catch (err) {
       console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PUT");
       await t.rollback();
