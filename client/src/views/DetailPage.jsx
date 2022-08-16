@@ -40,7 +40,6 @@ export default function DetailPage() {
     startDate: "",
   });
 
-
   const addToMyBookmarkHandle = (e) => {
     e.preventDefault();
     dispatch(addToMyBookmark(e.target.value))
@@ -69,7 +68,7 @@ export default function DetailPage() {
     dispatch(createMyBooking(id, formMyBooking));
   };
 
-  if (localBoardingHouse.length === 0) return null;
+  if (localBoardingHouse.length == 0) return null;
 
   console.log(id, "<<<<id");
 
