@@ -215,7 +215,7 @@ module.exports = class OwnerController {
         .status(200)
         .json({ message: `Successfull update ${boardinghouse.name}` });
     } catch (err) {
-      console.log(err);
+      console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PUT");
       await t.rollback();
       next(err);
     }
@@ -224,6 +224,7 @@ module.exports = class OwnerController {
   static async deleteBoardingHouse(req, res, next) {
     try {
       const { id } = req.params;
+      console.log(id, "<<<<<<<<<<<<<<<<<<<< id");
       const checkHouse = await BoardingHouses.findByPk(id);
       if (!checkHouse) throw { name: "NotFound" };
       await BoardingHouses.destroy({ where: { id } });
