@@ -20,16 +20,16 @@ export default function GoogleMapSearchPage() {
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
   });
 
-  const { id } = useParams();
+  const { address } = useParams();
 
-  console.log(id);
+  console.log(address, "<<<address");
   const [localBoardingHouse, setLocalBoardingHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeMarker, setActiveMarker] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/user/boardinghouses", {
-        params: { city: id },
+      .get("http://localhost:4000/user/searchboardinghouses", {
+        params: { address: address },
       })
       .then((resp) => {
         setLocalBoardingHouses(resp.data);
@@ -40,7 +40,7 @@ export default function GoogleMapSearchPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [address]);
   if (loading) {
     return (
       <>
@@ -101,7 +101,7 @@ export default function GoogleMapSearchPage() {
         </div>
         <div className="basis-1/2">
           <h1 className="font-bold">
-            Daftar kos di {localBoardingHouse[0].City.name}
+            {/* Daftar kos di {localBoardingHouse[0].City.name} */}
           </h1>
           {/* {JSON.stringify(localBoardingHouse, null, 2)} */}
           <div className="mb-20">

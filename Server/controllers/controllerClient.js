@@ -415,8 +415,9 @@ class ControllerClient {
 
   static async searchHandler(req, res, next) {
     try {
-      const { address } = req.body;
-      console.log(address);
+      const { address } = req.query;
+
+      console.log(address, "<<<address");
       const response = await googleMapsClient
         .geocode({
           address: address,
@@ -457,6 +458,7 @@ class ControllerClient {
           type: sequelize.QueryTypes.SELECT,
         }
       );
+      console.log(result);
       res.status(200).json(result);
     } catch (err) {
       next(err);
