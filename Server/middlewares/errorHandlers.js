@@ -10,18 +10,10 @@ function errorHandler(err, req, res, next) {
     case "NotFound":
       res.status(404).json({ message: "Not Found" });
       break;
-    case "Forbidden":
-      res.status(403).json({ message: "Token invalid!" });
-      break;
     case "SequelizeValidationError":
       let errors = [];
       err.errors.map((el) => errors.push(el.message));
       res.status(400).json({ message: errors[0] });
-      break;
-    case "ValidationErrorItem":
-      let error = [];
-      err.error.map((el) => error.push(el.message));
-      res.status(400).json({ message: error[0] });
       break;
     case "SequelizeUniqueConstraintError":
       res.status(400).json({ message: "Email is already registered!" });

@@ -167,7 +167,7 @@ export default function BoardingHouseFormUpdate() {
                 >
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
                 </svg>
-                <Link to="/owner">Listed Boarding Houses</Link>
+                <Link to="/owner">Daftar Kosan</Link>
               </a>
             </li>
             <li className="mr-2">
@@ -186,7 +186,7 @@ export default function BoardingHouseFormUpdate() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <Link to="/owner-add">Add Boarding House</Link>
+                <Link to="/owner-add">Tambah Kosan</Link>
               </a>
             </li>
 
@@ -204,10 +204,10 @@ export default function BoardingHouseFormUpdate() {
                 >
                   <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
                 </svg>
-                Edit Boarding Houses
+                Rubah Kosan
               </a>
             </li>
-            <li className="mr-2">
+            {/* <li className="mr-2">
               <a
                 href="#"
                 className="inline-flex p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group"
@@ -233,7 +233,7 @@ export default function BoardingHouseFormUpdate() {
               <a className="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">
                 Disabled
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
@@ -243,7 +243,7 @@ export default function BoardingHouseFormUpdate() {
           <div className="basis-2/4 px-8 py-8">
             <form onSubmit={handleSave}>
               <h1 className="text-4xl text-left font-semibold">
-                B. Detail Kosan
+                A. Detail Kosan
               </h1>
               <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -402,7 +402,7 @@ export default function BoardingHouseFormUpdate() {
                 />
               </div>
               <h1 className="text-4xl text-left font-semibold">
-                A. Fasilitas & Peraturan Kosan
+                B. Fasilitas & Peraturan Kosan
               </h1>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                 Fasilitas Kosan

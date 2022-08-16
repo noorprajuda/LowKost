@@ -15,24 +15,60 @@ import DetailPage from "./views/DetailPage";
 import MyBookmarksPage from "./views/MyBookmarksPage";
 import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
+import AuthOwner from "./components/RouteGuard/AuthOwner";
+import AuthTenant from "./components/RouteGuard/AuthTenant";
+import Map from "./components/Map";
+
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/:id" element={<DetailPage />} />
-        <Route path="/:id/images" element={<ImagesPage />} />
-        <Route path="/my-bookmarks" element={<MyBookmarksPage />} />
-        <Route path="/my-bookings" element={<MyBookingsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register-owner" element={<RegisterOwner />} />
         <Route path="/register-tenant" element={<RegisterTenant />} />
+
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:id" element={<DetailPage />} />
+        <Route path="/:id/images" element={<ImagesPage />} />
+        <Route
+          path="/my-bookmarks"
+          element={
+            <AuthTenant>
+              <MyBookmarksPage />
+            </AuthTenant>
+          }
+        />
+        <Route
+          path="/my-bookings"
+          element={
+            <AuthTenant>
+              <MyBookingsPage />
+            </AuthTenant>
+          }
+        />
+
         <Route path="/admin" element={<HomePageAdmin />} />
-        <Route path="/owner" element={<HomePageOwner />} />
-        <Route path="/owner-add" element={<AddBoardingHousesOwner />} />
+
+        <Route
+          path="/owner"
+          element={
+            <AuthOwner>
+              <HomePageOwner />
+            </AuthOwner>
+          }
+        />
+        <Route
+          path="/owner-add"
+          element={
+            <AuthOwner>
+              <AddBoardingHousesOwner />
+            </AuthOwner>
+          }
+        />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
+        <Route path="/map" element={<Map />} />
       </Routes>
       <Footer />
     </div>

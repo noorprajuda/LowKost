@@ -8,7 +8,40 @@ import {
 
 const initialState = {
   boardingHouses: [],
-  boardingHouse: [],
+  boardingHouse: {
+    id: null,
+    name: "",
+    price: null,
+    CategoryId: null,
+    CityId: null,
+    totalRoom: null,
+    UserId: null,
+    description: "",
+    location: {
+      type: "",
+      coordinates: [],
+    },
+    slug: "",
+    mainImg: null,
+    address: null,
+    Category: {
+      name: "",
+    },
+    City: {
+      name: "",
+    },
+    User: {
+      id: null,
+      fullName: "",
+      email: "",
+      address: "",
+      role: "",
+      phoneNumber: "",
+    },
+    Images: [],
+    BoardingHouseFacilities: [],
+    BoardingHouseRules: [],
+  },
   singleHouseOwner: { BoardingHouseRules: [], BoardingHouseFacilities: [] },
 };
 
@@ -28,7 +61,7 @@ function boardingHousesReducer(state = initialState, action) {
 
     case SINGLE_HOUSE_OWNER_FETCH_SUCESS:
       return { ...state, singleHouseOwner: action.payload };
-      
+
     default:
       return state;
   }
