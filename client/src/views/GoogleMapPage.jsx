@@ -1,3 +1,5 @@
+import BoardingHousesList from "../components/BoardingHousesList";
+
 import {
   GoogleMap,
   Marker,
@@ -88,7 +90,7 @@ export default function Map() {
                 onClick={() => handleActiveMarker(id)}
               >
                 {activeMarker === id ? (
-                  <InfoWindow onClosCelick={() => setActiveMarker(null)}>
+                  <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                     <div>{name}</div>
                     <div>{price}</div>
                   </InfoWindow>
@@ -98,7 +100,22 @@ export default function Map() {
           </GoogleMap>
         </div>
         <div className="basis-1/2">
-          <h1>Kanan</h1>
+          <h1 className="font-bold">
+            Daftar kos di {localBoardingHouse[0].City.name}
+          </h1>
+          {/* {JSON.stringify(localBoardingHouse, null, 2)} */}
+          <div className="mb-20">
+            {localBoardingHouse.map((boardingHouse, index) => {
+              return (
+                <>
+                  <BoardingHousesList
+                    key={boardingHouse.id}
+                    boardingHouse={boardingHouse}
+                  />
+                </>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

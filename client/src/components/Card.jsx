@@ -56,7 +56,7 @@ export default function Card({ boardingHouse }) {
               <a className="inline-flex items-center py-1 px-1 text-sm font-small text-center text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 {boardingHouse.Category.name}
               </a>
-              <h6>Rp. {boardingHouse.price.toLocaleString("id-ID")} / month</h6>
+              <h6>Rp. {boardingHouse.price.toLocaleString("id-ID")} / bulan</h6>
             </div>
             <br />
 

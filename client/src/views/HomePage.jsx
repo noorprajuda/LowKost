@@ -87,7 +87,7 @@ export default function HomePage() {
                 className="w-[600px] block p-6 bg-white opacity-95 rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 hover:opacity-90 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
               >
                 <span className="flex items-center px-1 text-xl text-gray-600">
-                  <span className="font-medium">Pakai Low Kost!</span>
+                  <span className="font-medium italic">Pakai Low Kost!</span>
                   <img className="w-auto h-8" src="/img/vegetable.png" alt="" />
                 </span>
                 <h1 className="pt-4 text-4xl text-gray-600 sm:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight whitespace-nowrap">
@@ -169,7 +169,7 @@ export default function HomePage() {
 
           {/* Filter Google Map */}
           <h1 className="pt-4 mb-5 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
-            Lihat kos di Google Map
+            Lihat kos dengan Google Map
           </h1>
           <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
             {cities.map((city, index) => {

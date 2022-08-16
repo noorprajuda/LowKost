@@ -219,7 +219,6 @@ module.exports = class OwnerController {
       res
         .status(200)
         .json({ message: `Successfull update boardingHouse${id}` });
-
     } catch (err) {
       console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<PUT");
       await t.rollback();
