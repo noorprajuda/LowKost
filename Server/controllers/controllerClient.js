@@ -255,6 +255,7 @@ class ControllerClient {
       const createMyBooking = await MyBooking.create(input);
       res.status(201).json({ message: "Succesfully add data to My Bookings" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -285,6 +286,7 @@ class ControllerClient {
   static async deleteBookmark(req, res, next) {
     try {
       const { id } = req.params;
+      console.log(id, "<<<<<");
 
       const findBookmark = await Bookmarks.findByPk(id);
 
@@ -302,6 +304,7 @@ class ControllerClient {
         message: "Bookmark succesfully delete",
       });
     } catch (err) {
+      console.log(err, "<<<<<<<<<<<<<<<<<<<<data error");
       next(err);
     }
   }
@@ -351,11 +354,11 @@ class ControllerClient {
         throw { name: "NotFound" };
       }
 
-      await MyBooking.destroy({
-        where: {
-          id,
-        },
-      });
+      // await MyBooking.destroy({
+      //   where: {
+      //     id,
+      //   },
+      // });
 
       res.status(200).json({
         message: "My Booking succesfully delete",

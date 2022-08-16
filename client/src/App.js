@@ -19,7 +19,6 @@ import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
 import Map from "./components/Map";
 
-
 function App() {
   return (
     <div className="App">
@@ -68,7 +67,7 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
-        <Route path="/map" element={<Map />} />
+        <Route path="/Kos/:id" element={<Map />} />
       </Routes>
       <Footer />
     </div>

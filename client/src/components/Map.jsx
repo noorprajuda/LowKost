@@ -1,47 +1,110 @@
-
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { useState, useCallback } from 'react';
-
+import {
+  GoogleMap,
+  Marker,
+  useJsApiLoader,
+  InfoWindow,
+} from "@react-google-maps/api";
+import { useState, useCallback, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 const containerStyle = {
-    width: '400px',
-    height: '400px'
-  };
-  
-  const center = {
-    lat: -6.1484511,
-    lng: 106.697525
-  };
+  width: "100%",
+  height: "100%",
+};
 
-export default function Map(){
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs"
+export default function Map() {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
+  });
+
+  const { id } = useParams();
+
+  console.log(id);
+  const [localBoardingHouse, setLocalBoardingHouses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeMarker, setActiveMarker] = useState(null);
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/user/boardinghouses", {
+        params: { city: id },
       })
-      const [map, setMap] = useState(null)
+      .then((resp) => {
+        setLocalBoardingHouses(resp.data);
+      })
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+  if (loading) {
+    return (
+      <>
+        <div className="mt-20 flex flex-row">Loading...</div>
+      </>
+    );
+  }
+  console.log(localBoardingHouse);
+  const markers = localBoardingHouse.map((el, i) => {
+    return {
+      id: i + 1,
+      name: el.name,
+      price: el.price,
+      position: {
+        lat: el.location.coordinates[0],
+        lng: el.location.coordinates[1],
+      },
+    };
+  });
+  console.log(markers, "<<<<<<,,");
+  const handleOnLoad = (map) => {
+    const bounds = new window.google.maps.LatLngBounds();
+    markers.forEach(({ position }) => bounds.extend(position));
+    map.fitBounds(bounds);
+  };
 
-      const onLoad = useCallback(function callback(map){
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-        setMap(map)
-      }, [])
-
-      const onUnmount = useCallback(function callback(map) {
-        setMap(null)
-      }, [])
-
-      return isLoaded ? (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={15}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          <Marker
-          key={1}
-          position={center}
-           />
-          <></>
-        </GoogleMap>
-    ) : <></>
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+  return isLoaded && !loading ? (
+    <>
+      <div className="mt-20 flex flex-row">
+        <div className="basis-1/2 h-screen ">
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            zoom={16}
+            onLoad={handleOnLoad}
+            onClick={() => setActiveMarker(null)}
+          >
+            {markers.map(({ id, name, position, price }) => (
+              <Marker
+                key={id}
+                position={position}
+                onClick={() => handleActiveMarker(id)}
+              >
+                {activeMarker === id ? (
+                  <InfoWindow onClosCelick={() => setActiveMarker(null)}>
+                    <div>{name}</div>
+                    <div>{price}</div>
+                  </InfoWindow>
+                ) : null}
+              </Marker>
+            ))}
+          </GoogleMap>
+        </div>
+        <div className="basis-1/2">
+          <h1>Kanan</h1>
+        </div>
+      </div>
+    </>
+  ) : (
+    <>
+      <div className="mt-20 flex flex-row">Loading...</div>
+    </>
+  );
 }

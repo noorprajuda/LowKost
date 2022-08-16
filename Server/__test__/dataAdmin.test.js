@@ -31,7 +31,6 @@ beforeAll(async () => {
       role: "Admin",
       address: "Jalan boulevard 1 no 12",
     });
-    console.log(datausernew, "databaru <><><><><><> user");
     access_token = signToken({
       id: 1,
       email: "maung@mail.com",
@@ -50,7 +49,6 @@ beforeAll(async () => {
       location: Sequelize.fn("ST_GeomFromText", `POINT(-6.131164 106.85564)`),
       mainImg: "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg",
     });
-    console.log(databaru, "<<<<<<<<<<<<< Pagedatabaru");
   } catch (err) {
     console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< EROR");
   }
@@ -124,7 +122,7 @@ describe("Delete /admin/boardinghouses/:id", () => {
       });
 
     await expect(response.status).toBe(200);
-    await expect(response.body).toEqual(expect.any(Array));
+    await expect(response.body).toEqual(expect.any(Object));
   });
 
   test("Fail case get all BoardingHouses Admin", () => {
