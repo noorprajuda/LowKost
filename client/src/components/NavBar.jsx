@@ -36,7 +36,6 @@ export default function Navbar() {
 
   const access_token = localStorage.getItem("access_token");
 
-
   return (
     <>
       <nav className="bg-white px-2 sm:px-4 py-2.5  fixed w-full z-20 top-0 left-0 border-b border-gray-200 ">
@@ -114,7 +113,7 @@ export default function Navbar() {
                   className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
                   aria-current="page"
                 >
-                  Daftar Suka
+                  Favorit
                 </a>
               </li>
               <li>

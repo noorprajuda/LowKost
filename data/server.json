@@ -9,39 +9,43 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
       "location": "-6.31845 106.89748",
+      "address": "Jalan Madrasah No./Kav. 1A, Kecamatan Cipayung, DKI Jakarta 13890, Indonesia",
       "mainImg": "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
     },
     {
       "name": "Kost Exclusive Mango",
       "price": 750000,
       "CategoryId": 1,
-      "CityId": 1,
+      "CityId": 2,
       "totalRoom": 10,
       "UserId": 1,
       "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
       "location": "-6.13853 106.70409",
+      "address": "Jalan Kehangatan No./Kav. 4, Kecamatan Kalideres, DKI Jakarta 11830, Indonesia",
       "mainImg": "https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
     },
     {
       "name": "Kost Kendari",
       "price": 500000,
       "CategoryId": 1,
-      "CityId": 1,
+      "CityId": 3,
       "totalRoom": 8,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
       "location": "-6.27685 106.80707",
+      "address": "Jalan Demuna No./Kav. 11, Kecamatan Cilandak, DKI Jakarta 12410, Indonesia",
       "mainImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
     },
     {
       "name": "Kost Margonda Kramat",
       "price": 1100000,
       "CategoryId": 1,
-      "CityId": 1,
+      "CityId": 4,
       "totalRoom": 5,
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
       "location": "-6.131164 106.85564",
+      "address": "Jalan Ancol Selatan 2 No./Kav. 55, Kecamatan Tanjung Priok, DKI Jakarta 14350, Indonesia",
       "mainImg": "https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
     },
     {
@@ -53,6 +57,7 @@
       "UserId": 1,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
       "location": "-6.17642 106.77266",
+      "address": "Jl. Duri Mas 1 Blok S No. 398, Kecamatan Kebon Jeruk, DKI Jakarta 11510, Indonesia",
       "mainImg": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/330259388.jpg?k=003642c2db45b979d3fa9555882b428e7e03702617507f1b935fd68c9508b117&o=&hp=1"
     }
   ],

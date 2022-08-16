@@ -32,11 +32,8 @@ export default function HomePage() {
     setLocalBoardingHouses(boardingHouses);
   }, [boardingHouses]);
 
-
   console.log(mainImg);
   console.log(boardingHouses);
-
-
 
   const [cityId, setCityId] = useState(0);
 
@@ -72,8 +69,6 @@ export default function HomePage() {
     }
   }, [categoryId]);
 
-
-
   return (
     <>
       {loading === false ? (
@@ -85,7 +80,7 @@ export default function HomePage() {
               alt=""
             />
 
-            <div className="w-[600px] absolute bottom-40 left-40 text-grey-600 font-bold text-4xl">
+            <div className="w-[600px] absolute bottom-20 left-40 text-grey-600 font-bold text-4xl">
               <a
                 href="#"
                 className="w-[600px] block p-6 bg-white opacity-95 rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 hover:opacity-90 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
