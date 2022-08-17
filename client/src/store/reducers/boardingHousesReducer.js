@@ -3,6 +3,7 @@ import {
   BOARDING_HOUSES_FETCH_USER_SUCCESS,
   BOARDING_HOUSE_BY_ID_FETCH_USER_SUCCESS,
   BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
+  LIST_TENANT_KOS_FETCH_SUCCESS,
   SINGLE_HOUSE_OWNER_FETCH_SUCESS,
 } from "../action/actionType";
 
@@ -43,6 +44,7 @@ const initialState = {
     BoardingHouseRules: [],
   },
   singleHouseOwner: { BoardingHouseRules: [], BoardingHouseFacilities: [] },
+  listTenant: [],
 };
 
 function boardingHousesReducer(state = initialState, action) {
@@ -61,6 +63,9 @@ function boardingHousesReducer(state = initialState, action) {
 
     case SINGLE_HOUSE_OWNER_FETCH_SUCESS:
       return { ...state, singleHouseOwner: action.payload };
+
+    case LIST_TENANT_KOS_FETCH_SUCCESS:
+      return { ...state, listTenant: action.payload };
 
     default:
       return state;
