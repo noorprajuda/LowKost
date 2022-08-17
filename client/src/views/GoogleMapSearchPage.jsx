@@ -61,6 +61,25 @@ export default function GoogleMapSearchPage() {
     };
   });
   console.log(markers, "<<<<<<,,");
+
+  //   const [map, setMap] = React.useState(null)
+
+  //   const onLoad = React.useCallback(function callback(map) {
+  //     const bounds = new window.google.maps.LatLngBounds(location);
+  //     map.fitBounds(bounds);
+  // map.setZoom(zoom)
+  //     setMap(map)
+  //   }, [])
+
+  //   const onUnmount = React.useCallback(function callback(map) {
+  //     setMap(null)
+  //   }, [])
+
+  const OPTIONS = {
+    minZoom: 4,
+    maxZoom: 14,
+  };
+
   const handleOnLoad = (map) => {
     const bounds = new window.google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
@@ -78,6 +97,7 @@ export default function GoogleMapSearchPage() {
       <div className="mt-20 flex flex-row">
         <div className="sticky top-20 mb-20 basis-1/2 h-screen ">
           <GoogleMap
+            options={OPTIONS}
             mapContainerStyle={containerStyle}
             zoom={16}
             onLoad={handleOnLoad}

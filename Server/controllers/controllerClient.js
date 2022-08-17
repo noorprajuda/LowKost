@@ -434,7 +434,7 @@ class ControllerClient {
       console.log(latlong, "<<<<<<<<<< ");
       const long = latlong.split(" ")[1];
       const lat = latlong.split(" ")[0];
-      const distance = 5000;
+      const distance = 3000;
       const result = await sequelize.query(
         `SELECT
       *

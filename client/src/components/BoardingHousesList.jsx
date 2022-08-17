@@ -38,7 +38,7 @@ export default function BoardingHousesList({ boardingHouse }) {
         />
         <div className="relative align-left  text-left justify-start ml-5 w-[300px]">
           <a className="items-left py-1 px-1 text-sm font-small text-left text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-            {boardingHouse.Category.name}
+            {/* {boardingHouse.Category.name} */}
           </a>
           <br />
           <a className="font-bold text-gray-900">{boardingHouse.name}</a>
