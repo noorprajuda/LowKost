@@ -85,7 +85,7 @@ class ControllerClient {
 
       for (let i = 0; i < kos.length; i++) {
         let getQty = await MyBooking.findAll({
-          where: { BoardingHouseId: kos[i].id },
+          where: { BoardingHouseId: kos[i].id, status: "Paid" },
         });
         if (getQty.length) {
           kos[i].totalRoom = kos[i].totalRoom - getQty.length;
