@@ -269,9 +269,14 @@ export default function DetailPage() {
                 >
                   {localBoardingHouse.City.name}
                 </a>
-                <a className="text-red-600 text-base font-normal italic ml-2">
-                  Sisa kamar {localBoardingHouse.totalRoom}
-                </a>
+
+                {localBoardingHouse.totalRoom < 5 ? (
+                  <a className="text-red-600 text-base font-normal italic ml-2">
+                    Sisa kamar {localBoardingHouse.totalRoom}
+                  </a>
+                ) : (
+                  <a></a>
+                )}
               </div>
 
               <div className="">{localBoardingHouse.name}</div>
