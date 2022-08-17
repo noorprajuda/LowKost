@@ -7,6 +7,7 @@ const {
   BoardingHouseFacilities,
   City,
   Rules,
+  MyBooking,
   BoardingHouseRules,
   MyBooking,
   sequelize,

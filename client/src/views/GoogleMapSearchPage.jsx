@@ -14,22 +14,22 @@ const containerStyle = {
   height: "100%",
 };
 
-export default function GoogleMapPage() {
+export default function GoogleMapSearchPage() {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyBSGWwJ1H2sdpp0TKUIFyoY3vW10G2eiLs",
   });
 
-  const { id } = useParams();
+  const { address } = useParams();
 
-  console.log(id);
+  console.log(address, "<<<address");
   const [localBoardingHouse, setLocalBoardingHouses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeMarker, setActiveMarker] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/user/boardinghouses", {
-        params: { city: id },
+      .get("http://localhost:4000/user/searchboardinghouses", {
+        params: { address: address },
       })
       .then((resp) => {
         setLocalBoardingHouses(resp.data);
@@ -40,7 +40,7 @@ export default function GoogleMapPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [address]);
   if (loading) {
     return (
       <>
@@ -61,6 +61,25 @@ export default function GoogleMapPage() {
     };
   });
   console.log(markers, "<<<<<<,,");
+
+  //   const [map, setMap] = React.useState(null)
+
+  //   const onLoad = React.useCallback(function callback(map) {
+  //     const bounds = new window.google.maps.LatLngBounds(location);
+  //     map.fitBounds(bounds);
+  // map.setZoom(zoom)
+  //     setMap(map)
+  //   }, [])
+
+  //   const onUnmount = React.useCallback(function callback(map) {
+  //     setMap(null)
+  //   }, [])
+
+  const OPTIONS = {
+    minZoom: 4,
+    maxZoom: 14,
+  };
+
   const handleOnLoad = (map) => {
     const bounds = new window.google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
@@ -78,6 +97,7 @@ export default function GoogleMapPage() {
       <div className="mt-20 flex flex-row">
         <div className="sticky top-20 mb-20 basis-1/2 h-screen ">
           <GoogleMap
+            options={OPTIONS}
             mapContainerStyle={containerStyle}
             zoom={16}
             onLoad={handleOnLoad}
@@ -101,7 +121,7 @@ export default function GoogleMapPage() {
         </div>
         <div className="basis-1/2">
           <h1 className="font-bold">
-            Daftar kos di {localBoardingHouse[0].City.name}
+            {/* Daftar kos di {localBoardingHouse[0].City.name} */}
           </h1>
           {/* {JSON.stringify(localBoardingHouse, null, 2)} */}
           <div className="mb-20">
