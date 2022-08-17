@@ -39,6 +39,6 @@ router.delete(
   OwnerController.deleteListTenant
 );
 
-router.post("/upload", upload.single("photo"), OwnerController.uploadImage);
+router.post("/upload", upload.array("photo"), OwnerController.uploadImage);
 
 module.exports = router;
