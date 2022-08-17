@@ -203,7 +203,7 @@ class ControllerClient {
       });
       for (let i = 0; i < myBookmark.length; i++) {
         let getQty = await MyBooking.findAll({
-          where: { BoardingHouseId: myBookmark[i].id },
+          where: { BoardingHouseId: myBookmark[i].id, status: "Paid" },
         });
         if (getQty.length) {
           myBookmark[i].totalRoom = kos[i].totalRoom - getQty.length;
@@ -391,11 +391,11 @@ class ControllerClient {
         throw { name: "NotFound" };
       }
 
-      // await MyBooking.destroy({
-      //   where: {
-      //     id,
-      //   },
-      // });
+      await MyBooking.destroy({
+        where: {
+          id,
+        },
+      });
 
       res.status(200).json({
         message: "My Booking succesfully delete",
