@@ -37,9 +37,6 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
     setLocalBoardingHouses(boardingHouses);
   }, [boardingHouses]);
 
-  console.log(mainImg);
-  console.log(boardingHouses);
-
   const [cityId, setCityId] = useState(0);
 
   useEffect(() => {
@@ -48,7 +45,6 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
         (boardingHouse) => boardingHouse.CityId == cityId
       );
       setLocalBoardingHouses(filteredBoardingHouses);
-      console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
     } else {
       setLocalBoardingHouses(boardingHouses);
     }
@@ -68,7 +64,6 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
         (boardingHouse) => boardingHouse.CategoryId == categoryId
       );
       setLocalBoardingHouses(filteredBoardingHouses);
-      console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
     } else {
       setLocalBoardingHouses(boardingHouses);
     }

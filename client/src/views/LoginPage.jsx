@@ -51,7 +51,7 @@ export default function LoginPage() {
           navigate("/");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => Swal.fire("Gagal!", "Email/Password salah!", "error"));
   };
 
   return (

@@ -19,8 +19,12 @@ import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
 import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
+
 import PlacesAutocomplete from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
+
+import ListTenantKos from "./views/ListTenantKos";
+
 
 function App() {
   return (
@@ -70,8 +74,19 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
-        <Route path="/kos/:id" element={<GoogleMapPage />} />
+
+
         <Route path="/cari/:address" element={<GoogleMapSearchPage />} />
+
+        <Route path="/Kos/:id" element={<GoogleMapPage />} />
+        <Route
+          path="/list-tenant"
+          element={
+            <AuthOwner>
+              <ListTenantKos />
+            </AuthOwner>
+          }
+        />
       </Routes>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { registerOwner } from "../store/action";
+import { registerOwner, registerTenant } from "../store/action";
 import Swal from "sweetalert2";
 
 export default function RegisterTenant() {
@@ -32,7 +32,7 @@ export default function RegisterTenant() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(registerOwner(formRegister))
+    dispatch(registerTenant(formRegister))
       .then(() => {
         Swal.fire(
           "Selamat!",
@@ -41,7 +41,7 @@ export default function RegisterTenant() {
         );
         navigate("/login");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => Swal.fire("Gagal!", "Email sudah terdaftar!", "error"));
   };
   return (
     <>
