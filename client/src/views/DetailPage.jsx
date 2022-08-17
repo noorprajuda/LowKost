@@ -115,7 +115,22 @@ export default function DetailPage() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createMyBooking(id, formMyBooking));
+    if (localBoardingHouse.totalRoom == 0) {
+      Swal.fire("Terjadi kesalahan!", "Maaf kosan ini sudah penuh!", "error");
+    } else {
+      dispatch(createMyBooking(id, formMyBooking))
+        .then((response) => response.json())
+        .then((data) => {
+          Swal.fire(
+            "Hebat!",
+            "Anda sukses menambahkan kos ini ke favorit!",
+            "success"
+          );
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
 
   // if (localBoardingHouse.length == 0) return null;
@@ -357,7 +372,7 @@ export default function DetailPage() {
                   type="submit"
                   className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Apply now
+                  Sewa
                 </button>
               </form>
             </div>
