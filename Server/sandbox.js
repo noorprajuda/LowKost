@@ -10,7 +10,8 @@ async function test() {
   try {
     const response = await googleMapsClient
       .geocode({
-        address: "pondok indah",
+        address:
+          "Jalan Madrasah No./Kav. 1A, Kecamatan Cipayung, DKI Jakarta 13890, Indonesia",
       })
       .asPromise();
     console.log(response);

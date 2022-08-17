@@ -131,7 +131,7 @@ export default function BoardingHousesForm() {
         <div className="flex flex-row">
           <div className="basis-1/4"></div>
           <div className="basis-2/4 px-8 py-8">
-            <form onSubmit={handleSave}>
+            <form onSubmit={handleSave} encType="multipart/form-data">
               <h1 className="text-4xl text-left font-semibold">
                 A. Detail Kosan
               </h1>
@@ -265,6 +265,7 @@ export default function BoardingHousesForm() {
                   aria-describedby="user_avatar_help"
                   id="user_avatar"
                   type="file"
+                  multiple="multiple"
                   name="img"
                   onChange={handleImageUpload}
                 />
