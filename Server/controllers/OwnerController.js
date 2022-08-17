@@ -9,7 +9,6 @@ const {
   Rules,
   MyBooking,
   BoardingHouseRules,
-  MyBooking,
   sequelize,
   Sequelize,
 } = require("../models");
