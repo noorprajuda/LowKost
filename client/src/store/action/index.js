@@ -155,13 +155,15 @@ export const createBoardingHouse = (
     return new Promise(async (resolve, reject) => {
       try {
         let formData = new FormData();
-        formData.append("photo", saveImage);
+        for (let i = 0; i < saveImage.length; i++) {
+          formData.append("photo", saveImage[i]);
+        }
 
         console.log(formData.get("photo"), "ini append");
         console.log(saveImage, "<<<");
         console.log(formData, ">>>");
-        const image = await axios.post(`${baseUrl}/owner/upload`, formData);
-
+        const { data } = await axios.post(`${baseUrl}/owner/upload`, formData);
+        let mainImg = data.shift();
         await axios.post(
           `${baseUrl}/owner/boardinghouse`,
           {
@@ -172,10 +174,10 @@ export const createBoardingHouse = (
             CityId: formBoardingHouse.CityId,
             totalRoom: formBoardingHouse.totalRoom,
             description: formBoardingHouse.description,
-            mainImg: image.data.image,
+            mainImg: mainImg,
             address: formBoardingHouse.address,
             StackRules: checkRules,
-            StackImages: image.data,
+            StackImages: data,
           },
           {
             headers: {
