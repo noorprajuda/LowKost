@@ -6,6 +6,7 @@ const {
   City,
   Categories,
   Sequelize,
+  Rules,
   Bookmarks,
   MyBooking,
 } = require("../models");
@@ -22,11 +23,16 @@ const dataCity = require("../../data/server.json").City;
 const dataRules = require("../../data/server.json").Rules;
 
 let access_token = "";
+let access_token2 = "";
 let access_token_fail = "";
+
 beforeAll(async () => {
   try {
     const dataCitynew = await City.bulkCreate(dataCity);
+    // console.log(dataCitynew, ".,.,.,.,.,.,. datacity");
+
     const dataCategoriesnew = await Categories.bulkCreate(dataCategories);
+    // console.log(dataCategoriesnew, ".,.,.,.,.,.,. dataCategory");
 
     const datausernew = await Users.create({
       fullName: "Admin 1",
@@ -36,18 +42,51 @@ beforeAll(async () => {
       role: "Tenant",
       address: "Jalan boulevard 1 no 12",
     });
+
     access_token = signToken({
       id: 1,
       email: "admin@mail.com",
       role: "Tenant",
     });
+
     access_token_fail = signToken({
       id: 9,
       email: "1231241fas@mail.com",
       role: "Admin",
     });
+    // console.log(
+    //   access_token,
+    //   datausernew,
+    //   "><><><><><> data",
+    //   access_token_fail,
+    //   "yang salah :::::::::::::::::::"
+    // );
 
+    const datausernew3 = await Users.create({
+      fullName: "Heriyan",
+      email: "heriyan@mail.com",
+      password: hashPassword("12345678"),
+      phoneNumber: "086363628781",
+      role: "Tenant",
+      address: "Jalan boulevard 1 no 12",
+    });
+    access_token2 = signToken({
+      id: 2,
+      email: "admin@mail.com",
+      role: "Tenant",
+    });
+    // console.log(
+    //   access_token,
+    //   datausernew,
+    //   "><><><><><> data",
+    //   datausernew3,
+    //   access_token2,
+    //   "><><><><><> dataToken2",
+    //   access_token_fail,
+    //   "yang salah :::::::::::::::::::"
+    // );
     const dataRulesnwe = await Rules.bulkCreate(dataRules);
+    // console.log(dataRulesnwe, ",.,.,.,.,.,.,.,. dataRules");
 
     const databaru = await BoardingHouses.create({
       name: "Kost Kiara 51",
@@ -60,13 +99,15 @@ beforeAll(async () => {
         "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
       location: Sequelize.fn("ST_GeomFromText", `POINT(-6.131164 106.85564)`),
       mainImg: "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg",
+      address: "jalan peta selatan nomor 31 rt09/11 kalideres jakarta barat",
     });
+    console.log(databaru, ",.,.,.,.,.,.,.,. databaru");
 
     const dataBookmark = await Bookmarks.create({
       UserId: 1,
       BoardingHouseId: 1,
     });
-    // console.log(dataBookmark, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<dataBookmark");
+    console.log(dataBookmark, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<dataBookmark");
     const dataMyBooking = await MyBooking.create({
       BoardingHouseId: 1,
       UserId: 1,
@@ -74,7 +115,7 @@ beforeAll(async () => {
       startDate: "2022-08-03 07:00:00+07",
     });
 
-    console.log(dataMyBooking, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data my Booking");
+    // console.log(dataMyBooking, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<data my Booking");
   } catch (err) {
     console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< EROR");
   }
@@ -112,6 +153,13 @@ afterAll(async () => {
     });
 
     await Bookmarks.destroy({
+      where: {},
+      cascade: true,
+      truncate: true,
+      restartIdentity: true,
+    });
+
+    await MyBooking.destroy({
       where: {},
       cascade: true,
       truncate: true,
@@ -197,15 +245,12 @@ describe("get /user/bookmark", () => {
 });
 
 describe("post /user/bookmark/:id", () => {
-  test("Post all bookmark in user", async () => {
+  test("Post bookmark in user", async () => {
     const response = await request(app)
       .post("/user/bookmark/1")
-      .set({ access_token })
-      .send({
-        UserId: 1,
-        BoardingHouseId: 1,
-      });
+      .set({ access_token });
     await expect(response.status).toBe(201);
+    await expect(response.body).toHaveProperty("message", expect.any(String));
   });
 
   // ini gak tau
@@ -222,7 +267,7 @@ describe("post /user/bookmark/:id", () => {
     jest.spyOn(Bookmarks, "create").mockRejectedValue("Error");
     return request(app)
       .get("/user/bookmark/1")
-      .set({ access_token })
+      .set({ access_token_fail })
       .send({
         UserId: 1,
         BoardingHouseId: 30,
@@ -270,7 +315,7 @@ describe("delete /user/bookmark/:id", () => {
 describe("get /user/mybookings", () => {
   test("Get all Mybookings in user", async () => {
     const response = await request(app)
-      .get("/user/mybookings")
+      .get("/user/bookmark")
       .set({ access_token });
     await expect(response.status).toBe(200);
   });
@@ -278,7 +323,7 @@ describe("get /user/mybookings", () => {
   test("Fail case get user tenant Bookmark", () => {
     jest.spyOn(MyBooking, "findAll").mockRejectedValue("Error");
     return request(app)
-      .get("/user/mybookings")
+      .get("/user/bookmark")
       .set({ access_token })
       .then((res) => {
         expect(res.status).toBe(500);
@@ -290,42 +335,40 @@ describe("get /user/mybookings", () => {
   });
 });
 
-describe("post /user/mybookings", () => {
-  test("post createMyBooking in user", async () => {
+describe("post /user/bookmark/:id", () => {
+  test("post createBookmark in user", async () => {
     const response = await request(app)
-      .post("/user/mybookings/1")
-      .set({ access_token })
-      .send({
-        BoardingHouseId: 1,
-        startDate: "2022-08-03 07:00:00+07",
-      });
-    await expect(response.status).toBe(201);
-    await expect(response.body).toEqual(expect.any(Object));
-  });
-
-  test("Fail case get  Tenant", () => {
-    request(app)
-      .post("/user/mybookings")
-      .set({ access_token })
-      .send({})
-      .then((res) => {
-        expect(res.status).toBe(500);
-        expect(res.body.err).toBe("Error");
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-  });
-});
-
-describe("Delete /user/mybookings", () => {
-  test("Delete createMyBooking in user", async () => {
-    const response = await request(app)
-      .delete("/user/mybookings/1")
+      .post("/user/bookmark/1")
       .set({ access_token });
-
+    // .send({
+    //   BoardingHouseId: 1,
+    //   startDate: "2022-08-03 07:00:00+07",
+    // });
     await expect(response.status).toBe(201);
-    await expect(response.body).toEqual(expect.any(Object));
+    await expect(response.body).toHaveProperty("message", expect.any(String));
+  });
+
+  test("Fail case get Tenant", () => {
+    request(app)
+      .post("/user/bookmark")
+      .set({ access_token })
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+});
+
+describe("deleteBookmark /user/bookmark/:id", () => {
+  test("DeleteBookmark in user", async () => {
+    const response = await request(app)
+      .delete("/user/bookmark/1")
+      .set({ access_token });
+    await expect(response.status).toBe(200);
+    await expect(response.body).toHaveProperty("message", expect.any(String));
   });
 
   test("Fail USER BOOKING", () => {
@@ -346,13 +389,41 @@ describe("Delete /user/mybookings", () => {
 describe("Post /user/payment", () => {
   test("Post payment", async () => {
     const response = await request(app)
-      .get("/user/payment")
+      .post("/user/payment")
       .set({ access_token })
       .send({
         amount: 1000,
       });
     await expect(response.status).toBe(200);
-    expect(body.message).toEqual(expect.any(Object));
+    expect(body.message).toEqual(expect.any(A));
+  });
+
+  test("Fail case PAYMENT", () => {
+    request(app)
+      .post("/user/payment")
+      .set({ access_token })
+      .send({})
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+});
+
+describe("Post /user/mybookings/:id", () => {
+  test("Post MyBOOKING", async () => {
+    const response = await request(app)
+      .post("/user/mybookings/1")
+      .set({ access_token })
+      .send({
+        BoardingHouseId: 1,
+        startDate: "2022-08-13 12:08:39.609 +0700",
+      });
+    await expect(response.status).toBe(201);
+    await expect(response.body).toHaveProperty("message", expect.any(String));
   });
 
   test("Fail case PAYMENT", () => {
@@ -373,10 +444,35 @@ describe("Post /user/payment", () => {
 describe("patch /user/mybookings/:id", () => {
   test("patch changeMyBookingStatus", async () => {
     const response = await request(app)
+      .post("/user/mybookings/1")
+      .set({ access_token })
+      .send({});
+    await expect(response.status).toBe(201);
+    await expect(response.body).toHaveProperty("message", expect.any(String));
+  });
+
+  test("Fail case changeMyBookingStatus", () => {
+    request(app)
       .patch("/user/mybookings/1")
+      .set({ access_token })
+      .send({})
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+});
+
+describe("delete /user/mybookings/:id", () => {
+  test("delete myBooking", async () => {
+    const response = await request(app)
+      .delete("/user/mybookings/1")
       .set({ access_token });
     await expect(response.status).toBe(200);
-    expect(body.message).toEqual(expect.any(Object));
+    await expect(response.body).toHaveProperty("message", expect.any(String));
   });
 
   test("Fail case changeMyBookingStatus", () => {

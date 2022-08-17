@@ -12,6 +12,7 @@ const {
   BoardingHouseRules,
   sequelize,
   Sequelize,
+  MyBooking,
 } = require("../models");
 const {
   signToken,
@@ -26,6 +27,7 @@ const dataFacilities = require("../../data/server.json").Facilities;
 const dataRulesw = require("../../data/server.json").Rules;
 
 let access_token = "";
+let access_token_fail_admin = "";
 beforeAll(async () => {
   try {
     const dataCitynew = await City.bulkCreate(dataCity);
@@ -70,6 +72,14 @@ beforeAll(async () => {
       RuleId: 1,
       BoardingHouseId: 1,
     });
+
+    const dataBooking = await MyBooking.create({
+      UserId: 1,
+      BoardingHouseId: 1,
+      startDate: "2022-08-13 15:17:02.601 +0700",
+      status: "Paid",
+    });
+    console.log(dataBooking, "<<><><><></>daatabppkomh");
     // const dataImagenew = await Images.bulkCreate(dataImages);
   } catch (err) {
     console.log(err, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< EROR");
@@ -212,7 +222,7 @@ describe("post  /owner/boardinghouses", () => {
         const { body, status } = res;
         expect(status).toBe(201);
         // console.log(body, "<<<");
-        expect(body).toEqual(expect.any(Object));
+        expect(response.body).toHaveProperty("message", expect.any(String));
         return done();
       });
   });
@@ -234,8 +244,8 @@ describe("post  /owner/boardinghouses", () => {
 
 describe("Put /owner/boardinghouse/:id", () => {
   //test ada yang salah
-  test("Put BoardingHouses Owner", async () => {
-    const response = await request(app)
+  test("Put BoardingHouses Owner", () => {
+    request(app)
       .put("/owner/boardinghouse/1")
       .set({ access_token })
       .send({
@@ -265,9 +275,16 @@ describe("Put /owner/boardinghouse/:id", () => {
             id: 1,
           },
         ],
+      })
+      .end((err, res) => {
+        console.log(err);
+        if (err) return done(err);
+        const { body, status } = res;
+        expect(status).toBe(201);
+        // console.log(body, "<<<");
+        expect(response.body).toHaveProperty("message", expect.any(String));
+        return done();
       });
-    await expect(response.status).toBe(200);
-    await expect(response.body).toEqual(expect.any(Object));
   });
 
   test("Fail case get all BoardingHouses Tenant", () => {
@@ -285,10 +302,10 @@ describe("Put /owner/boardinghouse/:id", () => {
   });
 });
 
-describe("Delete /owner/boardinghouses", () => {
+describe("Delete /owner/boardinghouse/:id", () => {
   //test ada yang salah
-  test("Delete BoardingHouses Owner", async () => {
-    const response = await request(app)
+  test("Delete BoardingHouses Owner", () => {
+    request(app)
       .delete("/owner/boardinghouse/1")
       .set({ access_token });
     // .send({
@@ -303,6 +320,29 @@ describe("Delete /owner/boardinghouses", () => {
       .delete("/owner/boardinghouse/1")
       .set({ access_token })
       .send({})
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
+  });
+});
+
+describe("get /owner/listTenant/:id", () => {
+  test("Get all ListTenant Owner", async () => {
+    const response = await request(app)
+      .get("/listTenant/1")
+      .set({ access_token });
+    await expect(response.status).toBe(200);
+  });
+
+  test("Fail case get all BoardingHouses Tenant", () => {
+    jest.spyOn(BoardingHouses, "findAll").mockRejectedValue("Error");
+    return request(app)
+      .get("/listTenant/1")
+      .set({ access_token })
       .then((res) => {
         expect(res.status).toBe(500);
         expect(res.body.err).toBe("Error");

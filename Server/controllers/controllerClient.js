@@ -73,12 +73,12 @@ class ControllerClient {
           exclude: ["createdAt", "updatedAt"],
         },
       };
-
-      if (city) {
-        options.where = {
-          CityId: city,
-        };
-      }
+      //ini di test
+      // if (city) {
+      //   options.where = {
+      //     CityId: city,
+      //   };
+      // }
 
       let kos = await BoardingHouses.findAll(options);
 
@@ -249,7 +249,7 @@ class ControllerClient {
       if (!findBoardingHouse) {
         throw { name: "NotFound" };
       }
-
+      // ini ditest
       let input = {
         UserId: UserId,
         BoardingHouseId: BoardingHouseId,
@@ -284,6 +284,7 @@ class ControllerClient {
       const makeBookmark = await Bookmarks.create(input);
       res.status(201).json({ message: "Succesfully add bookmark" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -435,16 +436,18 @@ class ControllerClient {
       const lat = latlong.split(" ")[0];
       const distance = 5000;
       const result = await sequelize.query(
-        `SELECT
-      *
-    FROM
-      "BoardingHouses"
-    where
-      ST_DWithin(location,
-      ST_MakePoint(:lat,
-      :long),
-      :distance,
-    true) = true;`,
+        `SELECT b.id ,b."name" ,b.price ,b."CategoryId" ,b."CityId" ,b."totalRoom" ,b."UserId",b.description ,b."location" ,b.slug ,b."mainImg" ,b.address 
+        c."name" ,c2."name" , u.id ,u."fullName" u.email u."role" ,u.address u."phoneNumber" 
+        FROM "BoardingHouses" b 
+        JOIN "Categories" c ON c.id = b."CategoryId" 
+        JOIN "Cities" c2 ON c2.id = b."CityId" 
+        JOIN "Users" u ON u.id = b."UserId"  
+        where
+        ST_DWithin(location,
+        ST_MakePoint(:lat,
+        :long),
+        :distance,
+        true) = true;`,
         {
           replacements: {
             distance: +distance,

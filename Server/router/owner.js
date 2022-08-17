@@ -2,27 +2,7 @@ const router = require("express").Router();
 const authentication = require("../middlewares/authentication");
 const OwnerController = require("../controllers/OwnerController");
 const authorizationOwner = require("../middlewares/authorizationOwner");
-const multer = require("multer");
-
-const path = require("path");
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./public/uploads");
-  },
-  filename: function (req, file, cb) {
-    // const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    // cb(null, file.fieldname + "-" + uniqueSuffix);
-    cb(
-      null,
-      path.parse(file.originalname).name +
-        "-" +
-        Date.now() +
-        path.extname(file.originalname)
-    );
-  },
-});
-
-const upload = multer({ storage });
+const upload = require("../middlewares/storage");
 
 router.post("/register", OwnerController.registerHandler);
 
@@ -30,13 +10,6 @@ router.get(
   "/boardinghouses",
   authentication,
   OwnerController.getBoardingHouses
-);
-
-router.get("/listTenant/:id", authentication, OwnerController.getListTenant);
-router.delete(
-  "/listTenant/:id/:userId",
-  authentication,
-  OwnerController.deleteListTenant
 );
 
 router.get(
@@ -57,6 +30,13 @@ router.delete(
   authentication,
   authorizationOwner,
   OwnerController.deleteBoardingHouse
+);
+
+router.get("/listTenant/:id", authentication, OwnerController.getListTenant);
+router.delete(
+  "/listTenant/:id/:userId",
+  authentication,
+  OwnerController.deleteListTenant
 );
 
 router.post("/upload", upload.single("photo"), OwnerController.uploadImage);
