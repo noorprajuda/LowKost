@@ -41,9 +41,12 @@ export default function Card({ boardingHouse }) {
 
           <div className="p-5">
             <div className="text-left">
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row">
                 <a className="inline-flex items-left py-1 px-1 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
                   {boardingHouse.City.name}
+                </a>
+                <a className="text-red-600 italic ml-2">
+                  Sisa kamar {boardingHouse.totalRoom}
                 </a>
               </div>
 
@@ -56,7 +59,7 @@ export default function Card({ boardingHouse }) {
               <a className="inline-flex items-center py-1 px-1 text-sm font-small text-center text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                 {boardingHouse.Category.name}
               </a>
-              <h6>Rp. {boardingHouse.price.toLocaleString("id-ID")} / month</h6>
+              <h6>Rp. {boardingHouse.price.toLocaleString("id-ID")} / bulan</h6>
             </div>
             <br />
 

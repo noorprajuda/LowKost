@@ -170,7 +170,13 @@ export default function MyBookingsTableRow({ myBooking }) {
             {myBooking.BoardingHouse.location.coordinates[0]},{" "}
             {myBooking.BoardingHouse.location.coordinates[1]}
           </td> */}
-          <td className="py-4 px-6 text-xs">{myBooking.startDate}</td>
+          <td className="py-4 px-6 text-xs">
+            {new Date(myBooking.startDate).toLocaleDateString("id-ID", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </td>
           {myBooking.status == "Paid" ? (
             <td className="py-4 px-6 text-xs font-bold text-green-600">
               {"Lunas"}
