@@ -22,7 +22,7 @@ import AuthTenant from "./components/RouteGuard/AuthTenant";
 
 import PlacesAutocomplete from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
-import ListTenantKos from "./components/ListTenantKos";
+import ListTenantKos from "./components/ListTenantTableKos";
 
 function App() {
   return (
