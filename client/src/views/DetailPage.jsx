@@ -89,11 +89,20 @@ export default function DetailPage() {
     dispatch(addToMyBookmark(e.target.value))
       .then((response) => response.json())
       .then((data) => {
-        Swal.fire(
-          "Hebat!",
-          "Anda sukses menambahkan kos ini ke favorit!",
-          "success"
-        );
+        console.log(data, "-=-=-=-=-=");
+        if (data.message == "Already added to your bookmark!") {
+          Swal.fire(
+            "Terjadi kesalahan!",
+            "Anda telah menambahkan kosan ini sebelumnya ke favorit",
+            "error"
+          );
+        } else {
+          Swal.fire(
+            "Hebat!",
+            "Anda sukses menambahkan kos ini ke favorit!",
+            "success"
+          );
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -115,18 +124,21 @@ export default function DetailPage() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (localBoardingHouse.totalRoom == 0) {
+    console.log(e.target.value, "<<<<<<<<< date");
+    if (formMyBooking.startDate == "") {
+      Swal.fire("Terjadi kesalahan!", "Tanggal harus diisi!", "error");
+    } else if (localBoardingHouse.totalRoom == 0) {
       Swal.fire("Terjadi kesalahan!", "Maaf kosan ini sudah penuh!", "error");
     } else {
       dispatch(createMyBooking(id, formMyBooking))
-        .then((response) => response.json())
-        .then((data) => {
+        .then((_) => {
           Swal.fire(
             "Hebat!",
-            "Anda sukses menambahkan kos ini ke favorit!",
+            "Anda sukses menambahkan kos ini ke Pembelian!",
             "success"
           );
         })
+        .then(navigate("/my-bookings"))
         .catch((error) => {
           console.error("Error:", error);
         });

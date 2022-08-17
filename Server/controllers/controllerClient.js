@@ -148,7 +148,7 @@ class ControllerClient {
       //   },
       // });
       const houseTenant = await MyBooking.findAll({
-        where: { BoardingHouseId: idBourdingHousesId.id },
+        where: { BoardingHouseId: idBourdingHousesId.id, status: "Paid" },
       });
 
       if (houseTenant.length) {
@@ -203,10 +203,14 @@ class ControllerClient {
       });
       for (let i = 0; i < myBookmark.length; i++) {
         let getQty = await MyBooking.findAll({
-          where: { BoardingHouseId: myBookmark[i].id },
+          where: {
+            BoardingHouseId: myBookmark[i].BoardingHouse.id,
+            status: "Paid",
+          },
         });
         if (getQty.length) {
-          myBookmark[i].totalRoom = kos[i].totalRoom - getQty.length;
+          myBookmark[i].BoardingHouse.totalRoom =
+            myBookmark[i].BoardingHouse.totalRoom - getQty.length;
         }
       }
       res.status(200).json(myBookmark);
@@ -391,11 +395,11 @@ class ControllerClient {
         throw { name: "NotFound" };
       }
 
-      // await MyBooking.destroy({
-      //   where: {
-      //     id,
-      //   },
-      // });
+      await MyBooking.destroy({
+        where: {
+          id,
+        },
+      });
 
       res.status(200).json({
         message: "My Booking succesfully delete",
