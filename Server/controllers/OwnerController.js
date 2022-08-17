@@ -162,9 +162,6 @@ module.exports = class OwnerController {
         StackImages,
         StackFacilities,
       } = req.body;
-      console.log(StackRules);
-      console.log(StackFacilities);
-
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -186,15 +183,16 @@ module.exports = class OwnerController {
           description,
           mainImg,
           address,
-          UserId: req.user.id,
           location: Sequelize.fn("ST_GeomFromText", `POINT(${latlong})`),
         },
         { transaction: t, where: { id } }
       );
+      console.log(boardinghouse, "?////");
       if (boardinghouse <= 0) throw { name: "NotFound" };
       const rules = StackRules.map((rule) => {
         return { BoardingHouseId: id, RuleId: rule.RuleId };
       });
+      console.log(rules, "<<<");
       await BoardingHouseRules.destroy({
         where: { BoardingHouseId: id },
         transaction: t,
@@ -204,7 +202,8 @@ module.exports = class OwnerController {
         return { imgUrl: img, BoardingHouseId: id };
       });
       await Images.destroy({
-        where: { BoardingHouseId: id, transaction: t },
+        where: { BoardingHouseId: id },
+        transaction: t,
       });
       await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
@@ -212,8 +211,8 @@ module.exports = class OwnerController {
       });
       await BoardingHouseFacilities.destroy({
         where: { BoardingHouseId: id },
+        transaction: t,
       });
-
       await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
       res
@@ -242,20 +241,11 @@ module.exports = class OwnerController {
   static async uploadImage(req, res, next) {
     try {
       console.log(req.files, "file");
-
-      // let finalImageUrl =
-      //   req.protocol +
-      //   "://" +
-      //   req.get("host") +
-      //   "/uploads/" +
-      //   req.file.filename;
-      // console.log(finalImageUrl, "finaldsad");
       const images = [];
       const url = req.protocol + "://" + req.get("host") + "/uploads/";
       for (let i = 0; i < req.files.length; i++) {
         images.push(url + req.files[i].filename);
       }
-      console.log(images);
       res.status(200).json(images);
     } catch (err) {
       next(err);

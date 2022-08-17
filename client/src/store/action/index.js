@@ -444,24 +444,31 @@ export const deleteMyBookingByIdUser = (id) => {
   };
 };
 
-export const updateBoardingHouse = (id, formUpdate) => {
+export const updateBoardingHouse = (id, formUpdate, saveImage) => {
   console.log(id);
   return (dispatch, getState) => {
     return new Promise(async (resolve, reject) => {
       try {
+        let formData = new FormData();
+        for (let i = 0; i < saveImage.length; i++) {
+          formData.append("photo", saveImage[i]);
+        }
+        const { data } = await axios.post(`${baseUrl}/owner/upload`, formData);
+        let mainImg = data.shift();
         await axios.put(
           `${baseUrl}/owner/boardinghouse/${id}`,
           {
-            StackFacilities: formUpdate.StackFacilities,
+            StackFacilities: formUpdate.BoardingHouseFacilities,
             name: formUpdate.name,
             price: formUpdate.price,
             CategoryId: formUpdate.CategoryId,
             CityId: formUpdate.CityId,
             totalRoom: formUpdate.totalRoom,
             description: formUpdate.description,
-            mainImg: formUpdate.mainImg,
+            mainImg: mainImg,
             address: formUpdate.address,
-            StackRules: formUpdate.StackRules,
+            StackRules: formUpdate.BoardingHouseRules,
+            StackImages: data,
           },
           {
             headers: {
