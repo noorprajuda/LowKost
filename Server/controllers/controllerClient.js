@@ -69,16 +69,18 @@ class ControllerClient {
             },
           },
         ],
-        attributes: {
-          exclude: ["createdAt", "updatedAt"],
-        },
+        attributes: [
+          {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        ],
       };
       //ini di test
-      // if (city) {
-      //   options.where = {
-      //     CityId: city,
-      //   };
-      // }
+      if (city) {
+        options.where = {
+          CityId: city,
+        };
+      }
 
       let kos = await BoardingHouses.findAll(options);
 
@@ -432,23 +434,23 @@ class ControllerClient {
         let res = jsn[i];
         latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
       }
-      console.log(latlong, "<<<<<<<<<< ");
       const long = latlong.split(" ")[1];
       const lat = latlong.split(" ")[0];
       const distance = 3000;
       const result = await sequelize.query(
-        `SELECT b.id ,b."name" ,b.price ,b."CategoryId" ,b."CityId" ,b."totalRoom" ,b."UserId",b.description ,b."location" ,b.slug ,b."mainImg" ,b.address 
-        ,c."name" ,c2."name" , u.id ,u."fullName" ,u.email ,u."role" ,u.address ,u."phoneNumber" 
-        FROM "BoardingHouses" b 
-        JOIN "Categories" c ON c.id = b."CategoryId" 
-        JOIN "Cities" c2 ON c2.id = b."CityId" 
-        JOIN "Users" u ON u.id = b."UserId"  
-        where
-        ST_DWithin(location,
-        ST_MakePoint(:lat,
-        :long),
-        :distance,
-        true) = true;`,
+        `SELECT b.id ,b."name" ,b.price ,c.name AS "Category",b."location" ,b."mainImg" 
+        ,b.address 
+            ,c."name" ,c2."name" AS cities 
+            FROM "BoardingHouses" b 
+            JOIN "Categories" c ON c.id = b."CategoryId" 
+            JOIN "Cities" c2 ON c2.id = b."CityId" 
+            where
+            ST_DWithin(location,
+            ST_MakePoint(:lat,
+            :long),
+            :distance,
+            true) = true;
+            `,
         {
           replacements: {
             distance: +distance,
@@ -461,7 +463,11 @@ class ControllerClient {
           type: sequelize.QueryTypes.SELECT,
         }
       );
-      console.log(result);
+      result.forEach((el) => {
+        el.Category = {
+          name: el.Category,
+        };
+      });
       res.status(200).json(result);
     } catch (err) {
       next(err);

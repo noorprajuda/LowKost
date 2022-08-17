@@ -90,12 +90,9 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        // StackImages,
+        StackImages,
         StackFacilities,
       } = req.body;
-
-      console.log(req.body);
-
       let latlong = "";
       const response = await googleMapsClient
         .geocode({
@@ -110,8 +107,6 @@ module.exports = class OwnerController {
         let res = jsn[i];
         latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
       }
-
-      console.log(latlong, "<<<<<<<<<< ");
       const newBoardingHouse = await BoardingHouses.create(
         {
           name,
@@ -131,10 +126,10 @@ module.exports = class OwnerController {
         return { BoardingHouseId: newBoardingHouse.id, RuleId: rule.id };
       });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      // const images = await StackImages.map((img) => {
-      //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
-      // });
-      // await Images.bulkCreate(StackImages, { transaction: t });
+      const images = await StackImages.map((img) => {
+        return { imgUrl: img, BoardingHouseId: newBoardingHouse.id };
+      });
+      await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
         return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
       });
@@ -164,7 +159,7 @@ module.exports = class OwnerController {
         mainImg,
         address,
         StackRules,
-        // StackImages,
+        StackImages,
         StackFacilities,
       } = req.body;
       console.log(StackRules);
@@ -205,13 +200,13 @@ module.exports = class OwnerController {
         transaction: t,
       });
       await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      // const images = await StackImages.map((img) => {
-      //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
-      // });
-      // await Images.destroy({
-      //   where: { BoardingHouseId: boardinghouse.id, transaction: t },
-      // });
-      // await Images.bulkCreate(images, { transaction: t });
+      const images = await StackImages.map((img) => {
+        return { imgUrl: img, BoardingHouseId: id };
+      });
+      await Images.destroy({
+        where: { BoardingHouseId: id, transaction: t },
+      });
+      await Images.bulkCreate(images, { transaction: t });
       const facilities = StackFacilities.map((el) => {
         return { FacilityId: el.FacilityId, BoardingHouseId: id };
       });
@@ -245,11 +240,26 @@ module.exports = class OwnerController {
   }
 
   static async uploadImage(req, res, next) {
-    // console.log(req.body.formData, "<<<");
-    console.log(req.file, "file");
-    let finalImageUrl =
-      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
-    res.status(200).json({ image: finalImageUrl });
+    try {
+      console.log(req.files, "file");
+
+      // let finalImageUrl =
+      //   req.protocol +
+      //   "://" +
+      //   req.get("host") +
+      //   "/uploads/" +
+      //   req.file.filename;
+      // console.log(finalImageUrl, "finaldsad");
+      const images = [];
+      const url = req.protocol + "://" + req.get("host") + "/uploads/";
+      for (let i = 0; i < req.files.length; i++) {
+        images.push(url + req.files[i].filename);
+      }
+      console.log(images);
+      res.status(200).json(images);
+    } catch (err) {
+      next(err);
+    }
   }
 
   static async getListTenant(req, res, next) {
