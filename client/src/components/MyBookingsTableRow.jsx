@@ -12,6 +12,7 @@ import {
 const baseUrl = "http://localhost:4000";
 
 export default function MyBookingsTableRow({ myBooking }) {
+  const myBookings = useSelector((state) => state.myBookings.myBookings);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,10 +34,15 @@ export default function MyBookingsTableRow({ myBooking }) {
 
   const paymentHandler = async (e) => {
     try {
+      let finalAmount = myBooking.BoardingHouse.price;
+      if (myBookings.length === 1) {
+        finalAmount = finalAmount - 300000;
+      }
+
       const obj = {
         email: localStorage.getItem("email"),
         name: localStorage.getItem("fullName"),
-        amount: myBooking.BoardingHouse.price,
+        amount: finalAmount,
       };
       const access_token = localStorage.getItem("access_token");
       console.log("access_token", access_token);

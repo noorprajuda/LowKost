@@ -52,9 +52,13 @@ export default function CardBookmark({ bookmark }) {
                 >
                   {bookmark.BoardingHouse.City.name}
                 </a>
-                <a className="text-red-600 italic ml-2">
-                  Sisa kamar {bookmark.BoardingHouse.totalRoom}
-                </a>
+                {bookmark.BoardingHouse.totalRoom < 5 ? (
+                  <a className="text-red-600 italic ml-2">
+                    Sisa kamar {bookmark.BoardingHouse.totalRoom}
+                  </a>
+                ) : (
+                  <a></a>
+                )}
               </div>
 
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
