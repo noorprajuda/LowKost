@@ -18,6 +18,9 @@ function errorHandler(err, req, res, next) {
     case "invalidAddress":
       res.status(400).json({ message: "Please enter a valid address!" });
       break;
+    case "double":
+      res.status(400).json({ message: "Already added to your bookmark!" });
+      break;
     default:
       res.status(500).json({ message: "Internal server error" });
       break;

@@ -69,11 +69,9 @@ class ControllerClient {
             },
           },
         ],
-        attributes: [
-          {
-            exclude: ["createdAt", "updatedAt"],
-          },
-        ],
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
       };
       //ini di test
       if (city) {
@@ -84,6 +82,15 @@ class ControllerClient {
 
       let kos = await BoardingHouses.findAll(options);
       //loop , await id, detail
+
+      for (let i = 0; i < kos.length; i++) {
+        let getQty = await MyBooking.findAll({
+          where: { BoardingHouseId: kos[i].id },
+        });
+        if (getQty.length) {
+          kos[i].totalRoom = kos[i].totalRoom - getQty.length;
+        }
+      }
 
       res.status(200).json(kos);
     } catch (err) {
@@ -140,6 +147,14 @@ class ControllerClient {
       //     exclude: ["createdAt", "updatedAt"],
       //   },
       // });
+      const houseTenant = await MyBooking.findAll({
+        where: { BoardingHouseId: idBourdingHousesId.id },
+      });
+
+      if (houseTenant.length) {
+        idBourdingHousesId.totalRoom =
+          idBourdingHousesId.totalRoom - houseTenant.length;
+      }
 
       res.status(200).json(idBourdingHousesId);
     } catch (err) {
@@ -186,6 +201,14 @@ class ControllerClient {
           },
         },
       });
+      for (let i = 0; i < myBookmark.length; i++) {
+        let getQty = await MyBooking.findAll({
+          where: { BoardingHouseId: myBookmark[i].id },
+        });
+        if (getQty.length) {
+          myBookmark[i].totalRoom = kos[i].totalRoom - getQty.length;
+        }
+      }
       res.status(200).json(myBookmark);
     } catch (err) {
       next(err);
@@ -284,7 +307,12 @@ class ControllerClient {
         BoardingHouseId: id,
       };
 
-      const makeBookmark = await Bookmarks.create(input);
+      const findBookmark = await Bookmarks.findOne({
+        where: { UserId: UserId, BoardingHouseId: id },
+      });
+      if (findBookmark) throw { name: "double" };
+
+      await Bookmarks.create(input);
       res.status(201).json({ message: "Succesfully add bookmark" });
     } catch (err) {
       console.log(err);
@@ -441,7 +469,7 @@ class ControllerClient {
       const result = await sequelize.query(
         `SELECT b.id ,b."name" ,b.price ,c.name AS "Category",b."location" ,b."mainImg" 
         ,b.address 
-            ,c."name" ,c2."name" AS cities 
+             ,c2."name" AS cities , b."description"
             FROM "BoardingHouses" b 
             JOIN "Categories" c ON c.id = b."CategoryId" 
             JOIN "Cities" c2 ON c2.id = b."CityId" 
