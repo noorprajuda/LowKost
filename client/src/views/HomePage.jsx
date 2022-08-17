@@ -33,9 +33,6 @@ export default function HomePage() {
     setLocalBoardingHouses(boardingHouses);
   }, [boardingHouses]);
 
-  console.log(mainImg);
-  console.log(boardingHouses);
-
   const [cityId, setCityId] = useState(0);
 
   useEffect(() => {
@@ -44,7 +41,6 @@ export default function HomePage() {
         (boardingHouse) => boardingHouse.CityId == cityId
       );
       setLocalBoardingHouses(filteredBoardingHouses);
-      console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
     } else {
       setLocalBoardingHouses(boardingHouses);
     }
@@ -64,7 +60,6 @@ export default function HomePage() {
         (boardingHouse) => boardingHouse.CategoryId == categoryId
       );
       setLocalBoardingHouses(filteredBoardingHouses);
-      console.log(localBoardingHouses, "<<<<<<<< localBoardingHouses");
     } else {
       setLocalBoardingHouses(boardingHouses);
     }

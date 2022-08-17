@@ -18,6 +18,7 @@ import ImagesPage from "./views/ImagesPage";
 import MyBookingsPage from "./views/MyBookingsPage";
 import AuthOwner from "./components/RouteGuard/AuthOwner";
 import AuthTenant from "./components/RouteGuard/AuthTenant";
+import ListTenantKos from "./views/ListTenantKos";
 
 function App() {
   return (
@@ -68,6 +69,14 @@ function App() {
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
         <Route path="/Kos/:id" element={<GoogleMapPage />} />
+        <Route
+          path="/list-tenant"
+          element={
+            <AuthOwner>
+              <ListTenantKos />
+            </AuthOwner>
+          }
+        />
       </Routes>
       <Footer />
     </div>

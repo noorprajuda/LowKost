@@ -8,6 +8,7 @@ const {
   City,
   Rules,
   BoardingHouseRules,
+  MyBooking,
   sequelize,
   Sequelize,
 } = require("../models");
@@ -101,8 +102,9 @@ module.exports = class OwnerController {
           address: address,
         })
         .asPromise();
+      if (!response.json.results.length || response.json.results.length > 2)
+        throw { name: "invalidAddress" };
 
-      if (!response.json.results.length) throw { name: "invalidAddress" };
       let jsn = response.json.results;
       for (let i = 0; i < jsn.length; i++) {
         let res = jsn[i];

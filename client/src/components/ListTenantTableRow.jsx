@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBoardingHouseOwner } from "../store/action";
 
-export default function BoardingHousesTableRow({ boardingHouses }) {
+export default function ListTenantTableRow({ boardingHouses }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const updateHandler = (id) => {
