@@ -89,11 +89,20 @@ export default function DetailPage() {
     dispatch(addToMyBookmark(e.target.value))
       .then((response) => response.json())
       .then((data) => {
-        Swal.fire(
-          "Hebat!",
-          "Anda sukses menambahkan kos ini ke favorit!",
-          "success"
-        );
+        console.log(data, "-=-=-=-=-=");
+        if (data.message == "Already added to your bookmark!") {
+          Swal.fire(
+            "Terjadi kesalahan!",
+            "Anda telah menambahkan kosan ini sebelumnya ke favorit",
+            "error"
+          );
+        } else {
+          Swal.fire(
+            "Hebat!",
+            "Anda sukses menambahkan kos ini ke favorit!",
+            "success"
+          );
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
