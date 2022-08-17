@@ -208,22 +208,15 @@ export const registerOwner = (formRegister) => {
   };
 };
 
-export const registerTenant = (formBoardingHouse) => {
+export const registerTenant = (formRegister) => {
   return (dispatch, getState) => {
     return new Promise(async (resolve, reject) => {
       try {
         const resp = await axios.post(
           `${baseUrl}/user/register`,
-          {
-            headers: {
-              access_token: localStorage.getItem("access_token"),
-            },
-          },
-          formBoardingHouse
+
+          formRegister
         );
-
-        dispatch(fetchBoardingHouses());
-
         resolve();
       } catch (err) {
         reject(err);

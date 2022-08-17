@@ -122,7 +122,7 @@ export default function Navbar() {
                   className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
                   aria-current="page"
                 >
-                  Daftar Pembelian
+                  Pembelian
                 </a>
               </li>
               <li>
