@@ -222,7 +222,7 @@ describe("post  /owner/boardinghouses", () => {
         const { body, status } = res;
         expect(status).toBe(201);
         // console.log(body, "<<<");
-        expect(body).toEqual(expect.any(Object));
+        expect(response.body).toHaveProperty("message", expect.any(String));
         return done();
       });
   });
@@ -244,8 +244,8 @@ describe("post  /owner/boardinghouses", () => {
 
 describe("Put /owner/boardinghouse/:id", () => {
   //test ada yang salah
-  test("Put BoardingHouses Owner", async () => {
-    const response = await request(app)
+  test("Put BoardingHouses Owner", () => {
+    request(app)
       .put("/owner/boardinghouse/1")
       .set({ access_token })
       .send({
@@ -275,9 +275,16 @@ describe("Put /owner/boardinghouse/:id", () => {
             id: 1,
           },
         ],
+      })
+      .end((err, res) => {
+        console.log(err);
+        if (err) return done(err);
+        const { body, status } = res;
+        expect(status).toBe(201);
+        // console.log(body, "<<<");
+        expect(response.body).toHaveProperty("message", expect.any(String));
+        return done();
       });
-    await expect(response.status).toBe(200);
-    await expect(response.body).toEqual(expect.any(Object));
   });
 
   test("Fail case get all BoardingHouses Tenant", () => {
@@ -297,8 +304,8 @@ describe("Put /owner/boardinghouse/:id", () => {
 
 describe("Delete /owner/boardinghouse/:id", () => {
   //test ada yang salah
-  test("Delete BoardingHouses Owner", async () => {
-    const response = await request(app)
+  test("Delete BoardingHouses Owner", () => {
+    request(app)
       .delete("/owner/boardinghouse/1")
       .set({ access_token });
     // .send({

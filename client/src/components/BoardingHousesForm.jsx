@@ -109,20 +109,18 @@ export default function BoardingHousesForm() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(createBoardingHouse(formBoardingHouse, checkRules, saveImage));
-    // navigate("/owner");
-    // console.log(saveImage);
-    // // console.log(kosRules);
-    // console.log(checkRules, "rules");
-    // console.log(formBoardingHouse);
-    // console.log(formBoardingHouse.StackRules);
-    // console.log(formBoardingHouse.StackFacilities);
-
-    // .then((resp) => {
-    //   Swal.fire("Hebat!", "Anda akan diarahkan ke halaman home!", "success");
-    //   navigate("/owner");
-    // })
-    // .catch((err) => console.log(err));
+    dispatch(createBoardingHouse(formBoardingHouse, checkRules, saveImage))
+      .then((resp) => {
+        Swal.fire("Hebat!", "Anda akan diarahkan ke halaman home!", "success");
+        navigate("/owner");
+      })
+      .catch((err) =>
+        Swal.fire(
+          "Alamat tidak valid",
+          "Pastikan alamat yang dimasukkan lengkap",
+          "question"
+        )
+      );
   };
 
   return (
@@ -277,7 +275,7 @@ export default function BoardingHousesForm() {
                 </div>
               </div>
 
-              <div class="mb-6">
+              {/* <div class="mb-6">
                 <label
                   for="email"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -293,7 +291,7 @@ export default function BoardingHousesForm() {
                   placeholder="http://www.image.com"
                   required
                 />
-              </div>
+              </div> */}
 
               <div class="mb-6">
                 <label

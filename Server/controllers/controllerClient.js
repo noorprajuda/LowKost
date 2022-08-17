@@ -416,8 +416,9 @@ class ControllerClient {
 
   static async searchHandler(req, res, next) {
     try {
-      const { address } = req.body;
-      console.log(address);
+      const { address } = req.query;
+
+      console.log(address, "<<<address");
       const response = await googleMapsClient
         .geocode({
           address: address,
@@ -434,18 +435,20 @@ class ControllerClient {
       console.log(latlong, "<<<<<<<<<< ");
       const long = latlong.split(" ")[1];
       const lat = latlong.split(" ")[0];
-      const distance = 5000;
+      const distance = 3000;
       const result = await sequelize.query(
-        `SELECT
-      *
-    FROM
-      "BoardingHouses"
-    where
-      ST_DWithin(location,
-      ST_MakePoint(:lat,
-      :long),
-      :distance,
-    true) = true;`,
+        `SELECT b.id ,b."name" ,b.price ,b."CategoryId" ,b."CityId" ,b."totalRoom" ,b."UserId",b.description ,b."location" ,b.slug ,b."mainImg" ,b.address 
+        c."name" ,c2."name" , u.id ,u."fullName" u.email u."role" ,u.address u."phoneNumber" 
+        FROM "BoardingHouses" b 
+        JOIN "Categories" c ON c.id = b."CategoryId" 
+        JOIN "Cities" c2 ON c2.id = b."CityId" 
+        JOIN "Users" u ON u.id = b."UserId"  
+        where
+        ST_DWithin(location,
+        ST_MakePoint(:lat,
+        :long),
+        :distance,
+        true) = true;`,
         {
           replacements: {
             distance: +distance,
@@ -458,6 +461,7 @@ class ControllerClient {
           type: sequelize.QueryTypes.SELECT,
         }
       );
+      console.log(result);
       res.status(200).json(result);
     } catch (err) {
       next(err);
