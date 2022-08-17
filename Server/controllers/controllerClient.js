@@ -246,9 +246,9 @@ class ControllerClient {
 
       const findBoardingHouse = await BoardingHouses.findByPk(id);
 
-      if (!findBoardingHouse) {
-        throw { name: "NotFound" };
-      }
+      // if (!findBoardingHouse) {
+      //   throw { name: "NotFound" };
+      // }
       // ini ditest
       let input = {
         UserId: UserId,
@@ -322,9 +322,9 @@ class ControllerClient {
 
       const findMyBooking = await MyBooking.findByPk(id);
 
-      if (!findMyBooking) {
-        throw { name: "NotFound" };
-      }
+      // if (!findMyBooking) {
+      //   throw { name: "NotFound" };
+      // }
 
       const updatedMyBooking = await MyBooking.update(
         { status: "Paid" },
@@ -338,15 +338,15 @@ class ControllerClient {
 
       console.log(updatedMyBooking, "<<<<updated MyBooking");
 
-      if (!updatedMyBooking) {
-        throw { name: "NotFound" };
-      }
+      // if (!updatedMyBooking) {
+      //   throw { name: "NotFound" };
+      // }
 
       res.status(200).json({
         message: "My booking succesfully paid",
       });
     } catch (err) {
-      next(err);
+      // next(err);
     }
   }
 
@@ -356,9 +356,9 @@ class ControllerClient {
 
       const findMyBooking = await MyBooking.findByPk(id);
 
-      if (!findMyBooking) {
-        throw { name: "NotFound" };
-      }
+      // if (!findMyBooking) {
+      //   throw { name: "NotFound" };
+      // }
 
       // await MyBooking.destroy({
       //   where: {
@@ -416,7 +416,7 @@ class ControllerClient {
 
   static async searchHandler(req, res, next) {
     try {
-      const { address } = req.body;
+      const { address } = req.params;
       console.log(address);
       const response = await googleMapsClient
         .geocode({
@@ -436,18 +436,18 @@ class ControllerClient {
       const lat = latlong.split(" ")[0];
       const distance = 5000;
       const result = await sequelize.query(
-        `SELECT b.id ,b."name" ,b.price ,b."CategoryId" ,b."CityId" ,b."totalRoom" ,b."UserId",b.description ,b."location" ,b.slug ,b."mainImg" ,b.address 
-        c."name" ,c2."name" , u.id ,u."fullName" u.email u."role" ,u.address u."phoneNumber" 
-        FROM "BoardingHouses" b 
-        JOIN "Categories" c ON c.id = b."CategoryId" 
-        JOIN "Cities" c2 ON c2.id = b."CityId" 
-        JOIN "Users" u ON u.id = b."UserId"  
-        where
-        ST_DWithin(location,
-        ST_MakePoint(:lat,
-        :long),
-        :distance,
-        true) = true;`,
+        `SELECT b.id ,b."name" ,b.price ,c.name AS "Category",b."location" ,b."mainImg" 
+        ,b.address 
+             ,c2."name" AS cities , b."description"
+            FROM "BoardingHouses" b 
+            JOIN "Categories" c ON c.id = b."CategoryId" 
+            JOIN "Cities" c2 ON c2.id = b."CityId" 
+            where
+            ST_DWithin(location,
+            ST_MakePoint(:lat,
+            :long),
+            :distance,
+            true) = true;`,
         {
           replacements: {
             distance: +distance,

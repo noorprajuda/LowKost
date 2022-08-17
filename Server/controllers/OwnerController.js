@@ -8,6 +8,7 @@ const {
   City,
   Rules,
   BoardingHouseRules,
+  MyBooking,
   sequelize,
   Sequelize,
 } = require("../models");
@@ -102,49 +103,49 @@ module.exports = class OwnerController {
         })
         .asPromise();
 
-      if (!response.json.results.length) throw { name: "invalidAddress" };
-      let jsn = response.json.results;
-      for (let i = 0; i < jsn.length; i++) {
-        let res = jsn[i];
-        latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
-      }
+      // if (!response.json.results.length) throw { name: "invalidAddress" };
+      // let jsn = response.json.results;
+      // for (let i = 0; i < jsn.length; i++) {
+      //   let res = jsn[i];
+      //   latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
+      // }
 
-      console.log(latlong, "<<<<<<<<<< ");
-      const newBoardingHouse = await BoardingHouses.create(
-        {
-          name,
-          price,
-          CategoryId,
-          CityId,
-          totalRoom,
-          description,
-          mainImg,
-          address,
-          UserId: req.user.id,
-          location: Sequelize.fn("ST_GeomFromText", `POINT(${latlong})`),
-        },
-        { transaction: t }
-      );
-      const rules = StackRules.map((rule) => {
-        return { BoardingHouseId: newBoardingHouse.id, RuleId: rule.id };
-      });
-      await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      // const images = await StackImages.map((img) => {
-      //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
+      // console.log(latlong, "<<<<<<<<<< ");
+      // const newBoardingHouse = await BoardingHouses.create(
+      //   {
+      //     name,
+      //     price,
+      //     CategoryId,
+      //     CityId,
+      //     totalRoom,
+      //     description,
+      //     mainImg,
+      //     address,
+      //     UserId: req.user.id,
+      //     location: Sequelize.fn("ST_GeomFromText", `POINT(${latlong})`),
+      //   },
+      //   { transaction: t }
+      // );
+      // const rules = StackRules.map((rule) => {
+      //   return { BoardingHouseId: newBoardingHouse.id, RuleId: rule.id };
       // });
-      // await Images.bulkCreate(StackImages, { transaction: t });
-      const facilities = StackFacilities.map((el) => {
-        return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
-      });
-      await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
-      await t.commit();
-      res
-        .status(200)
-        .json({ message: `Successfull add new Kos ${newBoardingHouse.name}` });
+      // await BoardingHouseRules.bulkCreate(rules, { transaction: t });
+      // // const images = await StackImages.map((img) => {
+      // //   return { imgUrl: img.imgUrl, BoardingHouseId: newBoardingHouse.id };
+      // // });
+      // // await Images.bulkCreate(StackImages, { transaction: t });
+      // const facilities = StackFacilities.map((el) => {
+      //   return { FacilityId: el.id, BoardingHouseId: newBoardingHouse.id };
+      // });
+      // await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
+      // await t.commit();
+      // res
+      //   .status(201)
+      //   .json({ message: `Successfull add new Kos ${newBoardingHouse.name}` });
     } catch (err) {
-      console.log(err);
-      await t.rollback();
-      next(err);
+      // console.log(err);
+      // await t.rollback();
+      // next(err);
     }
   }
 
@@ -195,29 +196,29 @@ module.exports = class OwnerController {
         { transaction: t, where: { id } }
       );
       if (boardinghouse <= 0) throw { name: "NotFound" };
-      const rules = StackRules.map((rule) => {
-        return { BoardingHouseId: id, RuleId: rule.RuleId };
-      });
-      await BoardingHouseRules.destroy({
-        where: { BoardingHouseId: id },
-        transaction: t,
-      });
-      await BoardingHouseRules.bulkCreate(rules, { transaction: t });
-      // const images = await StackImages.map((img) => {
-      //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
+      // const rules = StackRules.map((rule) => {
+      //   return { BoardingHouseId: id, RuleId: rule.RuleId };
       // });
-      // await Images.destroy({
-      //   where: { BoardingHouseId: boardinghouse.id, transaction: t },
+      // await BoardingHouseRules.destroy({
+      //   where: { BoardingHouseId: id },
+      //   transaction: t,
       // });
-      // await Images.bulkCreate(images, { transaction: t });
-      const facilities = StackFacilities.map((el) => {
-        return { FacilityId: el.FacilityId, BoardingHouseId: id };
-      });
-      await BoardingHouseFacilities.destroy({
-        where: { BoardingHouseId: id },
-      });
+      // await BoardingHouseRules.bulkCreate(rules, { transaction: t });
+      // // const images = await StackImages.map((img) => {
+      // //   return { imgUrl: img.imgUrl, BoardingHouseId: boardinghouse.id };
+      // // });
+      // // await Images.destroy({
+      // //   where: { BoardingHouseId: boardinghouse.id, transaction: t },
+      // // });
+      // // await Images.bulkCreate(images, { transaction: t });
+      // const facilities = StackFacilities.map((el) => {
+      //   return { FacilityId: el.FacilityId, BoardingHouseId: id };
+      // });
+      // await BoardingHouseFacilities.destroy({
+      //   where: { BoardingHouseId: id },
+      // });
 
-      await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
+      // await BoardingHouseFacilities.bulkCreate(facilities, { transaction: t });
       await t.commit();
       res
         .status(200)
@@ -238,16 +239,16 @@ module.exports = class OwnerController {
       await BoardingHouses.destroy({ where: { id } });
       res.status(200).json({ message: `Successfully delete data` });
     } catch (err) {
-      next(err);
+      // next(err);
     }
   }
 
   static async uploadImage(req, res, next) {
     // console.log(req.body.formData, "<<<");
-    console.log(req.file, "file");
-    let finalImageUrl =
-      req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
-    res.status(200).json({ image: finalImageUrl });
+    // console.log(req.file, "file");
+    // let finalImageUrl =
+    //   req.protocol + "://" + req.get("host") + "/uploads/" + req.file.filename;
+    // res.status(200).json({ image: finalImageUrl });
   }
 
   static async getListTenant(req, res, next) {
@@ -259,23 +260,26 @@ module.exports = class OwnerController {
           BoardingHouseId: id,
           status: "Paid",
         },
-        include: {
-          model: BoardingHouses,
-          include: [
-            { model: Categories, attributes: ["name"] },
-            { model: City, attributes: ["name"] },
-            {
-              model: Users,
-              attributes: {
-                exclude: ["createdAt", "updatedAt", "password"],
-              },
+        include: [
+          {
+            model: BoardingHouses,
+            include: [
+              { model: Categories, attributes: ["name"] },
+              { model: City, attributes: ["name"] },
+
+              { model: Images, attributes: ["imgUrl"] },
+            ],
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
             },
-            { model: Images, attributes: ["imgUrl"] },
-          ],
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
           },
-        },
+          {
+            model: Users,
+            where: {
+              role: "Tenant",
+            },
+          },
+        ],
       });
 
       res.status(200).json(listTenant);
@@ -287,12 +291,13 @@ module.exports = class OwnerController {
   static async deleteListTenant(req, res, next) {
     try {
       const { id, userId } = req.params;
+      console.log(id, userId, "><><><><><><><><><><><><><>< datanya user");
 
       const findMyBooking = await MyBooking.findByPk(id);
 
-      if (!findMyBooking) {
-        throw { name: "NotFound" };
-      }
+      // if (!findMyBooking) {
+      //   throw { name: "NotFound" };
+      // }
 
       const destroyList = await MyBooking.destroy({
         where: {
@@ -302,6 +307,7 @@ module.exports = class OwnerController {
 
       res.status(200).json({ message: "User has been deleted" });
     } catch (err) {
+      console.log(err, "<><><><><><><><><><><><> data errr");
       next(err);
     }
   }

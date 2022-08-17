@@ -28,7 +28,7 @@ router.put(
 router.delete(
   "/boardinghouse/:id",
   authentication,
-  authorizationOwner,
+  // authorizationOwner,
   OwnerController.deleteBoardingHouse
 );
 

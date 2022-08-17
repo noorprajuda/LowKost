@@ -36,7 +36,7 @@ class ControllerAdmin {
 
       res.status(200).json(adminKos);
     } catch (err) {
-      next(err);
+      // next(err);
     }
   }
 

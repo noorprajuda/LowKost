@@ -98,7 +98,7 @@ describe("get /admin/boardinghouses", () => {
     await expect(response.body).toEqual(expect.any(Array));
   });
 
-  test("Fail case get all BoardingHouses Admin", () => {
+  test("Fail case get all BoardingHouses Tenant", () => {
     jest.spyOn(BoardingHouses, "findAll").mockRejectedValue("Error");
     return request(app)
       .get("/admin/boardinghouses")

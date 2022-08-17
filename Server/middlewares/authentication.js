@@ -8,9 +8,9 @@ const authentication = async (req, res, next) => {
     const decode = verifyToken(access_token);
 
     const user = await Users.findOne({ where: { email: decode.email } });
-    if (!user) {
-      throw { name: "Unauthorized" };
-    }
+    // if (!user) {
+    //   throw { name: "Unauthorized" };
+    // }
     req.user = {
       id: user.id,
       email: user.email,

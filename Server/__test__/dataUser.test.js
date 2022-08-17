@@ -10,6 +10,10 @@ const {
   Bookmarks,
   MyBooking,
 } = require("../models");
+const googleMapsClient = require("@google/maps").createClient({
+  key: process.env.GOOGLE_MAPS_API,
+  Promise: Promise,
+});
 const {
   signToken,
   verifyToken,
@@ -315,7 +319,7 @@ describe("delete /user/bookmark/:id", () => {
 describe("get /user/mybookings", () => {
   test("Get all Mybookings in user", async () => {
     const response = await request(app)
-      .get("/user/bookmark")
+      .get("/user/mybookings")
       .set({ access_token });
     await expect(response.status).toBe(200);
   });
@@ -323,7 +327,7 @@ describe("get /user/mybookings", () => {
   test("Fail case get user tenant Bookmark", () => {
     jest.spyOn(MyBooking, "findAll").mockRejectedValue("Error");
     return request(app)
-      .get("/user/bookmark")
+      .get("/user/mybookings")
       .set({ access_token })
       .then((res) => {
         expect(res.status).toBe(500);
@@ -496,5 +500,28 @@ describe("Auhthentication", () => {
       .set({ access_token_fail });
     await expect(response.status).toBe(401);
     await expect(response.body).toEqual(expect.any(Object));
+  });
+});
+
+describe("get /user/searchboardinghouses", () => {
+  test("Get searchboardinghouses", async () => {
+    const response = await request(app).get(
+      "/user/searchboardinghouses?address=Jakarta"
+    );
+    await expect(response.status).toBe(200);
+    await expect(response.body).toEqual(expect.any(Array));
+  });
+
+  test("Fail case get user tenant Bookmark", () => {
+    jest.spyOn(googleMapsClient, "findAll").mockRejectedValue("Error");
+    return request(app)
+      .get("/user/searchboardinghouses?address=")
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        // console.log(err);
+      });
   });
 });

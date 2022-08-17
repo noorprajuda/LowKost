@@ -28,6 +28,7 @@ const dataRulesw = require("../../data/server.json").Rules;
 
 let access_token = "";
 let access_token_fail_admin = "";
+
 beforeAll(async () => {
   try {
     const dataCitynew = await City.bulkCreate(dataCity);
@@ -40,13 +41,13 @@ beforeAll(async () => {
       email: "admin@mail.com",
       password: hashPassword("12345678"),
       phoneNumber: "086363628781",
-      role: "Tenant",
+      role: "Owner",
       address: "Jalan boulevard 1 no 12",
     });
     access_token = signToken({
       id: 1,
       email: "admin@mail.com",
-      role: "Tenant",
+      role: "Owner",
     });
 
     const databaru = await BoardingHouses.create({
@@ -61,17 +62,17 @@ beforeAll(async () => {
       location: Sequelize.fn("ST_GeomFromText", `POINT(-6.131164 106.85564)`),
       mainImg: "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg",
     });
-    console.log(databaru, "<<<<<<data baru ini idnya ada kayanay");
+    // console.log(databaru, "<<<<<<data baru ini idnya ada kayanay");
 
-    const boadringhousesF = await BoardingHouseRules.create({
-      FacilityId: 1,
-      BoardingHouseId: 1,
-    });
+    // const boadringhousesF = await BoardingHouseRules.create({
+    //   FacilityId: 1,
+    //   BoardingHouseId: 1,
+    // });
 
-    const boadringhousesR = await BoardingHouseFacilities.create({
-      RuleId: 1,
-      BoardingHouseId: 1,
-    });
+    // const boadringhousesR = await BoardingHouseFacilities.create({
+    //   RuleId: 1,
+    //   BoardingHouseId: 1,
+    // });
 
     const dataBooking = await MyBooking.create({
       UserId: 1,
@@ -119,6 +120,12 @@ afterAll(async () => {
 
     await Images.destroy({
       where: {},
+      cascade: true,
+      truncate: true,
+      restartIdentity: true,
+    });
+
+    await MyBooking.destroy({
       cascade: true,
       truncate: true,
       restartIdentity: true,
@@ -217,7 +224,7 @@ describe("post  /owner/boardinghouses", () => {
         ],
       })
       .end((err, res) => {
-        console.log(err);
+        // console.log(err);
         if (err) return done(err);
         const { body, status } = res;
         expect(status).toBe(201);
@@ -304,22 +311,21 @@ describe("Put /owner/boardinghouse/:id", () => {
 
 describe("Delete /owner/boardinghouse/:id", () => {
   //test ada yang salah
-  test("Delete BoardingHouses Owner", () => {
-    request(app)
+  test("Delete BoardingHouses Owner", async () => {
+    const response = await request(app)
       .delete("/owner/boardinghouse/1")
       .set({ access_token });
     // .send({
     //   id: 1,
     // });
     await expect(response.status).toBe(200);
-    await expect(response.body).toEqual(expect.any(Object));
+    await expect(response.body).toHaveProperty("message", expect.any(String));
   });
 
   test("Fail case get all BoardingHouses Tenant", () => {
     request(app)
-      .delete("/owner/boardinghouse/1")
+      .delete("/owner/boardinghouse")
       .set({ access_token })
-      .send({})
       .then((res) => {
         expect(res.status).toBe(500);
         expect(res.body.err).toBe("Error");
@@ -331,17 +337,45 @@ describe("Delete /owner/boardinghouse/:id", () => {
 });
 
 describe("get /owner/listTenant/:id", () => {
-  test("Get all ListTenant Owner", async () => {
+  test("Get all lISTtenant Owner", async () => {
     const response = await request(app)
-      .get("/listTenant/1")
+      .get("/owner/listTenant/1")
       .set({ access_token });
     await expect(response.status).toBe(200);
+    await expect(response.body).toEqual(expect.any(Array));
   });
 
   test("Fail case get all BoardingHouses Tenant", () => {
-    jest.spyOn(BoardingHouses, "findAll").mockRejectedValue("Error");
+    jest.spyOn(MyBooking, "findAll").mockRejectedValue("Error");
     return request(app)
-      .get("/listTenant/1")
+      .get("/owner/listTenant/1")
+      .set({ access_token })
+      .then((res) => {
+        expect(res.status).toBe(500);
+        expect(res.body.err).toBe("Error");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+});
+
+describe("Delete /owner/listTenant/:id", () => {
+  //test ada yang salah
+  test("Delete ListTenant Owner", async () => {
+    const response = await request(app)
+      .delete("/owner/listTenant/1/1")
+      .set({ access_token });
+    // .send({
+    //   id: 1,
+    // });
+    await expect(response.status).toBe(200);
+    await expect(response.body).toHaveProperty("message", expect.any(String));
+  });
+
+  test("Fail case get all BoardingHouses Tenant", () => {
+    request(app)
+      .delete("/owner/listTenant/1/1")
       .set({ access_token })
       .then((res) => {
         expect(res.status).toBe(500);
@@ -351,4 +385,28 @@ describe("get /owner/listTenant/:id", () => {
         // console.log(err);
       });
   });
+});
+
+describe("post /owner/upload", () => {
+  test("succes upload", async () => {
+    const response = await request(app)
+      .post("/owner/upload")
+      .attach(
+        "BANDUNG-1660641018660",
+        "../public/uploads/BANDUNG-1660641018660.jpeg"
+      );
+    await expect(response.status).toBe(200);
+    // await expect(response.body).toHaveProperty("image", expect.any(Array));
+  });
+
+  // test("failed case: email Empty", async () => {
+  //   const userData = {
+  //     fullName: "rivaldiHeriyan",
+  //     email: "",
+  //     password: "123456",
+  //   };
+  //   const response = await request(app).post("/owner/register").send(userData);
+  //   await expect(response.status).toBe(400);
+  //   await expect(response.body.message).toContain("Email is required");
+  // });
 });
