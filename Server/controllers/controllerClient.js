@@ -69,11 +69,9 @@ class ControllerClient {
             },
           },
         ],
-        attributes: [
-          {
-            exclude: ["createdAt", "updatedAt"],
-          },
-        ],
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
       };
       //ini di test
       if (city) {
@@ -441,7 +439,7 @@ class ControllerClient {
       const result = await sequelize.query(
         `SELECT b.id ,b."name" ,b.price ,c.name AS "Category",b."location" ,b."mainImg" 
         ,b.address 
-            ,c."name" ,c2."name" AS cities 
+             ,c2."name" AS cities , b."description"
             FROM "BoardingHouses" b 
             JOIN "Categories" c ON c.id = b."CategoryId" 
             JOIN "Cities" c2 ON c2.id = b."CityId" 

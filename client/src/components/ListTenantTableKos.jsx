@@ -21,7 +21,7 @@ export default function ListTenantTableKos() {
       <>
         <div
           role="status"
-          className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center px-8 py-8"
+          className="mt-20 space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center px-8 py-8"
         >
           <div className="flex justify-center items-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
             <svg
@@ -72,9 +72,9 @@ export default function ListTenantTableKos() {
                 <th scope="col" class="py-3 px-6">
                   Tanggal Masuk
                 </th>
-                {/* <th scope="col" class="py-3 px-6 rounded-r-lg">
-                  Tanggal Keluar
-                </th> */}
+                <th scope="col" class="py-3 px-6 rounded-r-lg">
+                  -
+                </th>
               </tr>
             </thead>
 
