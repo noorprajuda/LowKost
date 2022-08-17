@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import BoardingHousesForm from "../components/BoardingHousesForm";
 import ListTenantTableKos from "./ListTenantTableKos";
 
 export default function ListTenantKos() {

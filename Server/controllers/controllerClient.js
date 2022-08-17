@@ -147,6 +147,14 @@ class ControllerClient {
       //     exclude: ["createdAt", "updatedAt"],
       //   },
       // });
+      const houseTenant = await MyBooking.findAll({
+        where: { BoardingHouseId: idBourdingHousesId.id },
+      });
+
+      if (houseTenant.length) {
+        idBourdingHousesId.totalRoom =
+          idBourdingHousesId.totalRoom - houseTenant.length;
+      }
 
       res.status(200).json(idBourdingHousesId);
     } catch (err) {
@@ -193,6 +201,14 @@ class ControllerClient {
           },
         },
       });
+      for (let i = 0; i < myBookmark.length; i++) {
+        let getQty = await MyBooking.findAll({
+          where: { BoardingHouseId: myBookmark[i].id },
+        });
+        if (getQty.length) {
+          myBookmark[i].totalRoom = kos[i].totalRoom - getQty.length;
+        }
+      }
       res.status(200).json(myBookmark);
     } catch (err) {
       next(err);
@@ -291,7 +307,12 @@ class ControllerClient {
         BoardingHouseId: id,
       };
 
-      const makeBookmark = await Bookmarks.create(input);
+      const findBookmark = await Bookmarks.findOne({
+        where: { UserId: UserId, BoardingHouseId: id },
+      });
+      if (findBookmark) throw { name: "double" };
+
+      await Bookmarks.create(input);
       res.status(201).json({ message: "Succesfully add bookmark" });
     } catch (err) {
       console.log(err);

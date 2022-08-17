@@ -1,26 +1,32 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteBoardingHouseOwner } from "../store/action";
+import {
+  deleteBoardingHouseOwner,
+  deleteTenantKos,
+  fetchListTenant,
+} from "../store/action";
+
 import Swal from "sweetalert2";
 
 export default function ListTenantTableKosRow({ listTenant, index }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const removeHandler = (e, id) => {
+  const removeHandler = (e, tenantId, listTenantId) => {
     e.preventDefault();
 
     Swal.fire({
-      title: "Apakah anda yakin menghapus kosan ini?",
+      title: "Apakah benar penghuni ini sudah selesai menyewa?",
       // showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yakin",
       denyButtonText: `Tidak`,
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("Berhasil!", "", "success");
-        dispatch(deleteBoardingHouseOwner(id));
+        dispatch(deleteTenantKos(tenantId, listTenantId, +id));
+        dispatch(fetchListTenant(+id));
       }
     });
   };
@@ -47,9 +53,17 @@ export default function ListTenantTableKosRow({ listTenant, index }) {
               day: "numeric",
             })}
           </td>
-          {/* <td class="py-4 px-6">
-            {new Date(new Date().setDate(date.getDate() + 30))}
-          </td> */}
+          <td className="py-4 px-6 text-center">
+            <a
+              onClick={(e) =>
+                removeHandler(e, listTenant.id, listTenant.UserId)
+              }
+              href="#"
+              className="font-medium text-red-600  hover:underline"
+            >
+              Selesai
+            </a>
+          </td>
         </tr>
       </tbody>
     </>
