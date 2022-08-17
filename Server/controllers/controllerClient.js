@@ -69,11 +69,9 @@ class ControllerClient {
             },
           },
         ],
-        attributes: [
-          {
-            exclude: ["createdAt", "updatedAt"],
-          },
-        ],
+        attributes: {
+          exclude: ["createdAt", "updatedAt"],
+        },
       };
       //ini di test
       if (city) {
@@ -84,6 +82,15 @@ class ControllerClient {
 
       let kos = await BoardingHouses.findAll(options);
       //loop , await id, detail
+
+      for (let i = 0; i < kos.length; i++) {
+        let getQty = await MyBooking.findAll({
+          where: { BoardingHouseId: kos[i].id },
+        });
+        if (getQty.length) {
+          kos[i].totalRoom = kos[i].totalRoom - getQty.length;
+        }
+      }
 
       res.status(200).json(kos);
     } catch (err) {
@@ -441,7 +448,7 @@ class ControllerClient {
       const result = await sequelize.query(
         `SELECT b.id ,b."name" ,b.price ,c.name AS "Category",b."location" ,b."mainImg" 
         ,b.address 
-            ,c."name" ,c2."name" AS cities 
+             ,c2."name" AS cities , b."description"
             FROM "BoardingHouses" b 
             JOIN "Categories" c ON c.id = b."CategoryId" 
             JOIN "Cities" c2 ON c2.id = b."CityId" 
@@ -469,6 +476,9 @@ class ControllerClient {
           name: el.Category,
         };
       });
+      const boardingHouses = {
+        id: result.id,
+      };
       res.status(200).json(result);
     } catch (err) {
       next(err);
