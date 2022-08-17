@@ -4,15 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { fetchSingleHouseOwner, updateBoardingHouse } from "../store/action";
 import { fetchCities, fetchFacilities, fetchRules } from "../store/action";
-
+import axios from "axios";
+import Swal from "sweetalert2";
 export default function BoardingHouseFormUpdate() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const singleHouseOwner = useSelector(
-    (state) => state.boardingHouses.singleHouseOwner
-  );
+  // const singleHouseOwner = useSelector(
+  //   (state) => state.boardingHouses.singleHouseOwner
+  // );
   const cities = useSelector((state) => state.boardingHousesIdentifier.cities);
 
   const facilities = useSelector(
@@ -21,15 +22,15 @@ export default function BoardingHouseFormUpdate() {
 
   const rules = useSelector((state) => state.boardingHousesIdentifier.rules);
 
-  const [formUpdate, setFormUpdate] = useState({
-    StackFacilities: [],
-    StackRules: [],
-  });
-  const [checkRules, setCheckRules] = useState([]);
+  // const [formUpdate, setFormUpdate] = useState({
+  //   StackFacilities: [],
+  //   StackRules: [],
+  // });
+  // const [checkRules, setCheckRules] = useState([]);
 
-  useEffect(() => {
-    dispatch(fetchSingleHouseOwner(id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchSingleHouseOwner(id));
+  // }, []);
 
   useEffect(() => {
     dispatch(fetchFacilities());
@@ -42,56 +43,62 @@ export default function BoardingHouseFormUpdate() {
   useEffect(() => {
     dispatch(fetchCities());
   }, []);
-
+  const [formUpdate, setFormUpdate] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (singleHouseOwner.name !== undefined) {
-      setFormUpdate({
-        name: singleHouseOwner.name,
-        price: singleHouseOwner.price,
-        CategoryId: singleHouseOwner.CategoryId,
-        CityId: singleHouseOwner.CityId,
-        totalRoom: singleHouseOwner.totalRoom,
-        description: singleHouseOwner.description,
-        mainImg: singleHouseOwner.mainImg,
-        description: singleHouseOwner.description,
-        address: singleHouseOwner.address,
-        StackRules: [...singleHouseOwner.BoardingHouseRules],
-        StackFacilities: [...singleHouseOwner.BoardingHouseFacilities],
+    axios
+      .get(`http://localhost:4000/user/boardinghouses/${id}`)
+      .then((resp) => {
+        setFormUpdate(resp.data);
+      })
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err, "<<<<ERROR");
+        Swal.fire(err.message);
       });
-    }
-  }, [singleHouseOwner]);
+  }, [id]);
+  console.log(formUpdate);
 
   const facilitiesCheckHandler = (e) => {
     const { value, name, checked } = e.target;
-    const { StackFacilities } = formUpdate;
+    const { BoardingHouseFacilities } = formUpdate;
     // console.log(StackFacilities, "<<<<");
 
     if (checked) {
       setFormUpdate({
         ...formUpdate,
-        StackFacilities: [...StackFacilities, { FacilityId: +value }],
+        BoardingHouseFacilities: [
+          ...BoardingHouseFacilities,
+          { FacilityId: +value },
+        ],
       });
     } else {
       setFormUpdate({
         ...formUpdate,
-        StackFacilities: StackFacilities.filter((e) => e.FacilityId !== +value),
+        BoardingHouseFacilities: BoardingHouseFacilities.filter(
+          (e) => e.FacilityId !== +value
+        ),
       });
     }
   };
 
   const rulesCheckHandler = (e) => {
     const { value, name, checked } = e.target;
-    const { StackRules } = formUpdate;
+    const { BoardingHouseRules } = formUpdate;
 
     if (checked) {
       setFormUpdate({
         ...formUpdate,
-        StackRules: [...StackRules, { RuleId: +value }],
+        BoardingHouseRules: [...BoardingHouseRules, { RuleId: +value }],
       });
     } else {
       setFormUpdate({
         ...formUpdate,
-        StackRules: StackRules.filter((e) => e.RuleId !== +value),
+        BoardingHouseRules: BoardingHouseRules.filter(
+          (e) => e.RuleId !== +value
+        ),
       });
     }
   };
@@ -109,9 +116,8 @@ export default function BoardingHouseFormUpdate() {
       mainImg: formUpdate.mainImg,
       description: formUpdate.description,
       address: formUpdate.address,
-      StackRules: [...formUpdate.StackRules],
-      // StackImages: [],
-      StackFacilities: [...formUpdate.StackFacilities],
+      BoardingHouseRules: [...formUpdate.BoardingHouseRules],
+      BoardingHouseFacilities: [...formUpdate.BoardingHouseFacilities],
     };
 
     newUpdate[name] = value;
@@ -120,8 +126,8 @@ export default function BoardingHouseFormUpdate() {
 
   const isChecked = (rule) => {
     let isCheck = false;
-    for (let i = 0; i < formUpdate.StackRules.length; i++) {
-      if (formUpdate.StackRules[i].RuleId === rule.id) {
+    for (let i = 0; i < formUpdate.BoardingHouseRules.length; i++) {
+      if (formUpdate.BoardingHouseRules[i].RuleId === rule.id) {
         isCheck = true;
       }
     }
@@ -132,8 +138,8 @@ export default function BoardingHouseFormUpdate() {
   const isCheckedFacilities = (facility) => {
     let isCheck = false;
 
-    for (let i = 0; i < formUpdate.StackFacilities.length; i++) {
-      if (formUpdate.StackFacilities[i].FacilityId === facility.id) {
+    for (let i = 0; i < formUpdate.BoardingHouseFacilities.length; i++) {
+      if (formUpdate.BoardingHouseFacilities[i].FacilityId === facility.id) {
         isCheck = true;
       }
     }
@@ -141,14 +147,21 @@ export default function BoardingHouseFormUpdate() {
     return isCheck;
   };
 
+  const [saveImage, setSaveImage] = useState([]);
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(updateBoardingHouse(id, formUpdate));
+    dispatch(updateBoardingHouse(id, formUpdate, saveImage));
     navigate("/owner");
     // console.log(formUpdate);
   };
+  const handleImageUpload = (e) => {
+    let uploaded = e.target.files;
+    console.log(uploaded, "Uploadd");
 
-  return (
+    setSaveImage(uploaded);
+  };
+
+  return !loading ? (
     <>
       <div className="mt-20">
         <div className="border-b border-gray-200 dark:border-gray-700">
@@ -277,7 +290,6 @@ export default function BoardingHouseFormUpdate() {
                   id="name"
                   name="name"
                   value={formUpdate.name}
-                  placeholder={singleHouseOwner.name}
                   onChange={changeFormHandler}
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   required
@@ -290,7 +302,6 @@ export default function BoardingHouseFormUpdate() {
                 <select
                   id="CityId"
                   value={formUpdate.CityId}
-                  placeholder={singleHouseOwner.CityId}
                   onChange={changeFormHandler}
                   name="CityId"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -315,7 +326,6 @@ export default function BoardingHouseFormUpdate() {
                   onChange={changeFormHandler}
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   value={formUpdate.address}
-                  placeholder={singleHouseOwner.address}
                   required
                 />
               </div>
@@ -334,7 +344,6 @@ export default function BoardingHouseFormUpdate() {
                   onChange={changeFormHandler}
                   className="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={formUpdate.price}
-                  placeholder={singleHouseOwner.price}
                 />
               </div>
               <div className="mb-6">
@@ -345,7 +354,6 @@ export default function BoardingHouseFormUpdate() {
                   id="countries"
                   name="CategoryId"
                   value={formUpdate.CategoryId}
-                  placeholder={singleHouseOwner.CategoryId}
                   onChange={changeFormHandler}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
@@ -366,7 +374,6 @@ export default function BoardingHouseFormUpdate() {
                   rows="4"
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={formUpdate.description}
-                  placeholder={singleHouseOwner.description}
                 ></textarea>
               </div>
 
@@ -393,7 +400,7 @@ export default function BoardingHouseFormUpdate() {
                 </div>
               </div> */}
 
-              <div className="mb-6">
+              {/* <div className="mb-6">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                   Gambar Utama Kosan "URL"
                 </label>
@@ -407,6 +414,30 @@ export default function BoardingHouseFormUpdate() {
                   placeholder={singleHouseOwner.mainImg}
                   required
                 />
+              </div> */}
+
+              <div className="mb-6">
+                <label
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  for="user_avatar"
+                >
+                  Update Gambar Kosan
+                </label>
+                <input
+                  class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  aria-describedby="user_avatar_help"
+                  id="user_avatar"
+                  type="file"
+                  multiple="multiple"
+                  name="img"
+                  onChange={handleImageUpload}
+                />
+                <div
+                  class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                  id="user_avatar_help"
+                >
+                  Gambar ini akan menjadi penanda kosan anda di halaman penyewa.
+                </div>
               </div>
 
               <div className="mb-6">
@@ -419,7 +450,6 @@ export default function BoardingHouseFormUpdate() {
                   onChange={changeFormHandler}
                   name="totalRoom"
                   value={formUpdate.totalRoom}
-                  placeholder={singleHouseOwner.totalRoom}
                   className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                   required
                 />
@@ -506,6 +536,10 @@ export default function BoardingHouseFormUpdate() {
           <div className="basis-1/4"></div>
         </div>
       </div>
+    </>
+  ) : (
+    <>
+      <h1>Loading...</h1>
     </>
   );
 }
