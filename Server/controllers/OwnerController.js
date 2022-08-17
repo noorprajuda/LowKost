@@ -9,7 +9,6 @@ const {
   Rules,
   MyBooking,
   BoardingHouseRules,
-  MyBooking,
   sequelize,
   Sequelize,
 } = require("../models");
@@ -262,23 +261,26 @@ module.exports = class OwnerController {
           BoardingHouseId: id,
           status: "Paid",
         },
-        include: {
-          model: BoardingHouses,
-          include: [
-            { model: Categories, attributes: ["name"] },
-            { model: City, attributes: ["name"] },
-            {
-              model: Users,
-              attributes: {
-                exclude: ["createdAt", "updatedAt", "password"],
-              },
+        include: [
+          {
+            model: BoardingHouses,
+            include: [
+              { model: Categories, attributes: ["name"] },
+              { model: City, attributes: ["name"] },
+
+              { model: Images, attributes: ["imgUrl"] },
+            ],
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
             },
-            { model: Images, attributes: ["imgUrl"] },
-          ],
-          attributes: {
-            exclude: ["createdAt", "updatedAt"],
           },
-        },
+          {
+            model: Users,
+            where: {
+              role: "Tenant",
+            },
+          },
+        ],
       });
 
       res.status(200).json(listTenant);

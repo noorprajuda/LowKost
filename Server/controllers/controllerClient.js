@@ -438,7 +438,7 @@ class ControllerClient {
       const distance = 3000;
       const result = await sequelize.query(
         `SELECT b.id ,b."name" ,b.price ,b."CategoryId" ,b."CityId" ,b."totalRoom" ,b."UserId",b.description ,b."location" ,b.slug ,b."mainImg" ,b.address 
-        c."name" ,c2."name" , u.id ,u."fullName" u.email u."role" ,u.address u."phoneNumber" 
+        ,c."name" ,c2."name" , u.id ,u."fullName" ,u.email ,u."role" ,u.address ,u."phoneNumber" 
         FROM "BoardingHouses" b 
         JOIN "Categories" c ON c.id = b."CategoryId" 
         JOIN "Cities" c2 ON c2.id = b."CityId" 
