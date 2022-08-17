@@ -12,13 +12,6 @@ router.get(
   OwnerController.getBoardingHouses
 );
 
-router.get("/listTenant/:id", authentication, OwnerController.getListTenant);
-router.delete(
-  "/listTenant/:id/:userId",
-  authentication,
-  OwnerController.deleteListTenant
-);
-
 router.get(
   "/boardinghouse/:id",
   authentication,
@@ -37,6 +30,13 @@ router.delete(
   authentication,
   authorizationOwner,
   OwnerController.deleteBoardingHouse
+);
+
+router.get("/listTenant/:id", authentication, OwnerController.getListTenant);
+router.delete(
+  "/listTenant/:id/:userId",
+  authentication,
+  OwnerController.deleteListTenant
 );
 
 router.post("/upload", upload.single("photo"), OwnerController.uploadImage);
