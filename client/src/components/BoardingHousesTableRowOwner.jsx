@@ -1,31 +1,52 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteBoardingHouseOwner } from "../store/action";
+import Swal from "sweetalert2";
 
-export default function BoardingHousesTableRow({ boardingHouses }) {
+export default function BoardingHousesTableRow({ boardingHouses, index }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const updateHandler = (id) => {
     navigate(`/${id}/update`);
   };
 
-  const removeHandler = (e, id) => {
-    e.preventDefault();
-    dispatch(deleteBoardingHouseOwner(id));
+  const tenantHandler = (id) => {
+    navigate(`/${id}/tenant`);
   };
 
-  console.log(boardingHouses);
+  const removeHandler = (e, id) => {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "Apakah anda yakin menghapus kosan ini?",
+      // showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yakin",
+      denyButtonText: `Tidak`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Berhasil!", "", "success");
+        dispatch(deleteBoardingHouseOwner(id));
+      }
+    });
+  };
+
+  let number = 0;
 
   return (
     <>
       <tbody>
         <tr className="bg-white border-b">
-          {/* <td className="py-4 px-6 text-xs">
-            #{boardingHouses.id}-{boardingHouses.UserId}-
-            {boardingHouses.CategoryId}-2022
-          </td> */}
-          <td className="py-4 px-6 text-center">
-            <img src={boardingHouses.mainImg} alt="" className="w-96 h-40" />
+          <td className="text-center bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5">
+            {index + 1}.
+          </td>
+          <td className="py-4 px-6 text-center ">
+            <img
+              src={boardingHouses.mainImg}
+              alt=""
+              className="rounded-lg w-96 h-40"
+            />
           </td>
 
           <th
@@ -41,8 +62,10 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
                 .split(",")[0]
             }
           </td>
-          <td className="py-4 px-6 text-center">
-            {boardingHouses.Category.name}
+          <td className="py-4 px-6 text-center ">
+            <h5 class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+              {boardingHouses.Category.name}
+            </h5>
           </td>
           <td className="py-4 px-6 text-center">{boardingHouses.City.name}</td>
           <td className="py-4 px-6 text-center">{boardingHouses.totalRoom}</td>
@@ -52,17 +75,28 @@ export default function BoardingHousesTableRow({ boardingHouses }) {
           <td className="py-4 px-6 text-center">
             <a
               href="#"
+              onClick={() => tenantHandler(boardingHouses.id)}
+              className="font-medium text-green-600  hover:underline"
+            >
+              Lihat Penyewa{" "}
+            </a>
+          </td>
+          <td className="py-4 px-6 text-center">
+            <a
+              href="#"
               onClick={() => updateHandler(boardingHouses.id)}
               className="font-medium text-blue-600  hover:underline"
             >
-              Edit{" "}
+              Rubah Kosan{" "}
             </a>
+          </td>
+          <td className="py-4 px-6 text-center">
             <a
               onClick={(e) => removeHandler(e, boardingHouses.id)}
               href="#"
               className="font-medium text-red-600  hover:underline"
             >
-              Delete
+              Hapus Kosan
             </a>
           </td>
         </tr>

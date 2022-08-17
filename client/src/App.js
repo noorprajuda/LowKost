@@ -22,9 +22,7 @@ import AuthTenant from "./components/RouteGuard/AuthTenant";
 
 import PlacesAutocomplete from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
-
-import ListTenantKos from "./views/ListTenantKos";
-
+import ListTenantKos from "./components/ListTenantTableKos";
 
 function App() {
   return (
@@ -75,18 +73,10 @@ function App() {
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
 
-
         <Route path="/cari/:address" element={<GoogleMapSearchPage />} />
 
         <Route path="/Kos/:id" element={<GoogleMapPage />} />
-        <Route
-          path="/list-tenant"
-          element={
-            <AuthOwner>
-              <ListTenantKos />
-            </AuthOwner>
-          }
-        />
+        <Route path="/:id/tenant" element={<ListTenantKos />} />
       </Routes>
       <Footer />
     </div>

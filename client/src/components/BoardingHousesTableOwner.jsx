@@ -47,49 +47,57 @@ export default function BoardingHousesTable() {
         <div>
           <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead className="text-xs text-center text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  {/* <th scope="col" className="py-3 px-6">
-                    ID
-                  </th> */}
                   <th scope="col" className="py-3 px-6">
-                    Image
+                    No.
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Name
+                    Gambar
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Price
+                    Nama
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Category
+                    Harga/bulan
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    City
+                    Kategori
                   </th>
                   <th scope="col" className="py-3 px-6">
-                    Room Available
+                    Kota
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Total Kamar
                   </th>
                   {/* <th scope="col" className="py-3 px-6">
                     UserId
                   </th> */}
                   <th scope="col" className="py-3 px-6">
-                    description
+                    Deskripsi
                   </th>
                   {/* <th scope="col" className="py-3 px-6">
                     location
                   </th> */}
 
                   <th scope="col" className="py-3 px-6">
-                    action
+                    -
+                  </th>
+
+                  <th scope="col" className="py-3 px-6">
+                    -
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    -
                   </th>
                 </tr>
               </thead>
-              {boardingHouses.map((boardingHouses) => {
+              {boardingHouses.map((boardingHouses, index) => {
                 return (
                   <BoardingHousesTableRowOwner
                     key={boardingHouses.id}
                     boardingHouses={boardingHouses}
+                    index={index}
                   />
                 );
               })}

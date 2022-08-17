@@ -11,6 +11,7 @@ import {
   BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
   SINGLE_HOUSE_OWNER_FETCH_SUCESS,
   MYBOOKINGS_FETCH_USER_SUCCESS,
+  LIST_TENANT_KOS_FETCH_SUCCESS,
 } from "./actionType";
 
 const baseUrl = "http://localhost:4000";
@@ -475,6 +476,33 @@ export const updateBoardingHouse = (id, formUpdate) => {
       } catch (err) {
         console.log(err, "aaaa");
         reject(err);
+      }
+    });
+  };
+};
+
+export const fetchListTenantSuccess = (payload) => {
+  return {
+    type: LIST_TENANT_KOS_FETCH_SUCCESS,
+    payload,
+  };
+};
+
+export const fetchListTenant = (id) => {
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resp = await axios.get(`${baseUrl}/owner/listTenant/${id}`, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+
+        dispatch(fetchListTenantSuccess(resp.data));
+
+        resolve();
+      } catch (error) {
+        reject(error);
       }
     });
   };
