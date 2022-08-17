@@ -101,12 +101,14 @@ module.exports = class OwnerController {
           address: address,
         })
         .asPromise();
+
       if (!response.json.results.length) throw { name: "invalidAddress" };
       let jsn = response.json.results;
       for (let i = 0; i < jsn.length; i++) {
         let res = jsn[i];
         latlong += res.geometry.location.lat + " " + res.geometry.location.lng;
       }
+
       console.log(latlong, "<<<<<<<<<< ");
       const newBoardingHouse = await BoardingHouses.create(
         {
