@@ -16,18 +16,7 @@ export default function BoardingHousesList({ boardingHouse }) {
 
   return (
     <>
-      {/* {
-      "name": "Kost Kiara 51",
-      "price": 1100000,
-      "CategoryId": 1,
-      "CityId": 1,
-      "totalRoom": 20,
-      "UserId": 1,
-      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
-      "location": "-6.31845 106.89748",
-      "address": "Jalan Madrasah No./Kav. 1A, Kecamatan Cipayung, DKI Jakarta 13890, Indonesia",
-      "mainImg": "https://www.uhb.ac.id/uploads/images/dsc052972_1.jpg"
-    }, */}
+      {/* {JSON.stringify(boardingHouse, null, 2)} */}
       <div
         onClick={handleDetailPage}
         className="flex flex-row mt-3 cursor-pointer"

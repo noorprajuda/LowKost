@@ -262,15 +262,19 @@ export default function DetailPage() {
         <div className="flex flex-row justify-between">
           <div className="py-5 px-12 w-[900px]">
             <h2 className="font-bold text-left text-4xl mb-10">
-              <a
-                href="#"
-                className="items-left px-1 py-1 mb-3 text-sm font-small text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
-              >
-                {localBoardingHouse.City.name}
-              </a>
+              <div className="flex flex-row mb-3">
+                <a
+                  href="#"
+                  className="items-left px-1 py-1 text-sm font-small text-left text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+                >
+                  {localBoardingHouse.City.name}
+                </a>
+                <a className="text-red-600 text-base font-normal italic ml-2">
+                  Sisa kamar {localBoardingHouse.totalRoom}
+                </a>
+              </div>
 
-              <br />
-              <div className="mt-1">{localBoardingHouse.name}</div>
+              <div className="">{localBoardingHouse.name}</div>
 
               <div className="flex flex-row justify-between">
                 <a
@@ -298,7 +302,7 @@ export default function DetailPage() {
                 {localBoardingHouse.description}
               </p>
               <div className="text-gray-700 text-left mt-5 font-semibold">
-                Facilities:
+                Fasilitas :
                 <br />
                 <span className="font-normal">
                   {localBoardingHouse.BoardingHouseFacilities.map(
@@ -314,7 +318,7 @@ export default function DetailPage() {
                 </span>
               </div>
               <div className="text-gray-700 text-left mt-5 font-semibold">
-                Rules:
+                Peraturan :
                 <br />
                 <span className="font-normal">
                   {localBoardingHouse.BoardingHouseRules.map((rule, index) => {
