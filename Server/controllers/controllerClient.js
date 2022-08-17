@@ -68,12 +68,12 @@ class ControllerClient {
           exclude: ["createdAt", "updatedAt"],
         },
       };
-
-      if (city) {
-        options.where = {
-          CityId: city,
-        };
-      }
+      //ini di test
+      // if (city) {
+      //   options.where = {
+      //     CityId: city,
+      //   };
+      // }
 
       let kos = await BoardingHouses.findAll(options);
 
@@ -244,7 +244,7 @@ class ControllerClient {
       if (!findBoardingHouse) {
         throw { name: "NotFound" };
       }
-
+      // ini ditest
       let input = {
         UserId: UserId,
         BoardingHouseId: BoardingHouseId,
@@ -278,6 +278,7 @@ class ControllerClient {
       const makeBookmark = await Bookmarks.create(input);
       res.status(201).json({ message: "Succesfully add bookmark" });
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
