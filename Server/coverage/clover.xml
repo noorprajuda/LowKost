@@ -1,6 +1,570 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1660706756481" clover="3.2.0">
-  <project timestamp="1660706756482" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1660718465454" clover="3.2.0">
+  <project timestamp="1660718465454" name="All files">
+    <metrics statements="468" coveredstatements="217" conditionals="61" coveredconditionals="12" methods="68" coveredmethods="35" elements="597" coveredelements="264" complexity="0" loc="468" ncloc="468" packages="6" files="26" classes="26"/>
+    <package name="Server">
+      <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+      <file name="app.js" path="D:\hacktiv8\Phase 3\Koma\Server\app.js">
+        <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="3" methods="0" coveredmethods="0"/>
+        <line num="1" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="Server.controllers">
+      <metrics statements="250" coveredstatements="32" conditionals="32" coveredconditionals="1" methods="31" coveredmethods="5"/>
+      <file name="OwnerController.js" path="D:\hacktiv8\Phase 3\Koma\Server\controllers\OwnerController.js">
+        <metrics statements="95" coveredstatements="3" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="106" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="140" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="143" count="0" type="stmt"/>
+        <line num="144" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="171" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="174" count="0" type="stmt"/>
+        <line num="175" count="0" type="stmt"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="181" count="0" type="stmt"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="183" count="0" type="stmt"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="200" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="202" count="0" type="stmt"/>
+        <line num="204" count="0" type="stmt"/>
+        <line num="208" count="0" type="stmt"/>
+        <line num="216" count="0" type="stmt"/>
+        <line num="217" count="0" type="stmt"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="223" count="0" type="stmt"/>
+        <line num="224" count="0" type="stmt"/>
+        <line num="225" count="0" type="stmt"/>
+        <line num="229" count="0" type="stmt"/>
+        <line num="230" count="0" type="stmt"/>
+        <line num="231" count="0" type="stmt"/>
+        <line num="236" count="0" type="stmt"/>
+        <line num="237" count="0" type="stmt"/>
+        <line num="238" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="240" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="242" count="0" type="stmt"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="252" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="257" count="0" type="stmt"/>
+        <line num="258" count="0" type="stmt"/>
+        <line num="260" count="0" type="stmt"/>
+        <line num="284" count="0" type="stmt"/>
+        <line num="286" count="0" type="stmt"/>
+        <line num="291" count="0" type="stmt"/>
+        <line num="292" count="0" type="stmt"/>
+        <line num="294" count="0" type="stmt"/>
+        <line num="296" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="297" count="0" type="stmt"/>
+        <line num="300" count="0" type="stmt"/>
+        <line num="306" count="0" type="stmt"/>
+        <line num="308" count="0" type="stmt"/>
+      </file>
+      <file name="adminController.js" path="D:\hacktiv8\Phase 3\Koma\Server\controllers\adminController.js">
+        <metrics statements="14" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="66" count="6" type="stmt"/>
+      </file>
+      <file name="controllerClient.js" path="D:\hacktiv8\Phase 3\Koma\Server\controllers\controllerClient.js">
+        <metrics statements="117" coveredstatements="15" conditionals="16" coveredconditionals="1" methods="12" coveredmethods="2"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="24" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="26" count="6" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="77" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="95" count="2" type="stmt"/>
+        <line num="141" count="0" type="stmt"/>
+        <line num="143" count="2" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="188" count="0" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="194" count="0" type="stmt"/>
+        <line num="195" count="0" type="stmt"/>
+        <line num="231" count="0" type="stmt"/>
+        <line num="233" count="0" type="stmt"/>
+        <line num="238" count="0" type="stmt"/>
+        <line num="239" count="0" type="stmt"/>
+        <line num="240" count="0" type="stmt"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="247" count="0" type="stmt"/>
+        <line num="249" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="250" count="0" type="stmt"/>
+        <line num="253" count="0" type="stmt"/>
+        <line num="260" count="0" type="stmt"/>
+        <line num="261" count="0" type="stmt"/>
+        <line num="263" count="0" type="stmt"/>
+        <line num="264" count="0" type="stmt"/>
+        <line num="269" count="0" type="stmt"/>
+        <line num="270" count="0" type="stmt"/>
+        <line num="271" count="0" type="stmt"/>
+        <line num="273" count="0" type="stmt"/>
+        <line num="275" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="276" count="0" type="stmt"/>
+        <line num="279" count="0" type="stmt"/>
+        <line num="284" count="0" type="stmt"/>
+        <line num="285" count="0" type="stmt"/>
+        <line num="287" count="0" type="stmt"/>
+        <line num="288" count="0" type="stmt"/>
+        <line num="293" count="0" type="stmt"/>
+        <line num="294" count="0" type="stmt"/>
+        <line num="295" count="0" type="stmt"/>
+        <line num="297" count="0" type="stmt"/>
+        <line num="299" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="300" count="0" type="stmt"/>
+        <line num="303" count="0" type="stmt"/>
+        <line num="309" count="0" type="stmt"/>
+        <line num="313" count="0" type="stmt"/>
+        <line num="314" count="0" type="stmt"/>
+        <line num="319" count="0" type="stmt"/>
+        <line num="320" count="0" type="stmt"/>
+        <line num="321" count="0" type="stmt"/>
+        <line num="323" count="0" type="stmt"/>
+        <line num="325" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="326" count="0" type="stmt"/>
+        <line num="329" count="0" type="stmt"/>
+        <line num="339" count="0" type="stmt"/>
+        <line num="341" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="342" count="0" type="stmt"/>
+        <line num="345" count="0" type="stmt"/>
+        <line num="349" count="0" type="stmt"/>
+        <line num="354" count="0" type="stmt"/>
+        <line num="355" count="0" type="stmt"/>
+        <line num="357" count="0" type="stmt"/>
+        <line num="359" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="360" count="0" type="stmt"/>
+        <line num="369" count="0" type="stmt"/>
+        <line num="373" count="0" type="stmt"/>
+        <line num="378" count="0" type="stmt"/>
+        <line num="379" count="0" type="stmt"/>
+        <line num="381" count="0" type="stmt"/>
+        <line num="383" count="0" type="stmt"/>
+        <line num="390" count="0" type="stmt"/>
+        <line num="403" count="0" type="stmt"/>
+        <line num="404" count="0" type="stmt"/>
+        <line num="406" count="0" type="stmt"/>
+        <line num="408" count="0" type="stmt"/>
+        <line num="413" count="0" type="stmt"/>
+        <line num="418" count="0" type="stmt"/>
+        <line num="419" count="0" type="stmt"/>
+        <line num="421" count="0" type="stmt"/>
+        <line num="422" count="0" type="stmt"/>
+        <line num="427" count="0" type="stmt"/>
+        <line num="428" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="429" count="0" type="stmt"/>
+        <line num="430" count="0" type="stmt"/>
+        <line num="431" count="0" type="stmt"/>
+        <line num="432" count="0" type="stmt"/>
+        <line num="433" count="0" type="stmt"/>
+        <line num="435" count="0" type="stmt"/>
+        <line num="436" count="0" type="stmt"/>
+        <line num="437" count="0" type="stmt"/>
+        <line num="438" count="0" type="stmt"/>
+        <line num="439" count="0" type="stmt"/>
+        <line num="465" count="0" type="stmt"/>
+        <line num="466" count="0" type="stmt"/>
+        <line num="468" count="0" type="stmt"/>
+        <line num="473" count="6" type="stmt"/>
+      </file>
+      <file name="mainController.js" path="D:\hacktiv8\Phase 3\Koma\Server\controllers\mainController.js">
+        <metrics statements="24" coveredstatements="12" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="Server.helpers">
+      <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <file name="helpers.js" path="D:\hacktiv8\Phase 3\Koma\Server\helpers\helpers.js">
+        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="9" count="22" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="Server.middlewares">
+      <metrics statements="53" coveredstatements="24" conditionals="16" coveredconditionals="2" methods="6" coveredmethods="2"/>
+      <file name="authentication.js" path="D:\hacktiv8\Phase 3\Koma\Server\middlewares\authentication.js">
+        <metrics statements="14" coveredstatements="9" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="22" type="stmt"/>
+        <line num="6" count="22" type="stmt"/>
+        <line num="7" count="22" type="stmt"/>
+        <line num="8" count="22" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="22" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+      </file>
+      <file name="authorizationOwner.js" path="D:\hacktiv8\Phase 3\Koma\Server\middlewares\authorizationOwner.js">
+        <metrics statements="15" coveredstatements="3" conditionals="8" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+      </file>
+      <file name="errorHandlers.js" path="D:\hacktiv8\Phase 3\Koma\Server\middlewares\errorHandlers.js">
+        <metrics statements="17" coveredstatements="7" conditionals="6" coveredconditionals="2" methods="2" coveredmethods="1"/>
+        <line num="2" count="32" type="stmt"/>
+        <line num="3" count="32" type="cond" truecount="2" falsecount="4"/>
+        <line num="5" count="22" type="stmt"/>
+        <line num="6" count="22" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="27" count="6" type="stmt"/>
+      </file>
+      <file name="storage.js" path="D:\hacktiv8\Phase 3\Koma\Server\middlewares\storage.js">
+        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="Server.models">
+      <metrics statements="92" coveredstatements="90" conditionals="9" coveredconditionals="6" methods="27" coveredmethods="26"/>
+      <file name="boardinghousefacilities.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\boardinghousefacilities.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+      </file>
+      <file name="boardinghouserules.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\boardinghouserules.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+      </file>
+      <file name="boardinghouses.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\boardinghouses.js">
+        <metrics statements="14" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="6" type="stmt"/>
+      </file>
+      <file name="bookmarks.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\bookmarks.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+      </file>
+      <file name="categories.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\categories.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+      </file>
+      <file name="city.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\city.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+      </file>
+      <file name="facilities.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\facilities.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+      </file>
+      <file name="images.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\images.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+      </file>
+      <file name="index.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\index.js">
+        <metrics statements="20" coveredstatements="19" conditionals="9" coveredconditionals="6" methods="3" coveredmethods="3"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="12" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="21" count="72" type="cond" truecount="3" falsecount="0"/>
+        <line num="24" count="66" type="stmt"/>
+        <line num="25" count="66" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="29" count="66" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="66" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="37" count="6" type="stmt"/>
+      </file>
+      <file name="mybooking.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\mybooking.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+      </file>
+      <file name="rules.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\rules.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+      </file>
+      <file name="users.js" path="D:\hacktiv8\Phase 3\Koma\Server\models\users.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="49" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="Server.router">
+      <metrics statements="50" coveredstatements="50" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="admin.js" path="D:\hacktiv8\Phase 3\Koma\Server\router\admin.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+      </file>
+      <file name="index.js" path="D:\hacktiv8\Phase 3\Koma\Server\router\index.js">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+      </file>
+      <file name="owner.js" path="D:\hacktiv8\Phase 3\Koma\Server\router\owner.js">
+        <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="28" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="42" count="6" type="stmt"/>
+        <line num="44" count="6" type="stmt"/>
+      </file>
+      <file name="routerClient.js" path="D:\hacktiv8\Phase 3\Koma\Server\router\routerClient.js">
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

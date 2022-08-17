@@ -35,6 +35,7 @@ export default function Navbar() {
   };
 
   const access_token = localStorage.getItem("access_token");
+  const role = localStorage.getItem("role");
 
   return (
     <>
@@ -107,33 +108,47 @@ export default function Navbar() {
                   Halaman Utama
                 </a>
               </li>
-              <li>
-                <a
-                  onClick={handleToMyBookmarksPage}
-                  className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
-                  aria-current="page"
-                >
-                  Favorit
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={handleToMyBookingsPage}
-                  className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
-                  aria-current="page"
-                >
-                  Pembelian
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={handleToMitra}
-                  className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
-                  aria-current="page"
-                >
-                  Mitra
-                </a>
-              </li>
+
+              {role !== "Owner" ? (
+                <>
+                  <li>
+                    <a
+                      onClick={handleToMyBookmarksPage}
+                      className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                      aria-current="page"
+                    >
+                      Favorit
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={handleToMyBookingsPage}
+                      className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                      aria-current="page"
+                    >
+                      Pembelian
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <p></p>
+              )}
+
+              {role === "Owner" ? (
+                <>
+                  <li>
+                    <a
+                      onClick={handleToMitra}
+                      className="cursor-pointer block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 "
+                      aria-current="page"
+                    >
+                      Mitra
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <p></p>
+              )}
             </ul>
 
             {/* <form>

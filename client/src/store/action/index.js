@@ -11,6 +11,7 @@ import {
   BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
   SINGLE_HOUSE_OWNER_FETCH_SUCESS,
   MYBOOKINGS_FETCH_USER_SUCCESS,
+  LIST_TENANT_KOS_FETCH_SUCCESS,
 } from "./actionType";
 
 const baseUrl = "http://localhost:4000";
@@ -155,13 +156,15 @@ export const createBoardingHouse = (
     return new Promise(async (resolve, reject) => {
       try {
         let formData = new FormData();
-        formData.append("photo", saveImage);
+        for (let i = 0; i < saveImage.length; i++) {
+          formData.append("photo", saveImage[i]);
+        }
 
         console.log(formData.get("photo"), "ini append");
         console.log(saveImage, "<<<");
         console.log(formData, ">>>");
-        const image = await axios.post(`${baseUrl}/owner/upload`, formData);
-
+        const { data } = await axios.post(`${baseUrl}/owner/upload`, formData);
+        let mainImg = data.shift();
         await axios.post(
           `${baseUrl}/owner/boardinghouse`,
           {
@@ -172,10 +175,10 @@ export const createBoardingHouse = (
             CityId: formBoardingHouse.CityId,
             totalRoom: formBoardingHouse.totalRoom,
             description: formBoardingHouse.description,
-            mainImg: image.data.image,
+            mainImg: mainImg,
             address: formBoardingHouse.address,
             StackRules: checkRules,
-            StackImages: image.data,
+            StackImages: data,
           },
           {
             headers: {
@@ -473,6 +476,33 @@ export const updateBoardingHouse = (id, formUpdate) => {
       } catch (err) {
         console.log(err, "aaaa");
         reject(err);
+      }
+    });
+  };
+};
+
+export const fetchListTenantSuccess = (payload) => {
+  return {
+    type: LIST_TENANT_KOS_FETCH_SUCCESS,
+    payload,
+  };
+};
+
+export const fetchListTenant = (id) => {
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resp = await axios.get(`${baseUrl}/owner/listTenant/${id}`, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+
+        dispatch(fetchListTenantSuccess(resp.data));
+
+        resolve();
+      } catch (error) {
+        reject(error);
       }
     });
   };
