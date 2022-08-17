@@ -25,7 +25,6 @@ import scriptLoader from "react-async-script-loader";
 
 import ListTenantKos from "./views/ListTenantKos";
 
-
 function App() {
   return (
     <div className="App">
@@ -74,7 +73,6 @@ function App() {
           }
         />
         <Route path="/:id/update" element={<BoardingHouseFormUpdate />} />
-
 
         <Route path="/cari/:address" element={<GoogleMapSearchPage />} />
 

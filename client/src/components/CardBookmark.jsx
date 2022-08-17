@@ -45,12 +45,17 @@ export default function CardBookmark({ bookmark }) {
           </a>
           <div className=" p-5">
             <div className="text-left">
-              <a
-                href="#"
-                className="inline-flex items-left py-1 px-1 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
-              >
-                {bookmark.BoardingHouse.City.name}
-              </a>
+              <div className="flex flex-row">
+                <a
+                  href="#"
+                  className="inline-flex items-left py-1 px-1 text-sm font-small text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+                >
+                  {bookmark.BoardingHouse.City.name}
+                </a>
+                <a className="text-red-600 italic ml-2">
+                  Sisa kamar {bookmark.BoardingHouse.totalRoom}
+                </a>
+              </div>
 
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {bookmark.BoardingHouse.name}

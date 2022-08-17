@@ -16,7 +16,7 @@ export default function BoardingHousesList({ boardingHouse }) {
 
   return (
     <>
-      {JSON.stringify(boardingHouse, null, 2)}
+      {/* {JSON.stringify(boardingHouse, null, 2)} */}
       <div
         onClick={handleDetailPage}
         className="flex flex-row mt-3 cursor-pointer"

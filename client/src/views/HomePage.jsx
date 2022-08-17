@@ -38,6 +38,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
   }, [boardingHouses]);
 
   const [cityId, setCityId] = useState(0);
+  const [categoryId, setCategoryId] = useState(0);
 
   useEffect(() => {
     if (cityId != 0) {
@@ -56,8 +57,6 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
     { id: 3, name: "Kos Campur" },
   ];
 
-  const [categoryId, setCategoryId] = useState(0);
-
   useEffect(() => {
     if (categoryId != 0) {
       const filteredBoardingHouses = boardingHouses.filter(
@@ -68,6 +67,35 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
       setLocalBoardingHouses(boardingHouses);
     }
   }, [categoryId]);
+
+  // const handleSelectCategory = (event, value) =>
+  //   !value ? null : setSelectedCategory(value);
+
+  // const handleSelectRating = (event, value) =>
+  //   !value ? null : setSelectedRating(value); //rating => city
+
+  // useEffect(() => {
+  //   if (cityId != 0) {
+  //     const filteredBoardingHouses = boardingHouses.filter(
+  //       (boardingHouse) => boardingHouse.CityId == cityId
+  //     );
+  //     setLocalBoardingHouses(filteredBoardingHouses);
+  //   } else if (categoryId != 0) {
+  //     const filteredBoardingHouses = boardingHouses.filter(
+  //       (boardingHouse) => boardingHouse.CategoryId == categoryId
+  //     );
+  //     setLocalBoardingHouses(filteredBoardingHouses);
+  //   } else if (cityId != 0 && categoryId != 0) {
+  //     const filteredBoardingHouses = boardingHouses.filter(
+  //       (boardingHouse) =>
+  //         boardingHouse.CityId == cityId &&
+  //         boardingHouse.CategoryId == categoryId
+  //     );
+  //     setLocalBoardingHouses(filteredBoardingHouses);
+  //   } else {
+  //     setLocalBoardingHouses(boardingHouses);
+  //   }
+  // }, [cityId, categoryId]);
 
   const [address, setAddress] = React.useState("");
   const handleChange = (value) => {

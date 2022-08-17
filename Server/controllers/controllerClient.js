@@ -81,6 +81,7 @@ class ControllerClient {
       }
 
       let kos = await BoardingHouses.findAll(options);
+      //loop , await id, detail
 
       res.status(200).json(kos);
     } catch (err) {
