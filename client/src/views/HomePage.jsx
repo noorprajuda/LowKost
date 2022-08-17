@@ -167,7 +167,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
             </div>
             <div className="relative flex justify-center text-center">
               <img
-                className="ml-20 mr-20 mb-5 mt-5 h-[500px] w-full object-cover"
+                className="ml-20 mr-20 mb-5 mt-5 h-[500px] w-full object-cover rounded-lg"
                 src={mainImg}
                 alt=""
               />

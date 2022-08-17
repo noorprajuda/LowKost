@@ -507,3 +507,27 @@ export const fetchListTenant = (id) => {
     });
   };
 };
+
+export const deleteTenantKos = (tenantId, id, kosId) => {
+  // console.log(tenantId, id);
+  const access_token = localStorage.getItem("access_token");
+  return async (dispatch) => {
+    try {
+      const resp = await axios({
+        method: "DELETE",
+        url: `${baseUrl}/owner/listTenant/${tenantId}/${id}`,
+        headers: { access_token: access_token },
+        // data: {
+        //   firstName: 'Fred',
+        //   lastName: 'Flintstone'
+        // }
+      });
+
+      // console.log(resp);
+
+      dispatch(fetchListTenant(kosId));
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};

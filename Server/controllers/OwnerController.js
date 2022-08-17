@@ -302,6 +302,7 @@ module.exports = class OwnerController {
   static async deleteListTenant(req, res, next) {
     try {
       const { id, userId } = req.params;
+      console.log(id, userId);
 
       const findMyBooking = await MyBooking.findByPk(id);
 
@@ -311,7 +312,7 @@ module.exports = class OwnerController {
 
       const destroyList = await MyBooking.destroy({
         where: {
-          UserId: userId,
+          id: id,
         },
       });
 
