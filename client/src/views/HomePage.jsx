@@ -141,7 +141,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
                       <div>{loading && <div>Loading...</div>}</div>
                       {suggestions.map((suggestion) => {
                         const style = suggestion.active
-                          ? { backgroundColor: "#a83232", cursor: "pointer" }
+                          ? { backgroundColor: "#21E1E1", cursor: "pointer" }
                           : { backgroundColor: "#ffffff", cursor: "pointer" };
                         return (
                           <div
@@ -205,7 +205,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
               <div className="w-[500px] flex flex-row justify-between ">
                 {/* Filter by city */}
                 <h1 className="pt-6 text-2xl text-gray-600 sm:text-5xl lg:text-2xl font-bold tracking-tighter leading-tight whitespace-nowrap">
-                  Cari kos berdasar kota
+                  Cari kos berdasarkan kota
                 </h1>
 
                 <select
@@ -230,7 +230,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
               <div className="w-[570px] flex flex-row justify-between ">
                 {/* Filter by category */}
                 <h1 className="pt-6 text-2xl text-gray-600 sm:text-5xl lg:text-2xl font-bold tracking-tighter leading-tight whitespace-nowrap">
-                  Cari kos berdasar kategori
+                  Cari kos berdasarkan kategori
                 </h1>
                 <select
                   className="ml-2 rounded-lg h-[50px] w-[300px] mt-4"

@@ -12,6 +12,7 @@ import {
   SINGLE_HOUSE_OWNER_FETCH_SUCESS,
   MYBOOKINGS_FETCH_USER_SUCCESS,
   LIST_TENANT_KOS_FETCH_SUCCESS,
+  ADMIN_FETCH_KOS_SUCCESS,
 } from "./actionType";
 
 const baseUrl = "http://localhost:4000";
@@ -328,7 +329,6 @@ export const fetchBookmarksUser = () => {
         //   lastName: 'Flintstone'
         // }
       });
-      console.log(resp, "<<<response axios");
 
       // axios.get(`${baseUrl}/user/bookmark`);
       dispatch(fetchBookmarkUserSuccess(resp.data));
@@ -536,5 +536,45 @@ export const deleteTenantKos = (tenantId, id, kosId) => {
     } catch (error) {
       console.log("error");
     }
+  };
+};
+
+export const fetchAdminKosSuccess = (payload) => {
+  return {
+    type: ADMIN_FETCH_KOS_SUCCESS,
+    payload,
+  };
+};
+
+export const fetchAdminKos = () => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.get(`${baseUrl}/admin/boardinghouses`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      });
+      dispatch(fetchAdminKosSuccess(resp.data));
+    } catch (error) {
+      console.log("error");
+    }
+  };
+};
+
+export const deleteKosAdmin = (id) => {
+  return (dispatch, getState) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await axios.delete(`${baseUrl}/admin/boardinghouses/${id}`, {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        });
+        dispatch(fetchAdminKos());
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 };

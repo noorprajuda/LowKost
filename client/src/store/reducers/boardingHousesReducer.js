@@ -5,6 +5,7 @@ import {
   BOOKMARK_BY_ID_FETCH_USER_SUCCESS,
   LIST_TENANT_KOS_FETCH_SUCCESS,
   SINGLE_HOUSE_OWNER_FETCH_SUCESS,
+  ADMIN_FETCH_KOS_SUCCESS,
 } from "../action/actionType";
 
 const initialState = {
@@ -45,6 +46,7 @@ const initialState = {
   },
   singleHouseOwner: { BoardingHouseRules: [], BoardingHouseFacilities: [] },
   listTenant: [],
+  adminKos: [],
 };
 
 function boardingHousesReducer(state = initialState, action) {
@@ -66,6 +68,9 @@ function boardingHousesReducer(state = initialState, action) {
 
     case LIST_TENANT_KOS_FETCH_SUCCESS:
       return { ...state, listTenant: action.payload };
+
+    case ADMIN_FETCH_KOS_SUCCESS:
+      return { ...state, adminKos: action.payload };
 
     default:
       return state;

@@ -32,8 +32,6 @@ export default function BoardingHousesTableRow({ boardingHouses, index }) {
     });
   };
 
-  let number = 0;
-
   return (
     <>
       <tbody>
@@ -63,7 +61,7 @@ export default function BoardingHousesTableRow({ boardingHouses, index }) {
             }
           </td>
           <td className="py-4 px-6 text-center ">
-            <h5 class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+            <h5 class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
               {boardingHouses.Category.name}
             </h5>
           </td>
