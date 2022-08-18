@@ -26,9 +26,9 @@ export default function ListTenantTableKos() {
             <div class="h-96  flex items-center">
               <div class="container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
                 <div class="max-w-md">
-                  <div class="text-5xl font-dark font-bold">404</div>
+                  <div class="text-5xl font-dark font-bold">Waduh</div>
                   <p class="text-2xl md:text-3xl font-light leading-normal">
-                    Waduh, kosan mu masih kosong.{" "}
+                    Kosan mu masih kosong.{" "}
                   </p>
                   <p class="mb-8">
                     Buat kosan mu semenarik mungkin agar calon penyewa melirik
