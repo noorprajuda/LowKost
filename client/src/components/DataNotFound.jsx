@@ -9,9 +9,9 @@ export default function DataNotFound({ message }) {
       <div class="h-screen w-screen bg-gray-100 flex items-center">
         <div class="ml-[100px] container flex flex-col align-middle  md:flex-row items-center justify-center px-5 text-gray-700">
           <div class="max-w-md ">
-            <div class="text-5xl font-dark font-bold">404</div>
+            <div class="text-5xl font-dark font-bold">Oops</div>
             <p class="text-2xl md:text-3xl font-light leading-normal">
-              Oops, data tidak ditemukan!{" "}
+              Data tidak ditemukan!{" "}
             </p>
             <p class="mb-8">{message}</p>
 

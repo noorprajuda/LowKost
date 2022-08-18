@@ -336,7 +336,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
             </div>
             {/* Display Card Boarding Houses */}
             <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
-              {localBoardingHouses.map((boardingHouse, index) => {
+              {localBoardingHouses.slice(0, 8).map((boardingHouse, index) => {
                 return (
                   <>
                     <Card
@@ -349,7 +349,7 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
             </div>
 
             {/* Filter Google Map */}
-            <h1 className="pt-4 mb-5 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
+            <h1 className="mt-10 pt-4 mb-5 text-4xl text-gray-600 sm:text-5xl lg:text-4xl font-bold tracking-tighter leading-tight whitespace-nowrap">
               Lihat kos dengan Google Map
             </h1>
             <div className="grid grid-cols-4 gap-4 mr-20 ml-20">
