@@ -40,16 +40,16 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
   const [cityId, setCityId] = useState(0);
   const [categoryId, setCategoryId] = useState(0);
 
-  useEffect(() => {
-    if (cityId != 0) {
-      const filteredBoardingHouses = boardingHouses.filter(
-        (boardingHouse) => boardingHouse.CityId == cityId
-      );
-      setLocalBoardingHouses(filteredBoardingHouses);
-    } else {
-      setLocalBoardingHouses(boardingHouses);
-    }
-  }, [cityId]);
+  // useEffect(() => {
+  //   if (cityId != 0) {
+  //     const filteredBoardingHouses = boardingHouses.filter(
+  //       (boardingHouse) => boardingHouse.CityId == cityId
+  //     );
+  //     setLocalBoardingHouses(filteredBoardingHouses);
+  //   } else {
+  //     setLocalBoardingHouses(boardingHouses);
+  //   }
+  // }, [cityId]);
 
   const categories = [
     { id: 1, name: "Kos Putri" },
@@ -57,22 +57,101 @@ function HomePage({ isScriptLoaded, isScriptLoadSucceed }) {
     { id: 3, name: "Kos Campur" },
   ];
 
-  useEffect(() => {
-    if (categoryId != 0) {
-      const filteredBoardingHouses = boardingHouses.filter(
-        (boardingHouse) => boardingHouse.CategoryId == categoryId
-      );
-      setLocalBoardingHouses(filteredBoardingHouses);
-    } else {
-      setLocalBoardingHouses(boardingHouses);
-    }
-  }, [categoryId]);
+  // useEffect(() => {
+  //   if (categoryId != 0) {
+  //     const filteredBoardingHouses = boardingHouses.filter(
+  //       (boardingHouse) => boardingHouse.CategoryId == categoryId
+  //     );
+  //     setLocalBoardingHouses(filteredBoardingHouses);
+  //   } else {
+  //     setLocalBoardingHouses(boardingHouses);
+  //   }
+  // }, [categoryId]);
+
+  //Multiple Filter
+
+  const [list, setList] = useState(localBoardingHouses);
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedRating, setSelectedRating] = useState(null); // => city
 
   // const handleSelectCategory = (event, value) =>
   //   !value ? null : setSelectedCategory(value);
 
   // const handleSelectRating = (event, value) =>
   //   !value ? null : setSelectedRating(value); //rating => city
+
+  // const applyFilters = () => {
+  //   let updatedList = localBoardingHouses; //datalist boarding house, updatedlist local boarding house
+
+  //   // Rating Filter
+  //   if (selectedRating) {
+  //     updatedList = updatedList.filter(
+  //       (item) => parseInt(item.rating) === parseInt(selectedRating)
+  //     );
+  //   }
+
+  //   // Category Filter
+  //   if (selectedCategory) {
+  //     updatedList = updatedList.filter(
+  //       (item) => item.category === selectedCategory
+  //     );
+  //   }
+
+  //   setList(updatedList);
+
+  //   !updatedList.length ? setResultsFound(false) : setResultsFound(true);
+  // };
+
+  //
+
+  // const applyFilters = () => {
+  //   let filteredBoardingHouses = boardingHouses; //datalist boarding house, updatedlist local boarding house
+
+  //   // Rating Filter
+  //   if (cityId != 0) {
+  //     filteredBoardingHouses = boardingHouses.filter(
+  //       (item) => item.CityId === cityId
+  //     );
+  //   }
+
+  //   // Category Filter
+  //   if (categoryId != 0) {
+  //     filteredBoardingHouses = boardingHouses.filter(
+  //       (item) => item.CategoryId === categoryId
+  //     );
+  //   }
+
+  //   setLocalBoardingHouses(filteredBoardingHouses);
+
+  //   // !updatedList.length ? setResultsFound(false) : setResultsFound(true);
+  // };
+
+  useEffect(() => {
+    let filteredBoardingHouses = boardingHouses; //datalist boarding house, updatedlist local boarding house
+
+    if (cityId != 0 && categoryId != 0) {
+      filteredBoardingHouses = boardingHouses.filter(
+        (item) => item.CityId == cityId && item.CategoryId == categoryId
+      );
+    }
+
+    // City Filter
+    else if (cityId != 0) {
+      filteredBoardingHouses = boardingHouses.filter(
+        (item) => item.CityId == cityId
+      );
+    }
+
+    // Category Filter
+    else if (categoryId != 0) {
+      filteredBoardingHouses = boardingHouses.filter(
+        (item) => item.CategoryId == categoryId
+      );
+    }
+
+    setLocalBoardingHouses(filteredBoardingHouses);
+  }, [cityId, categoryId]);
 
   // useEffect(() => {
   //   if (cityId != 0) {
