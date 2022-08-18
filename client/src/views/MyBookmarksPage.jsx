@@ -4,6 +4,7 @@ import { fetchBookmarksUser } from "../store/action";
 import CardBookmark from "../components/CardBookmark";
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
+import DataNotFound from "../components/DataNotFound";
 
 export default function MyBookmarksPage() {
   const dispatch = useDispatch();
@@ -13,6 +14,14 @@ export default function MyBookmarksPage() {
   useEffect(() => {
     dispatch(fetchBookmarksUser());
   }, []);
+
+  if (bookmarks.length == 0) {
+    return (
+      <>
+        <DataNotFound message={"Ayo kembali dan tambahkan kos ke favorit"} />
+      </>
+    );
+  }
 
   return (
     <>
