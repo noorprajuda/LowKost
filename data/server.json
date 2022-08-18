@@ -6,7 +6,7 @@
       "CategoryId": 1,
       "CityId": 1,
       "totalRoom": 20,
-      "UserId": 1,
+      "UserId": 3,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. Apabila Anda membutuhkan bantuan, Anda bisa menghubungi penjaga yang bertugas dari pukul 10.00-17.00 WIB.",
       "location": "-6.31845 106.89748",
       "address": "Jalan Madrasah No./Kav. 1A, Kecamatan Cipayung, DKI Jakarta 13890, Indonesia",
@@ -16,36 +16,36 @@
       "name": "Kost Exclusive Mango",
       "price": 750000,
       "CategoryId": 2,
-      "CityId": 2,
+      "CityId": 1,
       "totalRoom": 10,
-      "UserId": 1,
+      "UserId": 3,
       "description": "Kamar berada di LANTAI 1 dan LANTAI 2 | BISA BOOKING dulu sebelum kehabisan | sudah tersedia kasur disetiap kamar | Teman tidak boleh menginap | Bertamu sampai jam 21.30",
       "location": "-6.13853 106.70409",
-      "address": "Jalan Kehangatan No./Kav. 4, Kecamatan Kalideres, DKI Jakarta 11830, Indonesia",
+      "address": "Jl. Kehangatan, RT.3/RW.6, Pegadungan, Kec. Kalideres, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11830",
       "mainImg": "https://id2-cdn.pgimgs.com/listing/17703642/UPHO.98771404.V800/Kost-Kostan-Murah-Dekat-Ubaya-Tenggilis-Manyar-Medokan-Ayu-Surabaya-Indonesia.jpg"
     },
     {
       "name": "Kost Kendari",
       "price": 500000,
       "CategoryId": 2,
-      "CityId": 3,
+      "CityId": 1,
       "totalRoom": 8,
-      "UserId": 1,
+      "UserId": 3,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah luar.",
       "location": "-6.27685 106.80707",
-      "address": "Jalan Demuna No./Kav. 11, Kecamatan Cilandak, DKI Jakarta 12410, Indonesia",
+      "address": "Jl. BRI, RT.7/RW.1, Cipete Sel., Kec. Cilandak, Kota Jakarta",
       "mainImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTuzv4ESWCaayrG0snJk2qm_Bi-3QF-SHZvA&usqp=CAU"
     },
     {
       "name": "Kost Margonda Kramat",
       "price": 1100000,
       "CategoryId": 3,
-      "CityId": 4,
+      "CityId": 1,
       "totalRoom": 5,
-      "UserId": 1,
+      "UserId": 3,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai berada di lantai 1 dan lantai 2. Semua kamar di kamar ini memiliki jendela yang menghadap secara langsung ke arah koridor.Tersedia juga layanan pembersihan AC secara rutin setiap 3 bulan sekali. ",
       "location": "-6.131164 106.85564",
-      "address": "Jalan Ancol Selatan 2 No./Kav. 55, Kecamatan Tanjung Priok, DKI Jakarta 14350, Indonesia",
+      "address": "Jl. Bambu Kuning No.20, RT.2/RW.7, Sunter Agung, Kec. Tj. Priok, Kota Jkt Utara, Daerah Khusus Ibukota Jakarta 14350",
       "mainImg": "https://ibukotakita.com/files/2019/10/Balikpapan-Kost-Herman-D.jpg"
     },
     {
@@ -54,11 +54,265 @@
       "CategoryId": 1,
       "CityId": 1,
       "totalRoom": 15,
-      "UserId": 1,
+      "UserId": 3,
       "description": "Kost ini terdiri dari 2 lantai. Tipe kamar A berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor.",
       "location": "-6.17642 106.77266",
       "address": "Jl. Duri Mas 1 Blok S No. 398, Kecamatan Kebon Jeruk, DKI Jakarta 11510, Indonesia",
       "mainImg": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/330259388.jpg?k=003642c2db45b979d3fa9555882b428e7e03702617507f1b935fd68c9508b117&o=&hp=1"
+    },
+    {
+      "name": "Kost Gandang Bersatu",
+      "price": 1340000,
+      "CategoryId": 1,
+      "CityId": 2,
+      "totalRoom": 6,
+      "UserId": 3,
+      "description": "bebas jam malam, di beri kunci pagar sendiri, kost khusus putri, tidak bebas, jika ditempati berdua ada tambahan 300 rb per bulan Keterangan biaya lainnya jika kost sekamar berdua ada tambahan 300 rb / bulan",
+      "location": "-7.260861 112.760188",
+      "address": "Jl. Pacar Kembang No.43, Pacar Kembang, Kec. Tambaksari, Kota SBY, Jawa Timur 60132",
+      "mainImg": "https://interiordesign.id/wp-content/uploads/2021/08/1-3.png"
+    },
+    {
+      "name": "Kost Heriyan Maju",
+      "price": 1500000,
+      "CategoryId": 3,
+      "CityId": 3,
+      "totalRoom": 12,
+      "UserId": 4,
+      "description": "Kost ini adalah kosan campur yang dibuat dan dibuat agar penghuninya nyaman dengan harga pada masuk perbulan adalah 1500000 rb / bulan lengkap dengan fasilitas ",
+      "location": "-6.259074962725691 106.94335993963549",
+      "address": "Jl. Jati Bening II No.57, RT.001/RW.003, Jatibening Baru, Kec. Pd. Gede, Kota Bks, Jawa Barat 17412",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-10-31/DbRi7AH7-540x720.jpg"
+    },
+    {
+      "name": "Kost Heriyan Mundur",
+      "price": 1400000,
+      "CategoryId": 1,
+      "CityId": 3,
+      "totalRoom": 13,
+      "UserId": 4,
+      "description": "Kost ini adalah kosan yang dikhususkan untuk Putri dimana ini fasiltas yang ada sudah disiapkan sebelumnya dengan harga pada masuk perbulan adalah 1400000 rb / bulan lengkap dengan fasilitas ",
+      "location": "-6.273478580811093 106.9499601396356",
+      "address": "Jl. H. DJain, RT.007/RW.003, Jatikramat, Kec. Jatiasih, Kota Bks, Jawa Barat 17421",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-04-19/yai3y416-540x720.jpg"
+    },
+    {
+      "name": "Kost Girang Girangan",
+      "price": 800000,
+      "CategoryId": 3,
+      "CityId": 2,
+      "totalRoom": 12,
+      "UserId": 4,
+      "description": "De Alcatraz merupakan kost Bangunan Baru dengan konsep PENJARA MEWAH yang dikombinasikan dengan design industrial kekinian, fitur keamanan 4 lapis",
+      "location": "-7.265150 112.771399",
+      "address": "Jl. Dharma Husada Utara IV 24-2, Mojo, Kec. Gubeng, Kota SBY, Jawa Timur 60285",
+      "mainImg": "http://assets.kompasiana.com/items/album/2021/07/03/inspirasi-kamar-minimalis-jpg-60dff19206310e0ad61d95b2.jpg"
+    },
+    {
+      "name": "Kost Surabaya",
+      "price": 800000,
+      "CategoryId": 3,
+      "CityId": 2,
+      "totalRoom": 5,
+      "UserId": 4,
+      "description": "Kost ini terdiri dari 2 lantai. Tipe kamar B berada di lantai 1 dan lantai 2. Semua kamar di tipe ini memiliki jendela yang menghadap secara langsung ke arah koridor dan ke arah luar.",
+      "location": "-7.258077 112.741477",
+      "address": "Old Town, Genteng, Kec. Genteng, Kota SBY, Jawa Timur",
+      "mainImg": "https://cdn0-production-images-kly.akamaized.net/5EepiVnqnA6nIHQRHNUmOkj-WxY=/0x121:1008x689/640x360/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3147219/original/014726100_1591659637-Kamar_5.JPG"
+    },
+    {
+      "name": "Kost Heriyan Depok Bernyanyi",
+      "price": 1000000,
+      "CategoryId": 2,
+      "CityId": 6,
+      "totalRoom": 16,
+      "UserId": 3,
+      "description": "Kost ini adalah kosan putra dan  menyediakan ini fasiltas yang ada sudah disiapkan sebelumnya dengan harga pada masuk perbulan adalah 1000000 rb / bulan lengkap dengan fasilitas ",
+      "location": "-6.38163243655856 106.81277363279595",
+      "address": "Jl. Kenari No.205, RT.5/RW.6, Beji, Kecamatan Beji, Kota Depok, Jawa Barat 16421",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-03-21/ENJCqiu0.-540x720.jpg"
+    },
+    {
+      "name": "Kost Medan Ben 10",
+      "price": 1400000,
+      "CategoryId": 2,
+      "CityId": 5,
+      "totalRoom": 10,
+      "UserId": 4,
+      "description": "merupakan pilihan yang tepat untuk Anda yang ingin tinggal secara bulanan di hunian yang nyaman, eksklusif, dan berada di kawasan perumahan.",
+      "location": "3.607963 98.628919",
+      "address": "Jl. Beringin 3, Helvetia, Kec. Medan Helvetia, Kota Medan, Sumatera Utara 20123",
+      "mainImg": "https://www.travelingajadulu.com/wp-content/uploads/2020/03/Skyview-Apartment-Medan-1024x684.jpg"
+    },
+    {
+      "name": "Kost Heriyan Depok Menari",
+      "price": 1500000,
+      "CategoryId": 3,
+      "CityId": 6,
+      "totalRoom": 10,
+      "UserId": 3,
+      "description": "Kost ini adalah kosan Campur dan dengan aturan boleh mambawa hewan peliharaan untuk para penghuni kosan, kosan ini menyediakan ini fasiltas yang ada sudah disiapkan sebelumnya dengan harga pada masuk perbulan adalah 1300000 rb / bulan lengkap dengan fasilitas ",
+      "location": "-6.365993991117662 106.81937571930237",
+      "address": "Jl. H. M. Kuru 5, Kukusan, Kecamatan Beji, Kota Depok, Jawa Barat 16425",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-06-15/vMOQoKKs-540x720.jpg"
+    },
+    {
+      "name": "Kost Helvetia",
+      "price": 1400000,
+      "CategoryId": 3,
+      "CityId": 5,
+      "totalRoom": 10,
+      "UserId": 4,
+      "description": "Kost ini adalah kosan Campur dan dengan aturan boleh mambawa hewan merupakan pilihan yang tepat untuk Anda yang ingin tinggal secara bulanan di hunian yang nyaman, eksklusif, dan berada di kawasan perumahan.",
+      "location": "3.612803 98.629584",
+      "address": "Jl. Anyelir Raya, Helvetia, Kec. Medan Helvetia, Kota Medan, Sumatera Utara 20124",
+      "mainImg": "https://balitribune.co.id/sites/default/files/styles/xtra_large/public/field/image/Diskon%20Kamar%20Hotel%20Meriahkan%20Hari%20Kemerdekaan%20Indonesia.jpeg?itok=2FTin4C4"
+    },
+    {
+      "name": "Kost Tangerang Joging",
+      "price": 900000,
+      "CategoryId": 3,
+      "CityId": 7,
+      "totalRoom": 11,
+      "UserId": 4,
+      "description": "Kost ini adalah kost Campur yang berlokasi di tangerang dengan biaya perbulannya adalah 900 rb/ bulan. Lengkap dengan fasilitas yang disediakan oleh pemilik",
+      "location": "-6.2929528475316765 106.6435139327955",
+      "address": "Pagedangan, Kec. Pagedangan, Kabupaten Tangerang, Banten 15339",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2020-10-16/CD4hBvTj-540x720.jpg"
+    },
+    {
+      "name": "Kost Singgahsini Puri Kencana Tipe A",
+      "price": 750000,
+      "CategoryId": 2,
+      "CityId": 9,
+      "totalRoom": 15,
+      "UserId": 4,
+      "description": "Kost Singgahsini Puri Kencana Ada deposit Kos yang sangat strategis dekat dengan STIKES Telogorejo (2.3 km) Paragon Mall (5 km) Indomart Puspowarno (140 m) Bandara Ahmad Yani Semarang (3 km) Stasiun Poncol (3.4 km) Halte BRI (1 km) Bank BCA KCP Siliwangi (3.1 km) Sam Poo Kong Temple (1.7 km)",
+      "location": "-6.984797 110.395955",
+      "address": " Jl. Puspowarno IV No.8, Salamanmloyo, Kec. Semarang Barat, Kota Semarang",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-06-03/h2R61nd8-540x720.jpg"
+    },
+    {
+      "name": "Kost Tubagus Ismail 20 Coblong Bandung 198264RT",
+      "price": 750000,
+      "CategoryId": 2,
+      "CityId": 4,
+      "totalRoom": 5,
+      "UserId": 1,
+      "description": "Lokasi strategis. udara bersih. Sirkulasi rumah lancar dan caaya matahari cukup. Air sumur segar 24 jam",
+      "location": "-6.883203996110717 107.61894500989963",
+      "address": "No., Jl. Tubagus Ismail IX No.2, Sekeloa, Kecamatan Coblong, Kota Bandung, Jawa Barat 40134",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-09-29/7uzkrNii-540x720.jpg"
+    },
+    {
+      "name": "Kost 128B Coblong Bandung QY3DA985",
+      "price": 1500000,
+      "CategoryId": 2,
+      "CityId": 4,
+      "totalRoom": 5,
+      "UserId": 1,
+      "description": "Kosan homey dekat ITB. Kosan memiliki suasana seperti dirumah nenek. Terletak di pusat kota namun dengan suasana yang tenang. Cocok untuk mahasiswa atau pekerja.",
+      "location": "-6.879167586115981 107.61296040432292",
+      "address": "Jalan Cisitu Lama VIII No18b/154b, RT.07/RW.10, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40135",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-07-23/X3CRlpYE-540x720.jpg"
+    },
+    {
+      "name": "Kost Taman Surya Tipe A Kalideres Jakarta Barat 152637ST",
+      "price": 1920000,
+      "CategoryId": 3,
+      "CityId": 1,
+      "totalRoom": 30,
+      "UserId": 4,
+      "description": "Kost Singgahsini Taman Surya • Parkir Motor + 25 Ribu • Parkir Mobil + 250 Ribu • Bisa BERDUA + 300 Ribu • Ada Deposit • Kos yang sangat strategis dekat dengan BCA (2.1 km) • Halte Taman Palem (500 m) • Kalideres District General Hospital (1.3 km) • Super Indo Taman Palem (150 m) • Lotte Mart Taman Surya (1.4 km) • Palm Bay Water Park (1.1 km)",
+      "location": "-6.130397779836505 106.70651023883917",
+      "address": "Jl. 20 Desember No.81, RT.2/RW.3, Pegadungan, Kec. Kalideres, Jakarta, Daerah Khusus Ibukota Jakarta 11830",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-01-21/QYLnQamS-540x720.jpg"
+    },
+    {
+      "name": "Kost Selvi Lie Tipe B Ilir Timur I Palembang F1EL574A",
+      "price": 1600000,
+      "CategoryId": 3,
+      "CityId": 8,
+      "totalRoom": 6,
+      "UserId": 1,
+      "description": "Harga sewa sudah termasuk biaya air. Keterangan biaya lainnya Parkir mobil dikenakan biaya tambahan Rp 150.000/bulan",
+      "location": "-2.977127256431566 104.7613138333027",
+      "address": "Jl. Kebun Manggis No.215B, Kepandean Baru, Kec. Ilir Tim. I, Kota Palembang, Sumatera Selatan 30111",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/0NaDYQlJ-540x720.jpg"
+    },
+    {
+      "name": "Kost Pinang Emas Tipe A Kebayoran Lama Jakarta Selatan 342857PE",
+      "price": 2200000,
+      "CategoryId": 1,
+      "CityId": 1,
+      "totalRoom": 10,
+      "UserId": 1,
+      "description": "Sangat dengan pusat perbelanjaan Pondok Indah Mall 3, 2, 1 dan Perkantoran Wisma Pondok Indah",
+      "location": "-6.264810580468408 106.77930398646811",
+      "address": "Jl. Pinang Emas I Blok UT No.29, RT.7/RW.3, Pd. Pinang, Kec. Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12310",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2020-09-01/003z1g1B-540x720.jpg"
+    },
+    {
+      "name": "Kost Selvi Lie Tipe B Ilir Timur I Palembang F1EL574A",
+      "price": 1600000,
+      "CategoryId": 3,
+      "CityId": 8,
+      "totalRoom": 6,
+      "UserId": 1,
+      "description": "Harga sewa sudah termasuk biaya air. Keterangan biaya lainnya Parkir mobil dikenakan biaya tambahan Rp 150.000/bulan",
+      "location": "-2.977127256431566 104.7613138333027",
+      "address": "Jl. Kebun Manggis No.215B, Kepandean Baru, Kec. Ilir Tim. I, Kota Palembang, Sumatera Selatan 30111",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/0NaDYQlJ-540x720.jpg"
+    },
+    {
+      "name": "Kost Keluarga Rumah Pho Pho Queen Middle Room Ilir Timur II Palembang 2D38F1CB",
+      "price": 3200000,
+      "CategoryId": 3,
+      "CityId": 8,
+      "totalRoom": 15,
+      "UserId": 1,
+      "description": "Kost di tengah kota, tempat stragegis. dengan fasilitas ac dan toilet dalam. Siap huni. Tempat lingkungan yang bersih dan rapi.",
+      "location": "-2.9698584655633646 104.77000105286365",
+      "address": "Jl. Dr. M. Isa No.988, Duku, Kec. Ilir Tim. II, Kota Palembang, Sumatera Selatan 30114",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2022-07-17/u4AZQKXo.-540x720.jpg"
+    },
+
+    {
+      "name": "Kost Mayan Coliving Super Single Room Ilir Timur Ii Palembang 549761MC",
+      "price": 2700000,
+      "CategoryId": 3,
+      "CityId": 8,
+      "totalRoom": 15,
+      "UserId": 1,
+      "description": "Executive kost",
+      "location": "-2.969255899622995 104.76673515396895",
+      "address": "Jl. Cendrawasih No.17a, 9 Ilir, Kec. Ilir Tim. II, Kota Palembang, Sumatera Selatan 30114",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-11-13/TlL86zEI-540x720.jpg"
+    },
+    {
+      "name": "Rumah Kost Maeki",
+      "price": 1500000,
+      "CategoryId": 3,
+      "CityId": 10,
+      "totalRoom": 8,
+      "UserId": 1,
+      "description": "Kos strategis dan nyaman. Dinding wallpaper, fasilitas lengkap (tempat sendal, piring gelas, mangkok, selimut, parfum, kulkas dalam kamar) tinggal bawa diri saja️",
+      "location": "-5.1391128081298225 119.42211840098969",
+      "address": "Jl. Bulu Salaka No.31-33, Lariang Bangi, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90151",
+      "mainImg": "https://lh5.googleusercontent.com/p/AF1QipNNXUV1ih8F5b0Yx4xTQpMqmqo0D3xfitUnAOXV=s773-k-no"
+    },
+
+    {
+      "name": "Kost Allu Uno Tipe D Makassar 624AN",
+      "price": 1300000,
+      "CategoryId": 3,
+      "CityId": 10,
+      "totalRoom": 10,
+      "UserId": 1,
+      "description": "Ruang tamu, Ruang Jemur, Parkir Motor, Listrik token dan harga untuk satu orang, Khusus karyawan / pekerja tetap dan hanya satu orang per kamar, Tidak menerima pasutri, kebersihan terjaga aman dan nyaman",
+      "location": "-5.142178983239419 119.42557487319165",
+      "address": "VC5G+468, RW.Lorong 43, Mardekaya Utara, Kec. Makassar, Kota Makassar, Sulawesi Selatan 90144",
+      "mainImg": "https://static.mamikos.com/uploads/cache/data/style/2021-09-28/25VgrfoX-540x720.jpg"
     }
   ],
   "Categories": [
@@ -77,7 +331,7 @@
       "name": "Akses 24 Jam"
     },
     {
-      "name": "Khusus Karyawan"
+      "name": "Khusus Karyawan/Mahasiswa"
     },
     {
       "name": "Boleh Bawa Hewan"
@@ -143,6 +397,246 @@
     {
       "imgUrl": "https://infokost.id/wp-content/uploads/2022/02/142dbfb164448921598562052f14380a3-450x300.jpg",
       "BoardingHouseId": 5
+    },
+    {
+      "imgUrl": "https://interiordesign.id/wp-content/uploads/2021/08/4-2-1024x810.png",
+      "BoardingHouseId": 6
+    },
+    {
+      "imgUrl": "https://i.pinimg.com/originals/d5/99/14/d5991468ba1c024aba8c41cef29de104.png",
+      "BoardingHouseId": 6
+    },
+    {
+      "imgUrl": "https://awsimages.detik.net.id/community/media/visual/2021/04/15/ilustrasi-rumah-tropis-minimalis_169.jpeg?w=700&q=90",
+      "BoardingHouseId": 9
+    },
+    {
+      "imgUrl": "https://cdn-cms.pgimgs.com/static/2018/04/citragarden-city.jpeg",
+      "BoardingHouseId": 9
+    },
+    {
+      "imgUrl": "https://awsimages.detik.net.id/visual/2019/01/22/9a7b242b-c7cd-4370-b299-54cb99cf67df_169.jpeg?w=360&q=90",
+      "BoardingHouseId": 10
+    },
+    {
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyYkky-f5gKzLJxBb5pAkuytTHNLwRuCUc3xhP2Cuj6vDULf5_3skpItsglkxd4LX0azo&usqp=CAU",
+      "BoardingHouseId": 10
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-03/xT9NPNdQ-540x720.jpg",
+      "BoardingHouseId": 7
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-31/rDz5yKoN-540x720.jpg",
+      "BoardingHouseId": 7
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-31/2hwwXugn-540x720.jpg",
+      "BoardingHouseId": 7
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-31/vCc6mTra-540x720.jpg",
+      "BoardingHouseId": 7
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-04-19/J5SiiMEZ-540x720.jpg",
+      "BoardingHouseId": 8
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-04-19/BMYNGaEG-540x720.jpg",
+      "BoardingHouseId": 8
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-04-19/dcASsPMY-540x720.jpg",
+      "BoardingHouseId": 8
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-04-19/B7ZTQS1S-540x720.jpg",
+      "BoardingHouseId": 8
+    },
+    {
+      "imgUrl": "https://1.bp.blogspot.com/-UHqqN-uas4o/XY4lPLb4ABI/AAAAAAAASPc/G-27FrzM8GsAO8mkXkTFHLgwDEY_zHV0gCLcBGAsYHQ/s1600-rw/rumah%2Bminimalis%2Bterbaru%2B%25286%2529.webp",
+      "BoardingHouseId": 12
+    },
+    {
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Ad6GT7KBU9S5BL_CWRgXRmH_moh1L_LW4vPLcTJkh1_sBMOzIejbOIOkRf8Fr6wByYg&usqp=CAU",
+      "BoardingHouseId": 12
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-03-21/hGlb05eP.-540x720.jpg",
+      "BoardingHouseId": 11
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-03-21/rI3TxHPV.-540x720.jpg",
+      "BoardingHouseId": 11
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-03-21/xIpWRA9x.-540x720.jpg",
+      "BoardingHouseId": 11
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-06-15/vjIXalxr-540x720.jpg",
+      "BoardingHouseId": 13
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-06-15/9X9mrnDf-540x720.jpg",
+      "BoardingHouseId": 13
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-16/E0sXLI5Q-540x720.jpg",
+      "BoardingHouseId": 15
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-16/rfuACFof-540x720.jpg",
+      "BoardingHouseId": 15
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-06-23/ZQSfxnho-540x720.jpg",
+      "BoardingHouseId": 16
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-06-23/MvP0b5JU-540x720.jpg",
+      "BoardingHouseId": 16
+    },
+    {
+      "imgUrl": "https://1.bp.blogspot.com/-UHqqN-uas4o/XY4lPLb4ABI/AAAAAAAASPc/G-27FrzM8GsAO8mkXkTFHLgwDEY_zHV0gCLcBGAsYHQ/s1600-rw/rumah%2Bminimalis%2Bterbaru%2B%25286%2529.webp",
+      "BoardingHouseId": 14
+    },
+    {
+      "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Ad6GT7KBU9S5BL_CWRgXRmH_moh1L_LW4vPLcTJkh1_sBMOzIejbOIOkRf8Fr6wByYg&usqp=CAU",
+      "BoardingHouseId": 14
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-09-29/8Eqxn0ul-540x720.jpg",
+      "BoardingHouseId": 17
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-09-29/4gDUN20Z-540x720.jpg",
+      "BoardingHouseId": 17
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-04/x3iOPQ1h-540x720.jpg",
+      "BoardingHouseId": 17
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-11/8mGVBXoY-540x720.jpg",
+      "BoardingHouseId": 18
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-11/wlUYBMk5-540x720.jpg",
+      "BoardingHouseId": 18
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-11/zVKgcwFz-540x720.jpg",
+      "BoardingHouseId": 18
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-10-11/KeXAu8Ns-540x720.jpg",
+      "BoardingHouseId": 18
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/KlPjICNW-540x720.jpg",
+      "BoardingHouseId": 19
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/vW12Ol9N-540x720.jpg",
+      "BoardingHouseId": 19
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/80AjvZfW-540x720.jpg",
+      "BoardingHouseId": 19
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-11-13/VVJvJFuk-540x720.jpg",
+      "BoardingHouseId": 20
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-11-13/J49MqPJg-540x720.jpg",
+      "BoardingHouseId": 20
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-11-13/UojHxaW2-540x720.jpg",
+      "BoardingHouseId": 20
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2021-11-12/vCIf2DYK-540x720.jpg",
+      "BoardingHouseId": 20
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2019-10-05/4rjMXG1c-540x720.jpg",
+      "BoardingHouseId": 21
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2019-10-05/4rjMXG1c-540x720.jpg",
+      "BoardingHouseId": 21
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-07/KnFzULHP-540x720.jpg",
+      "BoardingHouseId": 21
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-07/NPu4jOYd-540x720.jpg",
+      "BoardingHouseId": 21
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/KlPjICNW-540x720.jpg",
+      "BoardingHouseId": 22
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/vW12Ol9N-540x720.jpg",
+      "BoardingHouseId": 22
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/80AjvZfW-540x720.jpg",
+      "BoardingHouseId": 22
+    },
+    {
+      "imgUrl": "https://lh5.googleusercontent.com/p/AF1QipMFMe3G390NWWebhL3ibBGGjWmpSjs14vNMLI2B=w203-h270-k-no",
+      "BoardingHouseId": 23
+    },
+    {
+      "imgUrl": "https://lh5.googleusercontent.com/p/AF1QipOkiEq-Dzzl-AyrqMuo3oz4vvY8cIbi0YfD98lt=s901-k-no",
+      "BoardingHouseId": 23
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/80AjvZfW-540x720.jpg",
+      "BoardingHouseId": 23
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/80AjvZfW-540x720.jpg",
+      "BoardingHouseId": 23
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-02-26/80AjvZfW-540x720.jpg",
+      "BoardingHouseId": 24
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-07-17/MmR7R9GZ.-540x720.jpg",
+      "BoardingHouseId": 25
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-07-20/gK5tD9JH.-540x720.jpg",
+      "BoardingHouseId": 25
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2022-07-17/vyfu1qN2.-540x720.jpg",
+      "BoardingHouseId": 25
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2019-10-05/4rjMXG1c-540x720.jpg",
+      "BoardingHouseId": 26
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2019-10-05/4rjMXG1c-540x720.jpg",
+      "BoardingHouseId": 26
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-07/KnFzULHP-540x720.jpg",
+      "BoardingHouseId": 26
+    },
+    {
+      "imgUrl": "https://static.mamikos.com/uploads/cache/data/style/2020-10-07/NPu4jOYd-540x720.jpg",
+      "BoardingHouseId": 26
     }
   ],
   "Users": [
@@ -160,7 +654,7 @@
       "password": "12345678",
       "phoneNumber": "086363628781",
       "role": "Tenant",
-      "address": "Jalan Kenangan 1 no 12"
+      "address": "Jalan Kenangan 2 no 15"
     },
     {
       "fullName": "Owner 1",
@@ -169,6 +663,14 @@
       "phoneNumber": "086363628781",
       "role": "Owner",
       "address": "Jalan Kenangan 1 no 12"
+    },
+    {
+      "fullName": "Owner 2",
+      "email": "owner2@mail.com",
+      "password": "12345678",
+      "phoneNumber": "086363628781",
+      "role": "Owner",
+      "address": "Jalan Kenangan 3 no 27"
     }
   ],
   "Facilities": [
@@ -207,6 +709,374 @@
     {
       "FacilityId": 4,
       "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 1
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 2
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 3
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 4
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 5
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 6
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 7
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 8
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 9
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 10
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 11
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 12
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 13
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 14
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 15
+    },
+    {
+      "FacilityId": 1,
+      "BoardingHouseId": 16
+    },
+    {
+      "FacilityId": 2,
+      "BoardingHouseId": 16
+    },
+    {
+      "FacilityId": 3,
+      "BoardingHouseId": 16
+    },
+    {
+      "FacilityId": 4,
+      "BoardingHouseId": 16
+    },
+    {
+      "FacilityId": 5,
+      "BoardingHouseId": 16
+    },
+    {
+      "FacilityId": 6,
+      "BoardingHouseId": 16
     }
   ],
   "BoardingHouseRules": [
@@ -219,20 +1089,100 @@
       "BoardingHouseId": 1
     },
     {
-      "RuleId": 3,
-      "BoardingHouseId": 1
-    },
-    {
-      "RuleId": 1,
-      "BoardingHouseId": 2
-    },
-    {
       "RuleId": 2,
       "BoardingHouseId": 2
     },
     {
+      "RuleId": 2,
+      "BoardingHouseId": 3
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 4
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 5
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 5
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 6
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 6
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 7
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 7
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 8
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 8
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 9
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 9
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 10
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 11
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 11
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 12
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 12
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 13
+    },
+    {
       "RuleId": 3,
-      "BoardingHouseId": 2
+      "BoardingHouseId": 13
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 14
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 15
+    },
+    {
+      "RuleId": 2,
+      "BoardingHouseId": 15
+    },
+    {
+      "RuleId": 1,
+      "BoardingHouseId": 16
     }
   ],
   "City": [
