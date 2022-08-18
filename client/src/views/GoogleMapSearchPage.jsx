@@ -1,6 +1,7 @@
 import BoardingHousesList from "../components/BoardingHousesList";
 import PlacesAutocomplete from "react-places-autocomplete";
 import scriptLoader from "react-async-script-loader";
+import DataNotFound from "../components/DataNotFound";
 
 import {
   GoogleMap,
@@ -11,6 +12,7 @@ import {
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -106,6 +108,19 @@ export default function GoogleMapSearchPage() {
     }
     setActiveMarker(marker);
   };
+
+  if (localBoardingHouse.length === 0) {
+    return (
+      <>
+        <DataNotFound
+          message={
+            "Mungkin kamu salah memasukkan nama lokasi / daerah / alamat. Ayo kembali ke halaman sebelumnya dan ulangi pencarian."
+          }
+        />
+      </>
+    );
+  }
+
   return isLoaded && !loading ? (
     <>
       <div className="mr-20 mt-20 ml-20 px-10 flex flexrow align-center ">
