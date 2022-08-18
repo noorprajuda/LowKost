@@ -69,7 +69,7 @@ export default function CardBookmark({ bookmark }) {
             <div className="flex flex-row justify-between">
               <a
                 href="#"
-                className="inline-flex items-center py-1 px-1 text-sm font-small text-center text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                className="inline-flex items-center py-1 px-1 text-sm font-small text-center rounded text-white bg-green-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               >
                 {bookmark.BoardingHouse.Category.name}
               </a>

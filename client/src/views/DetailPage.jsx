@@ -214,7 +214,7 @@ export default function DetailPage() {
             <div className="p-2 w-3/4">
               <img
                 src={localBoardingHouse.mainImg}
-                className="w-[800px] h-[400px] object-cover"
+                className="w-[800px] h-[400px] object-cover rounded"
               />
             </div>
 
@@ -223,13 +223,13 @@ export default function DetailPage() {
                 <div className="p-2 w-full h-1/2">
                   <img
                     src={localBoardingHouse.Images[0].imgUrl}
-                    className="w-[800px] h-full object-cover"
+                    className="w-[800px] h-full object-cover rounded"
                   />
                 </div>
                 <div className="relative p-2 w-full h-1/2">
                   <img
                     src={localBoardingHouse.Images[1].imgUrl}
-                    className=" w-[800px] mt-4 h-full object-cover"
+                    className=" w-[800px] mt-4 h-full object-cover rounded"
                   />
                   <button
                     onClick={handleImagesPage}
@@ -311,20 +311,42 @@ export default function DetailPage() {
               <div className="flex flex-row justify-between">
                 <a
                   href="#"
-                  className="mt-1 inline-block bg-green-500 text-white px-6 py-3 text-sm hover:bg-gray-800"
+                  className="mt-1 inline-block bg-green-500 text-white px-6 py-3 text-sm rounded hover:bg-gray-800"
                 >
                   {localBoardingHouse.Category.name}
                 </a>
 
                 <button
+                  type="button"
                   value={localBoardingHouse.id}
                   onClick={addToMyBookmarkHandle}
-                  className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl underline"
+                  class="text-white bg-yellow-400 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  {"♥ bookmark"}
-
-                  {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
+                  Tambahkan ke Favorit{" "}
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    ></path>
+                  </svg>
                 </button>
+
+                {/* <button
+                  value={localBoardingHouse.id}
+                  onClick={addToMyBookmarkHandle}
+                  className="col-2 cursor-pointer pl-0 bg-white text-red-600 text-xl"
+                >
+                  Tambahkan ke Favorit */}
+                {/* <i className="fa fa-bookmark text-xl text-orange-500"></i> */}
+                {/* </button> */}
               </div>
             </h2>
             <div className="w-full">

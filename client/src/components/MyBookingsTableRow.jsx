@@ -11,7 +11,7 @@ import {
 
 const baseUrl = "http://localhost:4000";
 
-export default function MyBookingsTableRow({ myBooking }) {
+export default function MyBookingsTableRow({ myBooking, index }) {
   const myBookings = useSelector((state) => state.myBookings.myBookings);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -91,10 +91,12 @@ export default function MyBookingsTableRow({ myBooking }) {
         },
 
         onPending(result) {
-          navigate("my-bookings");
+          Swal.fire("Pending", "", "error");
+          navigate("/my-bookings");
         },
         onClose(result) {
-          navigate("my-bookings");
+          Swal.fire("Pembayaran dibatalkan!", "", "info");
+          navigate("/my-bookings");
         },
 
         onError(result) {
@@ -130,15 +132,12 @@ export default function MyBookingsTableRow({ myBooking }) {
     <>
       <tbody className="mb-20">
         <tr className="bg-white border-b">
-          {/* <td className="py-4 px-6 text-xs">
-            #{bookmark.id}-{bookmark.UserId}-
-            {bookmark.CategoryId}-2022
-          </td> */}
+          <td className="py-4 px-6 text-xs text-center">{index + 1}</td>
           <td className="py-4 px-6 text-center">
             <img
               src={myBooking.BoardingHouse.mainImg}
               alt=""
-              className="w-96"
+              className="w-96 h-40 rounded"
             />
           </td>
 

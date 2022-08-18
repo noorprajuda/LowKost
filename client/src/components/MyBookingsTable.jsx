@@ -56,6 +56,9 @@ export default function MyBookingsTable() {
               <thead className="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="py-3 px-6">
+                    No.
+                  </th>
+                  <th scope="col" className="py-3 px-6">
                     Foto
                   </th>
                   <th scope="col" className="py-3 px-6">
@@ -97,11 +100,12 @@ export default function MyBookingsTable() {
                   </th>
                 </tr>
               </thead>
-              {myBookings.map((myBooking) => {
+              {myBookings.map((myBooking, index) => {
                 return (
                   <MyBookingsTableRow
                     key={myBooking.id}
                     myBooking={myBooking}
+                    index={index}
                   />
                 );
               })}

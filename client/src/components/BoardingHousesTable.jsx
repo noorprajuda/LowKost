@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBoardingHouses } from "../store/action";
+import { fetchAdminKos, fetchBoardingHouses } from "../store/action";
 import BoardingHousesTableRow from "./BoardingHousesTableRow";
 
 export default function BoardingHousesTable() {
   const dispatch = useDispatch();
-  const boardingHouses = useSelector(
-    (state) => state.boardingHouses.boardingHouses
-  );
+  const boardingHouses = useSelector((state) => state.boardingHouses.adminKos);
 
   useEffect(() => {
-    dispatch(fetchBoardingHouses());
+    dispatch(fetchAdminKos());
   }, []);
 
   if (!boardingHouses.length) {
@@ -49,9 +47,9 @@ export default function BoardingHousesTable() {
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  {/* <th scope="col" className="py-3 px-6">
-                    ID
-                  </th> */}
+                  <th scope="col" className="py-3 px-6">
+                    No.
+                  </th>
                   <th scope="col" className="py-3 px-6">
                     Image
                   </th>
@@ -85,11 +83,12 @@ export default function BoardingHousesTable() {
                   </th>
                 </tr>
               </thead>
-              {boardingHouses.map((boardingHouses) => {
+              {boardingHouses.map((boardingHouses, index) => {
                 return (
                   <BoardingHousesTableRow
                     key={boardingHouses.id}
                     boardingHouses={boardingHouses}
+                    index={index}
                   />
                 );
               })}

@@ -134,7 +134,7 @@ export default function GoogleMapSearchPage() {
                 <div>{loading && <div>Loading...</div>}</div>
                 {suggestions.map((suggestion) => {
                   const style = suggestion.active
-                    ? { backgroundColor: "#a83232", cursor: "pointer" }
+                    ? { backgroundColor: "#21E1E1", cursor: "pointer" }
                     : { backgroundColor: "#ffffff", cursor: "pointer" };
                   return (
                     <div
