@@ -6,11 +6,13 @@ import Swal from "sweetalert2";
 export default function BoardingHousesTableRow({ boardingHouses, index }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const updateHandler = (id) => {
+  const updateHandler = (e, id) => {
+    e.preventDefault();
     navigate(`/${id}/update`);
   };
 
-  const tenantHandler = (id) => {
+  const tenantHandler = (e, id) => {
+    e.preventDefault();
     navigate(`/${id}/tenant`);
   };
 
@@ -73,7 +75,7 @@ export default function BoardingHousesTableRow({ boardingHouses, index }) {
           <td className="py-4 px-6 text-center">
             <a
               href="#"
-              onClick={() => tenantHandler(boardingHouses.id)}
+              onClick={(e) => tenantHandler(e, boardingHouses.id)}
               className="font-medium text-green-600  hover:underline"
             >
               Lihat Penyewa{" "}
@@ -82,7 +84,7 @@ export default function BoardingHousesTableRow({ boardingHouses, index }) {
           <td className="py-4 px-6 text-center">
             <a
               href="#"
-              onClick={() => updateHandler(boardingHouses.id)}
+              onClick={(e) => updateHandler(e, boardingHouses.id)}
               className="font-medium text-blue-600  hover:underline"
             >
               Rubah Kosan{" "}
