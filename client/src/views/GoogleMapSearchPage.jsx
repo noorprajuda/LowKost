@@ -114,7 +114,7 @@ export default function GoogleMapSearchPage() {
       <>
         <DataNotFound
           message={
-            "Mungkin kamu salah memasukkan nama lokasi / daerah / alamat. Ayo kembali ke halaman sebelumnya dan ulangi pencarian."
+            "Mungkin kamu salah memasukkan nama lokasi / daerah / alamat. Ayo kembali dan ulangi pencarian."
           }
         />
       </>
