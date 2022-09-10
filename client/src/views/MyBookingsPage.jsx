@@ -8,7 +8,7 @@ import DataNotFound from "../components/DataNotFound";
 
 export default function MyBookingsPage() {
   const dispatch = useDispatch();
-  const { loading } = useFetch("http://localhost:4000/user/bookmark");
+  const { loading } = useFetch("https://low-kost-server.herokuapp.com/user/bookmark");
   const myBookings = useSelector((state) => state.myBookings.myBookings);
 
   useEffect(() => {

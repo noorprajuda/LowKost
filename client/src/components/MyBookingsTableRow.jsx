@@ -9,7 +9,7 @@ import {
   fetchMyBookingsByIdUser,
 } from "../store/action";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = "https://low-kost-server.herokuapp.com";
 
 export default function MyBookingsTableRow({ myBooking, index }) {
   const myBookings = useSelector((state) => state.myBookings.myBookings);
@@ -69,7 +69,7 @@ export default function MyBookingsTableRow({ myBooking, index }) {
 
           console.log(result.order_id);
 
-          let baseUrl = "http://localhost:4000";
+          let baseUrl = "https://low-kost-server.herokuapp.com";
 
           const resp = await axios({
             method: "patch",

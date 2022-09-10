@@ -15,7 +15,7 @@ import {
   ADMIN_FETCH_KOS_SUCCESS,
 } from "./actionType";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = "https://low-kost-app.herokuapp.com";
 
 export const fetchBoardingHousesSuccess = (payload) => {
   return {
