@@ -13,7 +13,7 @@ module.exports = {
       BoardingHouseFacilities,
       BoardingHouseRules,
       City,
-    } = require("../../data/server.json");
+    } = require("../data/server.json");
     Categories.forEach((el) => {
       (el.createdAt = new Date()), (el.updatedAt = new Date()), delete el.id;
     });
